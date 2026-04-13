@@ -1,10 +1,3 @@
-Este é um README personalizado e estruturado para o seu projeto **Lentes do Tempo**. Como o repositório parece ser focado em preservação de memórias ou histórico visual (pelo nome), criei um modelo profissional, moderno e completo.
-
-Você pode copiar o código abaixo e salvar como `README.md` na raiz do seu projeto.
-
----
-
-```markdown
 # 📸 Lentes do Tempo
 
 > "Capturando o presente, preservando o passado e projetando o futuro."
@@ -32,7 +25,7 @@ Este projeto foi construído com as seguintes ferramentas:
 - *[Insira aqui outros frameworks como React, Vue ou Node.js, se houver]*
 - **Design:** [Figma/Google Fonts/Iconify]
 
----
+
 
 ## 📦 Como Instalar e Rodar o Projeto
 
