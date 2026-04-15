@@ -12,12 +12,94 @@
         <script src="../../js/components/header.js" defer></script>
         <script src="../../js/components/footer.js" defer></script>
         <script src="../../js/motions/transition.js" defer></script>
+
+        <link rel="stylesheet" href="../../css/pages/main/servicos.css" type="text/css" />
+        <script src="../../js/pages/pagina_servicos.js" defer></script>
+
     </head>
     <body>
         <header-component></header-component>
-        <main>
-            <h1>Serviços</h1>
-        </main>
+        <div class="image-container">
+            <img class="image-after" src="../../assets/imgs/estrutura1.png" alt="depois"/>
+            <div class="image-before">
+                <img src="../../assets/imgs/estrutura2.png" alt="antes"/>
+            </div>
+            <div class="slider-handle"></div>
+            <div class="slider-line"></div>
+            <div class="slider-button" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M136,40V216a8,8,0,0,1-16,0V40a8,8,0,0,1,16,0ZM96,120H35.31l18.35-18.34A8,8,0,0,0,42.34,90.34l-32,32a8,8,0,0,0,0,11.32l32,32a8,8,0,0,0,11.32-11.32L35.31,136H96a8,8,0,0,0,0-16Zm149.66,2.34-32-32a8,8,0,0,0-11.32,11.32L220.69,120H160a8,8,0,0,0,0,16h60.69l-18.35,18.34a8,8,0,0,0,11.32,11.32l32-32A8,8,0,0,0,245.66,122.34Z"></path>
+                </svg>
+            </div>
+        </div>
+
+        <section id="secao2">
+
+        <section id="secao_imagem">
+            <img src="../../assets/imgs/oculosvr_roma.png">
+        </section>    
+        
+
+        <article id="reconstrucao_virtual">
+            <h1>Reconstrução Virtual (VR)</h1>
+            <p id="texto">Recriamos monumentos, museus e<br/> espaços históricos em realidade virtual,<br/> permitindo uma expêriencia imersiva e<br/> interativa.</p>
+            <div class="icone"> <img src="../../assets/imgs/imersao.png"> <p>IMERSÃO REALISTA</p> </div>
+            <div class="icone"> <img src="../../assets/imgs/fidelidade.png"> <p>FIDELIDADE HISTÓRICA</p> </div>
+            <div class="icone"> <img src="../../assets/imgs/interatividade.png"> <p>INTERATIVIDADE</p> </div>
+        </article>
+
+        </section>
+
+        <section id="secao3">
+            <h1>Exploração Interativa</h1>
+            <p>Desenvolvemos ambientes 3D navegáveis, onde o usuário pode<br/> explorar locais históricos de forma dinâmica, como em um mapa digital</p>
+            <video autoplay muted loop playsinline>
+                <source src="../../assets/imgs/video_local.mp4" type="video/mp4">
+                </video>
+        </section>
+
+        <section id="secao4">
+            <article>
+                <h1>Maquetes Físicas para Museus</h1>
+                <h2>Projetamos modelos 3D que podem ser utilizados na<br/> criação de maquetes físicas, auxiliando exposições e<br/> experiências educativas.</h2>
+                <p>Este projeto de maquete em escala real<br/> demonstra nossa capacidade de recriar<br/> arquiteturas complexas e ambientes históricos<br/> com precisão absoluta. Cada fachada, cada telha<br/> e cada textura são fruto de uma pesquisa rigorosa<br/> para garantir que o passado seja preservado com<br/> a dignidade que merece.</p>
+                <p>Representação física que facilita a compreensão<br/> do espaço, aproximando o público da história.</p>
+            </article>
+
+            <section id="imagem_video">
+                <video autoplay muted loop playsinline>
+                <source src="../../assets/imgs/gif.mp4" type="video/mp4">
+                </video>
+                <img src="../../assets/imgs/maquete.png">
+            </section>
+        </section>
+
+        <section id="secao5">
+            <img src="../../assets/imgs/esboco_museu.png">
+
+            <div id="contato">
+                <h1>Solicite um Estudo de Reconstituição</h1>
+                <label>NOME</label>
+                <input type="text" id="nome" />
+
+                <label>INSTITUIÇÃO</label>
+                <input type="text" id="instituicao" />
+
+                <label>E-MAIL</label>
+                <input type="email" id="email" />
+
+                <label>MENSAGEM</label>
+                <textarea id="mensagem"></textarea>
+
+                <button type="submit" id="btnEnviar">ENVIAR</button>
+
+                <p id="mensagem-sucesso" style="display: none;">
+                    Recebemos sua solicitação, a analisaremos e entraremos em contato.
+                </p>
+            </div>
+        </section>
+
+    </main>
         <footer-component></footer-component>
     </body>
 </html>

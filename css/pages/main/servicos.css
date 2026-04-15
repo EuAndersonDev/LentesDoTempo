@@ -1,4 +1,641 @@
-h1 {
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+*, *::after, *::before {
     margin: 0;
-    padding: 32px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+main {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+.image-container {
+    --largura: 1700px;
+    --altura: 850px;
+    --position: 50%;
+
+    width: 99vw;
+    height: var(--altura);
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    cursor: ew-resize;
+    user-select: none;
+    top: -50px;
+}
+
+.image-after {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left;
+    display: block;
+}
+
+.image-before {
+    position: absolute;
+    inset: 0;
+    width: var(--position);
+    overflow: hidden;
+}
+
+.image-before img {
+    width: 100vw;
+    max-width: none;
+    height: 100%;
+    object-fit: cover;
+    object-position: left;
+}
+
+.slider-handle {
+    position: absolute;
+    inset: 0;
+    z-index: 200;
+    cursor: ew-resize;
+}
+
+.slider-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #fff;
+    left: var(--position);
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.slider-button {
+    position: absolute;
+    background: #fff;
+    color: #000;
+    padding: .5rem;
+    border-radius: 100vw;
+    display: grid;
+    place-items: center;
+    top: 50%;
+    left: var(--position);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 100;
+    box-shadow: 0 2px 6px rgba(0,0,0,.4);
+}
+
+#secao2 {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#secao_imagem {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 50px;
+}
+
+#secao_imagem img {
+    width: 90%;
+    height: 90%;
+    padding-left: 30px;
+}
+
+#reconstrucao_virtual {
+    width: 50%;
+    height: 550px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+#reconstrucao_virtual h1 {
+    font-size: 60px;
+    font-family: 'Abhaya Libre regular';
+    color: #582D0B;
+}
+
+#reconstrucao_virtual #texto {
+    font-size: 30px;
+    font-family: 'plus jakarta sans';
+}
+
+.icone {
+    display: flex;
+    flex-direction: initial;
+    justify-content: initial;
+    font-size: 20px;
+    padding-top: 5px;
+}
+
+.icone p {
+    padding-left: 10px;
+    font-family: 'plus jakarta sans';
+}
+
+#secao3 {
+    background-color: #f8f3f0;
+    width: 100%;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+}
+
+#secao3 h1 {
+    color: #582D0B;
+    font-family: 'Abhaya Libre regular';
+    font-size: 35px;
+}
+
+#secao3 p {
+    color: #50453B;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 25px;
+    text-align: center;
+}
+
+#secao3 video {
+    width: 100%;
+    height: 750px;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+#secao4 {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+}
+
+#secao4 article {
+    width: 50%;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 30px;
+    padding-left: 130px;
+}
+
+#secao4 article h1 {
+    color: #582D0B;
+    font-family: 'Abhaya Libre regular';
+    font-size: 65px;
+}
+
+#secao4 article h2 {
+    color: #50453B;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 25px;
+}
+
+#secao4 article p {
+    color: #50453B;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 20px;
+    border-left: 3px solid #C8A84B;
+    padding-left: 16px;
+    margin-bottom: 32px;
+}
+
+#imagem_video {
+    width: 50%;
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-right: 90px;
+}
+
+#imagem_video video {
+    border-radius: 20px;
+}
+
+#imagem_video img {
+    border-radius: 20px;
+}
+
+#secao5 {
+    margin-top: 150px;
+    background-color: #FDFBF4;
+    width: 80%;
+    height: 800px;
+    border-radius: 20px;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#secao5 img {
+    width: 40%;
+    border-radius: 20px;
+}
+
+#secao5 #contato {
+    color: white;
+    width: 60%;
+    background-color: #582D0B;
+    opacity: 0.63;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 50px;
+}
+
+#contato h1 {
+    font-size: 50px;
+}
+
+label {
+    font-family: 'Plus Jakarta Sans';
+}
+
+input,
+textarea {
+    width: 80%;
+    height: 35px;
+    background: transparent;
+    border: white solid 3px;
+    box-sizing: border-box;
+    color: white;
+    outline: none;
+    font-size: 20px;
+}
+
+textarea {
+    height: 250px;
+}
+
+#btnEnviar{
+    width: 80%;
+    background-color: #fac000;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#btnEnviar:hover {
+    background: #d4a73a;
+}
+
+#mensagem-sucesso {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+    border-left: 3px solid #E8B84B;
+    padding: 12px 16px;
+    margin-top: 16px;
+    font-size: 25px;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    /* Hero / Slider */
+    .image-container {
+        --altura: 500px;
+        top: -30px;
+    }
+
+    /* Seção 2 */
+    #secao2 {
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 20px;
+        gap: 30px;
+    }
+
+    #secao_imagem {
+        width: 100%;
+        padding-left: 0;
+        justify-content: center;
+    }
+
+    #secao_imagem img {
+        width: 70%;
+        height: auto;
+        padding-left: 0;
+    }
+
+    #reconstrucao_virtual {
+        width: 100%;
+        height: auto;
+        padding: 20px 40px;
+        margin-top: 0;
+        gap: 20px;
+    }
+
+    #reconstrucao_virtual h1 {
+        font-size: 42px;
+    }
+
+    #reconstrucao_virtual #texto {
+        font-size: 22px;
+    }
+
+    .icone {
+        font-size: 17px;
+    }
+
+    /* Seção 3 */
+    #secao3 {
+        height: auto;
+        margin-top: 40px;
+        padding: 40px 20px;
+        gap: 24px;
+    }
+
+    #secao3 h1 {
+        font-size: 28px;
+        text-align: center;
+    }
+
+    #secao3 p {
+        font-size: 18px;
+        padding: 0 10px;
+    }
+
+    #secao3 video {
+        height: 420px;
+        padding: 15px;
+    }
+
+    /* Seção 4 */
+    #secao4 {
+        flex-direction: column;
+        margin-top: 40px;
+    }
+
+    #secao4 article {
+        width: 100%;
+        height: auto;
+        padding: 30px 40px;
+    }
+
+    #secao4 article h1 {
+        font-size: 44px;
+    }
+
+    #secao4 article h2 {
+        font-size: 20px;
+    }
+
+    #secao4 article p {
+        font-size: 17px;
+        margin-bottom: 20px;
+    }
+
+    #imagem_video {
+        width: 100%;
+        height: auto;
+        padding: 20px 40px;
+        gap: 16px;
+        justify-content: center;
+    }
+
+    #imagem_video video,
+    #imagem_video img {
+        width: 48%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* Seção 5 — Contato */
+    #secao5 {
+        width: 90%;
+        height: auto;
+        margin-top: 80px;
+        flex-direction: column;
+    }
+
+    #secao5 img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        border-radius: 20px 20px 0 0;
+    }
+
+    #secao5 #contato {
+        width: 100%;
+        border-radius: 0 0 20px 20px;
+        padding: 40px 30px;
+        gap: 20px;
+    }
+
+    #contato h1 {
+        font-size: 36px;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        font-size: 17px;
+    }
+
+    #btnEnviar {
+        width: 100%;
+    }
+
+    #mensagem-sucesso {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Hero / Slider */
+    .image-container {
+        --altura: 300px;
+        top: -20px;
+        cursor: ew-resize;
+    }
+
+    /* Seção 2 */
+    #secao2 {
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 16px;
+        gap: 24px;
+    }
+
+    #secao_imagem {
+        width: 100%;
+        padding-left: 0;
+        justify-content: center;
+    }
+
+    #secao_imagem img {
+        width: 90%;
+        height: auto;
+        padding-left: 0;
+    }
+
+    #reconstrucao_virtual {
+        width: 100%;
+        height: auto;
+        padding: 16px;
+        margin-top: 0;
+        gap: 16px;
+    }
+
+    #reconstrucao_virtual h1 {
+        font-size: 30px;
+        line-height: 1.2;
+    }
+
+    #reconstrucao_virtual #texto {
+        font-size: 16px;
+    }
+
+    .icone {
+        font-size: 14px;
+    }
+
+    .icone p {
+        font-size: 14px;
+    }
+
+    /* Seção 3 */
+    #secao3 {
+        height: auto;
+        margin-top: 30px;
+        padding: 30px 16px;
+        gap: 20px;
+    }
+
+    #secao3 h1 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    #secao3 p {
+        font-size: 15px;
+        padding: 0 8px;
+    }
+
+    #secao3 video {
+        height: 220px;
+        padding: 10px;
+        border-radius: 12px;
+    }
+
+    /* Seção 4 */
+    #secao4 {
+        flex-direction: column;
+        margin-top: 30px;
+    }
+
+    #secao4 article {
+        width: 100%;
+        height: auto;
+        padding: 24px 16px;
+    }
+
+    #secao4 article h1 {
+        font-size: 32px;
+    }
+
+    #secao4 article h2 {
+        font-size: 17px;
+    }
+
+    #secao4 article p {
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+
+    #imagem_video {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        padding: 16px;
+        gap: 16px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #imagem_video video,
+    #imagem_video img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+    }
+
+    /* Seção 5 — Contato */
+    #secao5 {
+        width: 95%;
+        height: auto;
+        margin-top: 50px;
+        flex-direction: column;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    #secao5 img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 20px 20px 0 0;
+    }
+
+    #secao5 #contato {
+        width: 100%;
+        border-radius: 0 0 20px 20px;
+        padding: 24px 16px;
+        gap: 16px;
+    }
+
+    #contato h1 {
+        font-size: 26px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        height: 40px;
+        font-size: 15px;
+        border-width: 2px;
+    }
+
+    textarea {
+        height: 160px;
+    }
+
+    #btnEnviar {
+        width: 100%;
+        padding: 14px;
+        font-size: 12px;
+    }
+
+    #mensagem-sucesso {
+        font-size: 15px;
+        padding: 10px 12px;
+    }
 }
