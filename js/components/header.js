@@ -28,7 +28,7 @@ class Header extends HTMLElement {
                             <a class="nav__link" href="../pages/sobrenos.html">Sobre nós</a>
                         </div>
                         <div class="nav__item">
-                            <a class="nav__link" href="#vr-simulator">VR Simulator</a>
+                            <a class="nav__link" href="../pages/reloadpage.html">Reconstrução cenário</a>
                         </div>
                     </nav>
                 </div>
