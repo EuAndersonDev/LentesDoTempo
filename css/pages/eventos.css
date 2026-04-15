@@ -151,12 +151,13 @@ main{
     text-align: right;
 }
 
-/* Em telas pequenas, remove o alinhamento à direita para facilitar leitura */
-@media (max-width: 768px) {
+/* Em telas pequenas e médias, coloca texto abaixo da imagem */
+@media (max-width: 1097px) {
     #section2 #container2{
+        flex-direction: column;
         text-align: left;
     }
-    /* Reordena para imagem sempre vir antes do texto no mobile */
+    /* Reordena para imagem sempre vir antes do texto */
     #section2 #container2 img {
         order: -1;
     }
