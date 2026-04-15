@@ -5,7 +5,7 @@ class Header extends HTMLElement {
         this.innerHTML = `
             <header class="header">
                 <div class="header__container">
-                    <img class="header__logo" alt="Logo Lentes do Tempo"  src="/assets/icons/logo.svg"/>
+                    <img class="header__logo" alt="Logo Lentes do Tempo"  src="../assets/icons/logo.svg"/>
                     <div class="header__brand">
                         <i class="header__title">Lentes do Tempo</i>
                     </div>
