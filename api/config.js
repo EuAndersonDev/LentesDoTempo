@@ -81,7 +81,7 @@ function isAuthenticated() {
  */
 function logout() {
     clearAuthSession();
-    window.location.href = '../pages/login.html';
+    window.location.href = '/pages/auth/login.html';
 }
 
 function isPublicAuthEndpoint(endpoint) {

@@ -7,7 +7,7 @@ class Header extends HTMLElement {
         this.innerHTML = `
             <header class="header">
                 <div class="header__container">
-                    <img class="header__logo" alt="Logo Lentes do Tempo" src="../assets/icons/logo.svg"/>
+                    <img class="header__logo" alt="Logo Lentes do Tempo" src="/assets/icons/Logo.svg"/>
                     <div class="header__brand">
                         <i class="header__title">Lentes do Tempo</i>
                     </div>
@@ -18,19 +18,19 @@ class Header extends HTMLElement {
                     </button>
                     <nav class="header__nav">
                         <div class="nav__item ${currentPage === 'servicos' ? 'nav__item--active' : ''}">
-                            <a class="nav__link" href="../pages/servicos.html">Serviços</a>
+                            <a class="nav__link" href="/pages/main/servicos.html">Serviços</a>
                         </div>
                         <div class="nav__item ${currentPage === 'galeria' ? 'nav__item--active' : ''}">
-                            <a class="nav__link" href="../pages/galeria.html">Portfolio</a>
+                            <a class="nav__link" href="/pages/main/galeria.html">Portfolio</a>
                         </div>
                         <div class="nav__item ${currentPage === 'parcerias' ? 'nav__item--active' : ''}">
-                            <a class="nav__link" href="../pages/parcerias.html">Parcerias</a>
+                            <a class="nav__link" href="/pages/main/parcerias.html">Parcerias</a>
                         </div>
                         <div class="nav__item ${currentPage === 'sobrenos' ? 'nav__item--active' : ''}">
-                            <a class="nav__link" href="../pages/sobrenos.html">Sobre nós</a>
+                            <a class="nav__link" href="/pages/main/sobrenos.html">Sobre nós</a>
                         </div>
                         <div class="nav__item ${currentPage === 'reloadpage' ? 'nav__item--active' : ''}">
-                            <a class="nav__link" href="../pages/reloadpage.html">Reconstrução cenário</a>
+                            <a class="nav__link" href="/pages/main/reloadpage.html">Reconstrução cenário</a>
                         </div>
                     </nav>
                     <div class="header__actions">
@@ -99,7 +99,7 @@ class Header extends HTMLElement {
 
     getAuthActionsMarkup(session) {
         if (!session.isAuthenticated) {
-            return '<a class="header__auth-btn" href="../pages/login.html">Entrar</a>';
+            return '<a class="header__auth-btn" href="/pages/auth/login.html">Entrar</a>';
         }
 
         const userName = session.user && session.user.name ? session.user.name : 'Conta';
@@ -123,7 +123,7 @@ class Header extends HTMLElement {
             }
 
             this.clearStoredSession();
-            window.location.href = '../pages/login.html';
+            window.location.href = '/pages/auth/login.html';
         });
     }
 
