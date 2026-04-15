@@ -1,6 +1,6 @@
-/* Página Login */
+/* Página Registro */
 
-.login-page {
+.register-page {
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -9,7 +9,7 @@
     padding: 20px;
 }
 
-.login-container {
+.register-container {
     width: 100%;
     max-width: 420px;
     background: #ffffff;
@@ -17,36 +17,35 @@
     border-radius: 20px;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.1);
     padding: 40px;
-    margin-top: 90px;
 }
 
-.login-header {
+.register-header {
     text-align: center;
     margin-bottom: 32px;
 }
 
-.login-logo {
+.register-logo {
     width: 80px;
     height: 80px;
     object-fit: contain;
     margin-bottom: 16px;
 }
 
-.login-title {
+.register-title {
     font-family: "Noto Serif", serif;
     font-size: 1.75rem;
     color: #451a03;
     margin: 0;
 }
 
-.login-subtitle {
+.register-subtitle {
     font-family: "Abhaya Libre", serif;
     font-size: 1rem;
     color: #737373;
     margin-top: 8px;
 }
 
-.login-form {
+.register-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -129,42 +128,40 @@
     color: #a89f91;
 }
 
-.form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
+.form-terms {
+    font-size: 13px;
 }
 
-.remember-me {
+.terms-checkbox {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    align-items: flex-start;
+    gap: 10px;
     color: #57534e;
     font-family: "Abhaya Libre", serif;
+    line-height: 1.4;
 }
 
-.remember-me input[type="checkbox"] {
+.terms-checkbox input[type="checkbox"] {
     width: 16px;
     height: 16px;
     accent-color: #84592c;
     cursor: pointer;
+    margin-top: 2px;
 }
 
-.forgot-password {
+.terms-checkbox a {
     color: #84592c;
     text-decoration: none;
-    font-family: "Abhaya Libre", serif;
-    font-weight: 500;
+    font-weight: 600;
     transition: color 0.3s ease;
 }
 
-.forgot-password:hover {
+.terms-checkbox a:hover {
     color: #451a03;
     text-decoration: underline;
 }
 
-.login-button {
+.register-button {
     padding: 14px 24px;
     background: linear-gradient(135deg, #84592c 0%, #6f4e37 100%);
     color: #ffffff;
@@ -179,57 +176,64 @@
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
 }
 
-.login-button:hover {
+.register-button:hover {
     background: linear-gradient(135deg, #6f4e37 0%, #5a3f2f 100%);
     transform: translateY(-2px);
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.login-button:active {
+.register-button:active {
     transform: translateY(0);
 }
 
-.login-divider {
+.register-button:disabled {
+    background: linear-gradient(135deg, #a89f91 0%, #737373 100%);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.register-divider {
     display: flex;
     align-items: center;
     margin: 24px 0;
 }
 
-.login-divider::before,
-.login-divider::after {
+.register-divider::before,
+.register-divider::after {
     content: "";
     flex: 1;
     height: 1px;
     background: #d4c5b9;
 }
 
-.login-divider span {
+.register-divider span {
     padding: 0 16px;
     color: #a89f91;
     font-size: 14px;
     font-family: "Abhaya Libre", serif;
 }
 
-.register-link {
+.login-link {
     text-align: center;
     font-size: 14px;
     color: #57534e;
     font-family: "Abhaya Libre", serif;
 }
 
-.register-link a {
+.login-link a {
     color: #84592c;
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
 }
 
-.register-link a:hover {
+.login-link a:hover {
     color: #451a03;
     text-decoration: underline;
 }
 
-.login-error {
+.register-error {
     background: #fef2f2;
     border: 1px solid #fecaca;
     border-radius: 8px;
@@ -240,23 +244,36 @@
     display: none;
 }
 
-.login-error.visible {
+.register-error.visible {
+    display: block;
+}
+
+.register-success {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #166534;
+    font-size: 14px;
+    font-family: "Abhaya Libre", serif;
+    display: none;
+}
+
+.register-success.visible {
     display: block;
 }
 
 @media (max-width: 480px) {
-    .login-container {
+    .register-container {
         padding: 32px 24px;
     }
 
-    .login-title {
+    .register-title {
         font-size: 1.5rem;
     }
 
-    .form-options {
-        flex-direction: column;
-        gap: 12px;
-        align-items: flex-start;
+    .form-terms {
+        font-size: 12px;
     }
 
     .password-field input {
