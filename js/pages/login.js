@@ -43,7 +43,7 @@ document
             }
 
             // Redirecionar para dashboard ou home
-            window.location.href = "../index.html";
+            window.location.href = "/index.html";
 
         } catch (error) {
             errorDiv.textContent = error.message;
