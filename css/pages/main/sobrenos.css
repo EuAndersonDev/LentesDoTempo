@@ -181,6 +181,81 @@ p {
   color: #010101;
 }
 
+.carousel {
+    width: 100%;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.carousel-foto {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding: 20px;
+    scroll-behavior: smooth;
+    user-select: none;
+}
+
+.carousel-foto::-webkit-scrollbar {
+    display: none;
+}
+
+.card-equipe {
+    min-width: 250px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 15px;
+    text-align: center;
+    flex: 0 0 auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: 0.3s;
+}
+
+.card-equipe:hover {
+    transform: translateY(-8px);
+}
+
+.card-equipe img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.card-equipe h4 {
+    margin: 5px 0;
+    color: #451a03;
+}
+
+.card-equipe span {
+    display: block;
+    font-size: 14px;
+    color: #777;
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.prev, .next {
+    background: #451a03;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.prev:hover, .next:hover {
+    background: #6b2d0c;
+    transform: scale(1.1);
+}
 
 /* ---------mobile--------- */
 
@@ -285,7 +360,7 @@ p {
         line-height: 1.5;
     }
 
-    /* caso tenha imagens ou hero */
+    
     .heroimg {
         display: flex;
         justify-content: center;
@@ -293,20 +368,27 @@ p {
     }
 
     .heroimg img {
-        width: 80%;   /* diminui a imagem no tablet */
+        width: 80%;  
         height: auto;
         object-fit: cover;
     }
 
-    /* se tiver cards ou seções em linha */
+    
     .container, .cards {
         flex-direction: column;
         align-items: center;
     }
 
-    /* botões */
+
     button {
         width: 100%;
         max-width: 300px;
+    }
+
+     .carousel-foto img {
+        width: 280px;
+        height: 200px;
+        flex: 0 0 auto;
+        scroll-snap-align: center;
     }
 }
