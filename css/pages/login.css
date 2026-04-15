@@ -17,6 +17,7 @@
     border-radius: 20px;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.1);
     padding: 40px;
+    margin-top: 90px;
 }
 
 .login-header {
@@ -70,8 +71,52 @@
     border-radius: 8px;
     font-size: 16px;
     font-family: "Noto Serif", serif;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
     background: #fdfdfd;
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    width: 100%;
+    padding-right: 52px;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    color: #84592c;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+}
+
+.password-toggle:hover {
+    color: #451a03;
+}
+
+.password-toggle:focus-visible {
+    outline: 2px solid #84592c;
+    outline-offset: 2px;
+    border-radius: 999px;
+}
+
+.password-toggle svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
 }
 
 .form-group input:focus {
@@ -212,5 +257,13 @@
         flex-direction: column;
         gap: 12px;
         align-items: flex-start;
+    }
+
+    .password-field input {
+        padding-right: 46px;
+    }
+
+    .password-toggle {
+        right: 10px;
     }
 }
