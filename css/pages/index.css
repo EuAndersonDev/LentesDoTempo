@@ -127,8 +127,7 @@ html {
 .hotspot:hover .tooltip {
     opacity: 1;
     transform: translateY(-50%) translateX(0);
-}
-    transform: translateX(0);
+
 }
 
 /* --- LOGO WATERMARK --- */
