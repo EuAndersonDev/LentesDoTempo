@@ -24,11 +24,9 @@ class Footer extends HTMLElement {
                     <h3 class="footer__section-title">Sobre nós</h3>
                     <ul class="footer__list">
                         <li>
-                            <a href="#" class="footer__link">Nossa empresa</a>
+                            <a href="../pages/sobrenos.html" class="footer__link">Nossa empresa</a>
                         </li>
-                        <li><a href="#" class="footer__link">Imprensa</a></li>
-                        <li><a href="#" class="footer__link">História</a></li>
-                        <li><a href="#" class="footer__link">Carreiras</a></li>
+                        <li><a href="../pages/sobrenos.html" class="footer__link">História</a></li>
                     </ul>
                 </section>
 
@@ -36,15 +34,12 @@ class Footer extends HTMLElement {
                     <h3 class="footer__section-title">Precisa de ajuda?</h3>
                     <ul class="footer__list">
                         <li>
-                            <a href="#" class="footer__link"
+                            <a href="../pages/perguntas-frequentes.html" class="footer__link"
                                 >Perguntas frequentes</a
                             >
                         </li>
                         <li>
-                            <a href="#" class="footer__link">Mapa do site</a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer__link">Contate-nos</a>
+                            <a href="../pages/contato.html" class="footer__link">Contate-nos</a>
                         </li>
                     </ul>
                 </section>
@@ -53,15 +48,10 @@ class Footer extends HTMLElement {
                     <h3 class="footer__section-title">Legal</h3>
                     <ul class="footer__list">
                         <li>
-                            <a href="#" class="footer__link">Termos de uso</a>
+                            <a href="../pages/termos-uso.html" class="footer__link">Termos de uso</a>
                         </li>
                         <li>
-                            <a href="#" class="footer__link"
-                                >Aviso de privacidade do consumidor</a
-                            >
-                        </li>
-                        <li>
-                            <a href="#" class="footer__link"
+                            <a href="../pages/cookies.html" class="footer__link"
                                 >Configuração de cookies</a
                             >
                         </li>
