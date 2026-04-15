@@ -1,3 +1,4 @@
+
 # 📸 Lentes do Tempo
 
 > "Capturando o presente, preservando o passado e projetando o futuro."

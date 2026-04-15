@@ -5,10 +5,15 @@ class Header extends HTMLElement {
         this.innerHTML = `
             <header class="header">
                 <div class="header__container">
-                    <img class="header__logo" alt="Logo Lentes do Tempo"  src="../assets/icons/logo.svg"/>
+                    <img class="header__logo" alt="Logo Lentes do Tempo" src="../assets/icons/logo.svg"/>
                     <div class="header__brand">
                         <i class="header__title">Lentes do Tempo</i>
                     </div>
+                    <button class="header__menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+                        <span class="hamburger"></span>
+                        <span class="hamburger"></span>
+                        <span class="hamburger"></span>
+                    </button>
                     <nav class="header__nav">
                         <div class="nav__item ${currentPage === 'servicos' ? 'nav__item--active' : ''}">
                             <a class="nav__link" href="../pages/servicos.html">Serviços</a>
@@ -29,6 +34,31 @@ class Header extends HTMLElement {
                 </div>
             </header>
         `;
+
+        this.setupMobileMenu();
+    }
+
+    setupMobileMenu() {
+        const toggle = this.querySelector('.header__menu-toggle');
+        const nav = this.querySelector('.header__nav');
+
+        if (toggle && nav) {
+            toggle.addEventListener('click', () => {
+                const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+                toggle.setAttribute('aria-expanded', !isExpanded);
+                nav.classList.toggle('header__nav--open');
+                toggle.classList.toggle('header__menu-toggle--active');
+            });
+
+            // Fechar menu ao clicar em um link
+            nav.querySelectorAll('.nav__link').forEach(link => {
+                link.addEventListener('click', () => {
+                    toggle.setAttribute('aria-expanded', 'false');
+                    nav.classList.remove('header__nav--open');
+                    toggle.classList.remove('header__menu-toggle--active');
+                });
+            });
+        }
     }
 
     getCurrentPage() {
