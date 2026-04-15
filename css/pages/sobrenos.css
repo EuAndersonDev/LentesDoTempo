@@ -1,0 +1,20 @@
+/* Página Sobre Nós - Estilos específicos */
+
+main {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 32px;
+    color: #451a03;
+    margin-bottom: 20px;
+    font-family: "Liberation Serif";
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #57534e;
+}

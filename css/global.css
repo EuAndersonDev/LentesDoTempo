@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* css/global.css */
+
+:root {
+    /* Atribuição das fontes às variáveis para facilitar o uso */
+    --font-text: "Noto Serif", serif;
+    --font-title: "Noto Serif", serif;
+    --font-subtitle: "Noto Serif", serif;
+    --font-smallText: "Noto Serif", serif;
+
+    /* Variáveis de cores do Figma */
+    --primary-color: #e8d1a7;
+    --secondary-color: #84592c;
+    --third-color: #9d9167;
+    --accent-color: #6f1d1b;
+    --accent2-color: #442d1d;
+}
+
+/* Isso faz com que a navegação por âncoras (clicar em um link e a página descer) deslize suavemente */
+html {
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+* {
+    scrollbar-width: none;
+}
+
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-text);
+    background-color: var(--background);
+    
+}
+
+.parallax {
+    position: relative;
+    overflow: hidden;
+}
+
+.parallax-content {
+    position: relative;
+    z-index: 1;
+}
+
+.parallax [data-speed] {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+}
+
+main {
+    flex: 1;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-title);
+}
+
+p {
+    font-family: var(--font-text);
+}
+
+@media (max-width: 767px) {
+    .parallax [data-speed] {
+        transform: none !important;
+        will-change: auto !important;
+    }
+}

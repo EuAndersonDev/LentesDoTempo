@@ -1,1 +1,64 @@
-<h1>ola<h1/>
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lentes do Tempo</title>
+        <link rel="stylesheet" href="./css/pages/index.css" />
+        <link rel="stylesheet" href="./css/motions/transition.css" />
+        <script src="./js/motions/script.js" defer></script>
+        <script src="./js/motions/transition.js" defer></script>
+        <link rel="stylesheet" href="./css/global.css"/>
+    </head>
+    <body>
+        <main class="scroll-bound">
+            <div class="sticky-container" id="video-container">
+                <video id="museum-video" muted playsinline preload="auto">
+                    <source
+                        src="/assets/imgs/Home/museum_optimized.mp4"
+                        type="video/mp4"
+                    />
+                </video>
+
+                <nav class="menu-overlay" id="menu-overlay">
+                    <div
+                        class="hotspot"
+                        style="top: 35%; left: 22%"
+                        data-x="22"
+                        data-y="35"
+                        data-target="/pages/galeria.html"
+                    >
+                        <div class="pulse-dot"></div>
+                        <span class="tooltip">Explorar Galeria</span>
+                    </div>
+
+                    <div
+                        class="hotspot"
+                        style="top: 40%; left: 78%"
+                        data-x="78"
+                        data-y="40"
+                        data-target="/pages/sobrenos.html"
+                    >
+                        <div class="pulse-dot"></div>
+                        <span class="tooltip">Nossa História</span>
+                    </div>
+
+                    <div
+                        class="hotspot"
+                        style="top: 70%; left: 50%"
+                        data-x="50"
+                        data-y="70"
+                        data-target="/pages/servicos.html"
+                    >
+                        <div class="pulse-dot"></div>
+                        <span class="tooltip">Acessar Serviços</span>
+                    </div>
+                </nav>
+            </div>
+        </main>
+
+        <div class="logo-watermark">
+            <img src="/assets/icons/Logo.svg" alt="Lentes do Tempo" />
+        </div>
+    </body>
+</html>

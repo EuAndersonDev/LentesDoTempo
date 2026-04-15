@@ -1,0 +1,38 @@
+/* Página Termos de Uso - Estilos específicos */
+
+main {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 32px;
+    color: #451a03;
+    margin-bottom: 40px;
+    font-family: "Liberation Serif";
+}
+
+.terms h2 {
+    font-size: 20px;
+    color: #451a03;
+    margin: 30px 0 16px 0;
+    font-family: "Abhaya Libre";
+    font-weight: 600;
+}
+
+.terms h2:first-child {
+    margin-top: 0;
+}
+
+.terms p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #57534e;
+    margin: 0 0 16px 0;
+    text-align: justify;
+}
+
+.terms p:last-child {
+    margin-bottom: 0;
+}
