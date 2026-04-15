@@ -1,0 +1,452 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+body{
+    background-color: #FCF9F4;
+    font-family: "Noto Serif", serif;
+    overflow-x: hidden;
+}
+
+main{
+    width: 93%;
+    margin: auto;
+}
+
+
+/* =============================================
+   #inicio
+   ============================================= */
+#inicio{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-top: 41px;
+}
+
+#inicio > div:last-child img {
+    max-width: 568px;
+    width: 100%;
+}
+
+#textSection1{
+    flex: 0 1 480px; /* cresce e encolhe, mínimo de 320px */
+}
+
+#textSection1 h1{
+    color: #694217;
+    max-width: 518px;
+    width: 100%;
+    font-size: clamp(32px, 5vw, 64px); /* fluido: nunca menor que 32px, nunca maior que 64px */
+    letter-spacing: -2px;
+    line-height: 1.1;
+}
+
+#textSection1 p{
+    color: #50453B;
+    max-width: 468px;
+    width: 100%;
+    font-size: clamp(16px, 2.2vw, 24px);
+    margin-top: 20px;
+}
+
+
+/* =============================================
+   #florenca
+   ============================================= */
+#florenca{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px 0;
+}
+
+#florenca #imgSection2{
+    position: relative;
+    max-width: 615px;
+    width: 100%;
+}
+
+#florenca #imgSection2 img {
+    width: 100%;
+    height: auto;
+}
+
+#bloco{
+    width: 241px;
+    background-color: #FFF;
+    font-family: "Noto Serif", serif;
+    font-size: clamp(14px, 1.8vw, 20px);
+    color: #84592C;
+    padding: 10px 17px;
+    text-align: center;
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    right: 0;
+    box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+#textSection2{
+    font-size: clamp(20px, 3vw, 36px);
+    max-width: 405px;
+    width: 100%;
+    color: #694217;
+    line-height: 1.35;
+    flex: 1 1 260px;
+}
+
+
+/* =============================================
+   #section2
+   ============================================= */
+#section2{
+    background-color: #F4EFE8;
+    /* Ocupa largura total da viewport sem causar scroll horizontal */
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Altura removida — padding controla o espaçamento */
+    padding: 60px 0;
+    gap: 60px;
+}
+
+#section2 .container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: 92%;
+    max-width: 1100px;
+}
+
+#section2 .section2Textos{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    flex: 1 1 260px;
+}
+
+#section2 #container2{
+    text-align: right;
+}
+
+/* Em telas pequenas e médias, coloca texto abaixo da imagem */
+@media (max-width: 1097px) {
+    #section2 #container2{
+        flex-direction: column;
+        text-align: left;
+    }
+    /* Reordena para imagem sempre vir antes do texto */
+    #section2 #container2 img {
+        order: -1;
+    }
+}
+
+#section2 h2{
+    font-size: clamp(20px, 2.8vw, 32px);
+    color: #694217;
+    font-family: "Noto Serif", serif;
+    font-weight: bold;
+}
+
+#section2 p{
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: clamp(15px, 2vw, 24px);
+    max-width: 343px;
+    width: 100%;
+    line-height: 1.45;
+}
+
+#section2 .section2Textos img {
+    max-width: 460px;
+    width: 100%;
+}
+
+
+/* =============================================
+   #section4
+   ============================================= */
+#section4{
+    max-width: 91%;
+    width: 100%;
+    /* Altura removida — padding controla a altura */
+    padding: 48px 48px;
+    background-color: #FFFFFF;
+    border-radius: 48px;
+    box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: 40px;
+    margin: auto;
+    margin-top: 42px;
+}
+
+#section4 img {
+    max-width: 420px;
+    width: 100%;
+}
+
+#section4 #textSection4{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+    flex: 1 1 280px;
+}
+
+#section4 h3,
+#section4 h2,
+#section4 p{
+    font-family: "Noto Serif", serif;
+    max-width: 421px;
+    width: 100%;
+}
+
+#section4 h3,
+#section4 h2{
+    color: #694217;
+}
+
+#section4 h3 {
+    font-size: clamp(16px, 2vw, 24px);
+    font-weight: bold;
+}
+
+#section4 h2 {
+    font-size: clamp(22px, 2.8vw, 36px);
+    font-weight: bold;
+}
+
+#section4 p{
+    font-size: clamp(14px, 1.5vw, 18px);
+    line-height: 1.6;
+    color: #1A1C1A;
+}
+
+#section4 #infos{
+    max-width: 304px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+#section4 #infos p{
+    font-size: 14px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: bold;
+    background-color: #EFEEEB;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 2px 2px 4px rgba(0,0,0,0.05);
+    padding: 8px 16px;
+    max-width: unset;
+    width: auto;
+}
+
+
+/* =============================================
+   #section5
+   ============================================= */
+#section5{
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    margin: 100px 0;
+}
+
+#section5 h2{
+    font-family: "Noto Serif", serif;
+    font-size: clamp(24px, 4vw, 48px);
+    font-weight: normal;
+    color: #582D0B;
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+#section5 #numeros{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+
+#section5 .caixinhaNumeros{
+    min-width: 150px;
+    text-align: center;
+}
+
+#section5 .caixinhaNumeros h3{
+   font-family: "Noto Serif", serif;
+   font-size: clamp(24px, 3vw, 36px);
+   font-weight: normal;
+   color: #84592C;
+}
+
+#section5 .caixinhaNumeros p{
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: clamp(13px, 1.5vw, 20px);
+    line-height: 1.5;
+    letter-spacing: 2px;
+    color: #50453B;
+    width: 160px;
+    margin: 0 auto;
+}
+
+
+/* =============================================
+   BREAKPOINT — TABLET (481px–768px)
+   ============================================= */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    main {
+        width: 95%;
+    }
+
+    #inicio {
+        gap: 24px;
+        margin-top: 28px;
+    }
+    
+    #section4 {
+        border-radius: 32px;
+        padding: 36px 32px;
+    }
+
+    #bloco {
+        font-size: 15px;
+        width: 200px;
+    }
+}
+
+
+/* =============================================
+   BREAKPOINT — MOBILE (≤ 480px)
+   ============================================= */
+@media only screen and (max-width: 480px) {
+    main {
+        width: 96%;
+    }
+
+    /* Seção inicial empilhada — gap reduzido para aproximar texto e imagem */
+    #inicio {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+        margin-top: 24px;
+    }
+    #textSection1{
+        flex: unset; /* remove comportamento de flex */
+        max-width: 100%;
+    }
+    #textSection1 h1 {
+        letter-spacing: -1px;
+    }
+
+    /* Florença — padding reduzido para aproximar da section2 */
+    #florenca {
+        flex-direction: column;
+        padding: 16px 0 8px;
+    }
+
+    #bloco {
+        font-size: 14px;
+        width: 180px;
+        padding: 8px 12px;
+    }
+
+    #textSection2{
+        flex: unset;
+        max-width: 100%;
+    }
+
+    /* Section2 — margin-top menor para aproximar de florenca, padding menor no final */
+    #section2 {
+        margin-top: 32px;
+        padding: 32px 0 16px;
+        gap: 28px; /* containers mais próximos entre si */
+    }
+    #section2 .section2Textos{
+        flex: unset;
+    }
+
+    /* Último container sem espaço extra no final */
+    #section2 .container:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    /* Cards section2 */
+    #section2 .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px; /* imagem e texto mais próximos dentro do card */
+    }
+
+    #section2 #container2 {
+        text-align: center;
+    }
+
+    #section2 p {
+        max-width: 100%;
+    }
+
+    /* Card próximas experiências */
+    #section4 {
+        max-width: 100%;
+        border-radius: 24px;
+        padding: 32px 24px;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    #section4 #textSection4 {
+        align-items: center;
+    }
+
+    #section4 #infos {
+        justify-content: center;
+    }
+
+    /* Números */
+    #section5 {
+        margin: 60px 0;
+        gap: 32px;
+    }
+
+    #section5 h2 {
+        letter-spacing: 1px;
+    }
+
+    #section5 #numeros {
+        gap: 28px;
+    }
+}

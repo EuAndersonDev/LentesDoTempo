@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Criar Conta - Lentes do Tempo</title>
+        <meta name="description" content="Crie sua conta na Lentes do Tempo" />
+        <link rel="stylesheet" href="../../css/global.css" />
+        <link rel="stylesheet" href="../../css/components/header.css" />
+        <link rel="stylesheet" href="../../css/components/footer.css" />
+        <link rel="stylesheet" href="../../css/pages/auth/register.css" />
+        <link rel="stylesheet" href="../../css/motions/transition.css" />
+        <script src="../../api/config.js" defer></script>
+        <script src="../../js/components/header.js" defer></script>
+        <script src="../../js/components/footer.js" defer></script>
+        <script src="../../js/motions/transition.js" defer></script>
+        <script src="../../js/pages/register.js" defer></script>
+    </head>
+    <body>
+        <header-component></header-component>
+        <main>
+            <div class="register-page">
+                <div class="register-container">
+                    <div class="register-header">
+                        <img
+                            src="../../assets/icons/Logo.svg"
+                            alt="Lentes do Tempo"
+                            class="register-logo"
+                        />
+                        <h1 class="register-title">Crie sua conta</h1>
+                        <p class="register-subtitle">
+                            Junte-se à Lentes do Tempo gratuitamente
+                        </p>
+                    </div>
+
+                    <div class="register-error" id="register-error"></div>
+
+                    <div class="register-success" id="register-success">
+                        Conta criada com sucesso! Redirecionando...
+                    </div>
+
+                    <form class="register-form" id="register-form">
+                        <div class="form-group">
+                            <label for="name">Nome completo</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Seu nome completo"
+                                required
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="seu@email.com"
+                                required
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Senha</label>
+                            <div class="password-field">
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    placeholder="Crie uma senha"
+                                    required
+                                    minlength="6"
+                                />
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-target="password"
+                                    aria-label="Mostrar senha"
+                                    aria-pressed="false"
+                                >
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        aria-hidden="true"
+                                        focusable="false"
+                                    >
+                                        <path
+                                            d="M12 5c5.5 0 9.6 4.4 10.8 6-.9 1.2-2.8 3.4-5.7 5l-1.4-1.4C17.8 12.9 19.5 11 20.2 10.1 18.7 8.3 15.6 6 12 6c-1.1 0-2.2.2-3.2.5L7.1 5.1C8.6 5 10.2 5 12 5Zm0 14c-5.5 0-9.6-4.4-10.8-6 .8-1.1 2.5-3.2 5.1-4.8l1.4 1.4C6.7 11.2 5.3 12.8 4.8 13.5 6.3 15.3 9.4 17.6 12 17.6c1.1 0 2.2-.2 3.2-.5l1.6 1.6c-1.5.3-3.1.3-4.8.3Zm0-11.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm0 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirmar senha</label>
+                            <div class="password-field">
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    placeholder="Confirme sua senha"
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-target="confirmPassword"
+                                    aria-label="Mostrar senha"
+                                    aria-pressed="false"
+                                >
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        aria-hidden="true"
+                                        focusable="false"
+                                    >
+                                        <path
+                                            d="M12 5c5.5 0 9.6 4.4 10.8 6-.9 1.2-2.8 3.4-5.7 5l-1.4-1.4C17.8 12.9 19.5 11 20.2 10.1 18.7 8.3 15.6 6 12 6c-1.1 0-2.2.2-3.2.5L7.1 5.1C8.6 5 10.2 5 12 5Zm0 14c-5.5 0-9.6-4.4-10.8-6 .8-1.1 2.5-3.2 5.1-4.8l1.4 1.4C6.7 11.2 5.3 12.8 4.8 13.5 6.3 15.3 9.4 17.6 12 17.6c1.1 0 2.2-.2 3.2-.5l1.6 1.6c-1.5.3-3.1.3-4.8.3Zm0-11.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm0 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-terms">
+                            <label class="terms-checkbox">
+                                <input
+                                    type="checkbox"
+                                    id="terms"
+                                    name="terms"
+                                    required
+                                />
+                                <span>
+                                    Concordo com os
+                                    <a href="../secondary/termos-uso.html" target="_blank"
+                                        >Termos de Uso</a
+                                    >
+                                    e
+                                    <a href="../secondary/cookies.html" target="_blank"
+                                        >Política de Cookies</a
+                                    >
+                                </span>
+                            </label>
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="register-button"
+                            id="register-button"
+                        >
+                            Criar conta
+                        </button>
+                    </form>
+
+                    <div class="register-divider">
+                        <span>ou</span>
+                    </div>
+
+                    <p class="login-link">
+                        Já tem uma conta?
+                        <a href="login.html">Faça login</a>
+                    </p>
+                </div>
+            </div>
+        </main>
+        <footer-component></footer-component>
+    </body>
+</html>

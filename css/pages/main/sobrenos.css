@@ -1,0 +1,312 @@
+/* Página Sobre Nós - Estilos específicos */
+
+main {
+    padding: 40px 20px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #FCF9F4;
+}
+
+h1 {
+    font-size: 32px;
+    color: #451a03;
+    margin-bottom: 20px;
+    font-family: "Liberation Serif";
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #57534e;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 690px;
+  overflow: hidden;
+}
+
+.heroimg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+}
+
+.heroimg img:first-child {
+  position: relative;
+  width: 100%;
+  height: 100%;
+ 
+}
+
+#circulo {
+  position: absolute;
+  width: 580px;
+  height: 450px;
+  background: #d4a84f;
+  opacity: 80%;
+  border-radius: 50%;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  overflow: hidden;
+  border-top-left-radius: 500px;
+  border-top-right-radius: 500px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+ 
+}
+
+#circulo img {
+  width: 70%;
+  height: 80%;
+  object-fit: contain; 
+}
+
+.heroimg img:last-child {
+  position: relative;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  opacity: 0.9;
+  z-index: 3;
+}
+
+.textohero {
+  position: absolute;
+  top: 30%;
+  left: 10%;
+  transform: translateY(-50%);
+  z-index: 2;
+  color: #582D0B;
+  max-width: 500px;
+}
+
+#texto1 {
+  color: #582D0B;
+  margin-bottom: 10px;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.textohero h1 {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+#texto2 {
+  color: #50453B;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.hitoria {
+  text-align: center;
+  padding: 80px 20%;
+  background: rgba(255, 194, 42, 0.5);
+  margin-bottom: 20px;
+  
+}
+
+#textoh {
+  font-size: 45px;
+  margin-bottom: 20px;
+  color: #694217;
+  font-weight: bold;
+}
+
+#textoh2 {
+  color: #694217;
+  line-height: 1.7;
+  font-size: 20px;
+}
+
+.propaganda {
+  position: relative;
+  height: 680px; 
+  overflow: hidden;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.propaganda video {
+  width: 100%;
+  height: 85%;
+  object-fit: cover;
+ 
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 80px 10%;
+  background: #f8f8f8;
+}
+
+.card {
+  background: #F2D17B;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  width: 260px;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
+
+.card img {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.textocard {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #010101;
+}
+
+
+/* ---------mobile--------- */
+
+@media (max-width: 768px) {
+
+  main {
+    padding: 40px 20px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .hero {
+    height: 690px;
+  }
+
+  .heroimg {
+    height: 100%;
+  }
+
+   .textohero {
+    top: 30%;
+    left: 10%;
+    transform: translateY(-50%);
+    max-width: 500px;
+  }
+
+  .textohero h1 {
+    font-size: 45px;
+  }
+
+  #texto1 {
+  font-size: 14px;
+}
+
+#texto2 {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+  #circulo {
+    width: 580px;
+    height: 450px;
+    bottom: -100px;
+  }
+
+  .hitoria {
+    padding: 80px 20%;
+  }
+
+  #textoh {
+    font-size: 30px;
+  }
+
+  #textoh2 {
+    font-size: 14px;
+  }
+
+  .propaganda {
+    height: 680px;
+  }
+
+  .propaganda video {
+    width: 100%;
+    height: 85%;
+  }
+
+ .cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 40px 15px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+
+/*--------- tablet-----------*/
+
+/* ===== TABLET ===== */
+@media (max-width: 1024px) {
+
+    main {
+        padding: 30px 15px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    p {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    /* caso tenha imagens ou hero */
+    .heroimg {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .heroimg img {
+        width: 80%;   /* diminui a imagem no tablet */
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* se tiver cards ou seções em linha */
+    .container, .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* botões */
+    button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
