@@ -3,25 +3,35 @@
 ## Pre-requisitos
 
 - Navegador moderno
-- Backend rodando e acessivel em http://localhost:3000
+- Backend rodando e acessivel em [http://localhost:3000](http://localhost:3000)
 
 ## Execucao
 
 Opcao 1:
+
 - Abrir index.html em um servidor local (recomendado).
 
 Opcao 2:
+
 - Abrir index.html diretamente no navegador (pode limitar alguns comportamentos).
 
 ## Integracao com backend
 
 - As paginas de autenticacao chamam endpoints em /api/auth.
 - O modulo /api/config.js resolve API_BASE_URL dinamicamente:
-	- localhost/127.0.0.1 -> http://localhost:3000/api
-	- demais dominios -> https://SEU-BACKEND.onrender.com/api
+  - localhost/127.0.0.1 -> [http://localhost:3000/api](http://localhost:3000/api)
+  - demais dominios -> [https://backend-4scx.onrender.com/api](https://backend-4scx.onrender.com/api)
 - Em producao, recomenda-se definir explicitamente a URL da API:
-	- Meta tag no HTML: <meta name="api-base-url" content="https://seu-backend.onrender.com/api">
-	- Ou global antes do config.js: window.__API_BASE_URL__ = 'https://seu-backend.onrender.com/api';
+
+  ```html
+  <meta name="api-base-url" content="https://backend-4scx.onrender.com/api">
+  ```
+
+  Ou global antes do config.js:
+
+  ```js
+  window.__API_BASE_URL__ = 'https://backend-4scx.onrender.com/api';
+  ```
 
 ## Checklist rapido
 
