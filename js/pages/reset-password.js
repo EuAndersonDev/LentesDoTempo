@@ -113,8 +113,11 @@ document
         submitButton.textContent = "Redefinindo...";
 
         try {
-            // Obter código do localStorage (para desenvolvimento)
-            const code = localStorage.getItem('resetCode') || '';
+            const code = (localStorage.getItem('resetCode') || '').trim();
+
+            if (!code) {
+                throw new Error('Codigo de verificacao nao encontrado. Volte e valide o codigo novamente.');
+            }
 
             const authApi = getAuthApiClient();
 

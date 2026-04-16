@@ -151,8 +151,9 @@ document
 
             await authApi.verifyCode({ email: resetEmail, code });
 
-            // Sucesso - armazenar que código foi verificado
+            // Sucesso - armazenar que código foi verificado e preservar o codigo para o reset.
             localStorage.setItem("codeVerified", "true");
+            localStorage.setItem("resetCode", code);
 
             successDiv.classList.add("visible");
 

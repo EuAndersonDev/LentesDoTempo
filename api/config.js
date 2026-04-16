@@ -144,10 +144,12 @@ function isPublicAuthEndpoint(endpoint) {
 async function apiRequest(endpoint, options = {}) {
     const url = `${API_BASE_URL}${endpoint}`;
 
-    const hasFormDataBody = options.body instanceof FormData;
+    const { skipAuth = false, ...requestOptions } = options;
+
+    const hasFormDataBody = requestOptions.body instanceof FormData;
 
     const headers = {
-        ...options.headers,
+        ...requestOptions.headers,
     };
 
     if (!hasFormDataBody && !headers['Content-Type']) {
@@ -156,12 +158,12 @@ async function apiRequest(endpoint, options = {}) {
 
     // Adiciona token de autenticação se existir
     const token = getAuthToken();
-    if (token) {
+    if (token && !skipAuth) {
         headers['Authorization'] = `Bearer ${token}`;
     }
 
     const config = {
-        ...options,
+        ...requestOptions,
         headers,
     };
 
@@ -266,6 +268,7 @@ const api = {
     contact: {
         serviceRequest: (data) => apiRequest('/contact/service-request', {
             method: 'POST',
+            skipAuth: true,
             body: JSON.stringify(data),
         }),
     },

@@ -8,6 +8,25 @@ const customAlertCloseButton = document.getElementById('custom-alert-close');
 const ALERT_DURATION_MS = 3000;
 let customAlertTimeoutId = null;
 
+function getServiceRequestSender() {
+    if (window.api && window.api.contact && typeof window.api.contact.serviceRequest === 'function') {
+        return (payload) => window.api.contact.serviceRequest(payload);
+    }
+
+    if (window.API_CONFIG && window.API_CONFIG.contact && typeof window.API_CONFIG.contact.serviceRequest === 'function') {
+        return (payload) => window.API_CONFIG.contact.serviceRequest(payload);
+    }
+
+    if (typeof window.apiRequest === 'function') {
+        return (payload) => window.apiRequest('/contact/service-request', {
+            method: 'POST',
+            body: JSON.stringify(payload),
+        });
+    }
+
+    return null;
+}
+
 function setPosition(clientX) {
     if (!imageContainer) {
         return;
@@ -127,11 +146,13 @@ if (form) {
             submitButton.textContent = 'ENVIANDO...';
             showCustomAlert('Enviando sua solicitacao...', 'info');
 
-            if (!window.api || !window.api.contact || typeof window.api.contact.serviceRequest !== 'function') {
+            const sendServiceRequest = getServiceRequestSender();
+
+            if (!sendServiceRequest) {
                 throw new Error('API de contato indisponivel no momento.');
             }
 
-            await window.api.contact.serviceRequest(payload);
+            await sendServiceRequest(payload);
             form.reset();
             showCustomAlert('Recebemos sua solicitacao e entraremos em contato em breve.', 'success');
         } catch (error) {
