@@ -7,6 +7,7 @@ const state = {
 
 const POLL_INTERVAL_MS = 2200;
 const POLL_MAX_ATTEMPTS = 18;
+const FALLBACK_API_BASE_URL = "https://backend-4scx.onrender.com/api";
 
 const form = document.getElementById("reload-form");
 const fileInput = document.getElementById("image-file");
@@ -27,12 +28,90 @@ const resultLink = document.getElementById("result-link");
 const gallery = document.getElementById("reload-gallery");
 const galleryCount = document.getElementById("gallery-count");
 
-function ensureAuthenticatedSession() {
-    if (typeof window.getAuthToken !== "function") {
-        throw new Error("Módulo de autenticação não carregado. Recarregue a página.");
+function resolveApiBaseUrl() {
+    if (typeof window.__API_BASE_URL__ === "string" && window.__API_BASE_URL__.trim()) {
+        return window.__API_BASE_URL__.trim();
     }
 
-    const token = window.getAuthToken();
+    const metaTag = document.querySelector('meta[name="api-base-url"]');
+    if (metaTag && typeof metaTag.content === "string" && metaTag.content.trim()) {
+        return metaTag.content.trim();
+    }
+
+    if (typeof window.API_BASE_URL === "string" && window.API_BASE_URL.trim()) {
+        return window.API_BASE_URL.trim();
+    }
+
+    return FALLBACK_API_BASE_URL;
+}
+
+function getStoredAuthToken() {
+    return localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
+}
+
+function getAuthTokenSafe() {
+    if (typeof window.getAuthToken === "function") {
+        return window.getAuthToken();
+    }
+
+    return getStoredAuthToken();
+}
+
+function createFallbackImagesApi() {
+    const baseUrl = resolveApiBaseUrl();
+
+    const request = async (endpoint, options = {}) => {
+        const headers = {
+            ...(options.headers || {}),
+        };
+        const hasFormDataBody = options.body instanceof FormData;
+
+        if (!hasFormDataBody && !headers["Content-Type"]) {
+            headers["Content-Type"] = "application/json";
+        }
+
+        const token = getAuthTokenSafe();
+        if (token) {
+            headers["Authorization"] = `Bearer ${token}`;
+        }
+
+        try {
+            const response = await fetch(`${baseUrl}${endpoint}`, {
+                ...options,
+                headers,
+            });
+
+            const responseType = response.headers.get("content-type") || "";
+            const data = responseType.includes("application/json") ? await response.json() : null;
+
+            if (!response.ok) {
+                const errorMessage = data && data.error ? data.error : "Erro na requisição";
+                throw new Error(errorMessage);
+            }
+
+            return data;
+        } catch (error) {
+            if (error instanceof TypeError && error.message === "Failed to fetch") {
+                throw new Error("Falha de conexao com a API. Verifique se o backend esta online e se o CORS permite o dominio do frontend.");
+            }
+
+            throw error;
+        }
+    };
+
+    return {
+        getAll: () => request("/images"),
+        getById: (id) => request(`/images/${id}`),
+        create: (formData) => request("/images/upload", {
+            method: "POST",
+            headers: {},
+            body: formData,
+        }),
+    };
+}
+
+function ensureAuthenticatedSession() {
+    const token = getAuthTokenSafe();
     if (!token) {
         throw new Error("Faça login para enviar e visualizar suas imagens revitalizadas.");
     }
@@ -41,6 +120,18 @@ function ensureAuthenticatedSession() {
 function getImagesApi() {
     if (window.api && window.api.images) {
         return window.api.images;
+    }
+
+    if (typeof window.getImagesApi === "function") {
+        try {
+            const imagesApi = window.getImagesApi();
+
+            if (imagesApi && typeof imagesApi.create === "function") {
+                return imagesApi;
+            }
+        } catch (error) {
+            console.warn("Falha ao obter API de imagens global:", error);
+        }
     }
 
     if (typeof window.apiRequest === "function") {
@@ -56,7 +147,7 @@ function getImagesApi() {
         };
     }
 
-    throw new Error("Integração de API indisponível. Recarregue a página e tente novamente.");
+    return createFallbackImagesApi();
 }
 
 function setFeedback(message, type = "") {
