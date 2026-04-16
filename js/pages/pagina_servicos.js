@@ -24,7 +24,31 @@ function getServiceRequestSender() {
         });
     }
 
-    return null;
+    return async (payload) => {
+        const baseUrl = typeof window.API_BASE_URL === 'string' && window.API_BASE_URL.trim()
+            ? window.API_BASE_URL.trim()
+            : 'https://backend-4scx.onrender.com/api';
+
+        const response = await fetch(`${baseUrl}/contact/service-request`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        });
+
+        const responseType = response.headers.get('content-type') || '';
+        const data = responseType.includes('application/json') ? await response.json() : null;
+
+        if (!response.ok) {
+            const message = data && data.error
+                ? data.error
+                : 'Nao foi possivel enviar sua solicitacao.';
+            throw new Error(message);
+        }
+
+        return data;
+    };
 }
 
 function setPosition(clientX) {

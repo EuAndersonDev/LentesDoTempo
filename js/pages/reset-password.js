@@ -1,13 +1,5 @@
-// Verificar se email e código foram verificados
-const resetEmail = localStorage.getItem('resetEmail');
+const storedResetEmail = (localStorage.getItem('resetEmail') || '').trim();
 const codeVerified = localStorage.getItem('codeVerified');
-
-if (!resetEmail || codeVerified !== 'true') {
-    window.location.href = 'forgot-password.html';
-}
-
-// Mostrar código armazenado (para debug em desenvolvimento)
-console.log('Reset password for:', resetEmail);
 
 const FALLBACK_AUTH_API_BASE_URL = "https://backend-4scx.onrender.com/api";
 
@@ -79,11 +71,30 @@ function getAuthApiClient() {
     return createAuthApiFallbackClient();
 }
 
+const verificationCodeInput = document.getElementById('verificationCode');
+const storedResetCode = (localStorage.getItem('resetCode') || '').trim();
+const resetEmailInput = document.getElementById('resetEmail');
+
+if (resetEmailInput) {
+    resetEmailInput.value = storedResetEmail;
+}
+
+if (verificationCodeInput) {
+    verificationCodeInput.value = storedResetCode;
+    verificationCodeInput.addEventListener('input', function () {
+        this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6);
+    });
+}
+
 document
     .getElementById("reset-password-form")
     .addEventListener("submit", async function (e) {
         e.preventDefault();
 
+        const email = resetEmailInput ? resetEmailInput.value.trim() : '';
+        const codeInputValue = verificationCodeInput
+            ? verificationCodeInput.value.trim()
+            : '';
         const newPassword = document.getElementById("newPassword").value;
         const confirmPassword = document.getElementById("confirmPassword").value;
         const errorDiv = document.getElementById("reset-error");
@@ -108,21 +119,36 @@ document
             return;
         }
 
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            errorDiv.textContent = "Informe um e-mail valido";
+            errorDiv.classList.add("visible");
+            return;
+        }
+
+        if (!/^[0-9]{6}$/.test(codeInputValue)) {
+            errorDiv.textContent = "Informe um codigo de verificacao valido com 6 digitos";
+            errorDiv.classList.add("visible");
+            return;
+        }
+
         // Desabilitar botão
         submitButton.disabled = true;
         submitButton.textContent = "Redefinindo...";
 
         try {
-            const code = (localStorage.getItem('resetCode') || '').trim();
+            const code = codeInputValue;
 
-            if (!code) {
-                throw new Error('Codigo de verificacao nao encontrado. Volte e valide o codigo novamente.');
+            localStorage.setItem('resetEmail', email);
+            localStorage.setItem('resetCode', code);
+
+            if (codeVerified === 'true') {
+                localStorage.setItem('codeVerified', 'true');
             }
 
             const authApi = getAuthApiClient();
 
             await authApi.resetPassword({
-                email: resetEmail,
+                email,
                 code,
                 newPassword,
             });
