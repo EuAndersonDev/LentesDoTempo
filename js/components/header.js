@@ -90,7 +90,7 @@ class Header extends HTMLElement {
         const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
         return isLocalHost
             ? 'http://localhost:3000/api'
-            : 'https://SEU-BACKEND.onrender.com/api';
+            : 'https://backend-4scx.onrender.com/api';
     }
 
     getStoredUser() {

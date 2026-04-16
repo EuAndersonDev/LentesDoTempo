@@ -6,7 +6,7 @@
  */
 
 const DEFAULT_LOCAL_API_BASE_URL = 'http://localhost:3000/api';
-const DEFAULT_RENDER_API_BASE_URL = 'https://SEU-BACKEND.onrender.com/api';
+const DEFAULT_RENDER_API_BASE_URL = 'https://backend-4scx.onrender.com/api';
 
 function resolveApiBaseUrl() {
     if (window.__API_BASE_URL__ && typeof window.__API_BASE_URL__ === 'string') {

@@ -10,7 +10,7 @@ Este e o modulo de integracao direta com o backend e deve ser a fonte unica para
 
 ## Configuracao atual
 
-- API_BASE_URL definido como [http://localhost:3000/api](http://localhost:3000/api)
+- API_BASE_URL definido como [http://localhost:3000/api](http://localhost:3000/api) em local e [https://backend-4scx.onrender.com/api](https://backend-4scx.onrender.com/api) em produção
 - Helpers globais expostos em window:
   - window.api
   - window.apiRequest
