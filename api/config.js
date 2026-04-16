@@ -5,7 +5,7 @@
  * Todos os requests HTTP devem passar por este módulo.
  */
 
-const DEFAULT_LOCAL_API_BASE_URL = 'https://backend-4scx.onrender.com/api';
+const DEFAULT_LOCAL_API_BASE_URL = 'http://localhost:3000/api';
 const DEFAULT_RENDER_API_BASE_URL = 'https://backend-4scx.onrender.com/api';
 
 function resolveApiBaseUrl() {
@@ -23,7 +23,7 @@ function resolveApiBaseUrl() {
         return window.API_BASE_URL.trim();
     }
 
-    const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+    const isLocalHost = ['localhost', '127.0.0.1', ''].includes(window.location.hostname);
     return isLocalHost ? DEFAULT_LOCAL_API_BASE_URL : DEFAULT_RENDER_API_BASE_URL;
 }
 

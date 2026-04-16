@@ -1,4 +1,5 @@
 const FALLBACK_AUTH_API_BASE_URL = "https://backend-4scx.onrender.com/api";
+const FALLBACK_AUTH_LOCAL_API_BASE_URL = "http://localhost:3000/api";
 
 function resolveAuthApiBaseUrl() {
     if (typeof window.API_BASE_URL === "string" && window.API_BASE_URL.trim()) {
@@ -10,7 +11,8 @@ function resolveAuthApiBaseUrl() {
         return metaTag.content.trim();
     }
 
-    return FALLBACK_AUTH_API_BASE_URL;
+    const isLocalHost = ["localhost", "127.0.0.1", ""].includes(window.location.hostname);
+    return isLocalHost ? FALLBACK_AUTH_LOCAL_API_BASE_URL : FALLBACK_AUTH_API_BASE_URL;
 }
 
 function createAuthApiFallbackClient() {
@@ -106,7 +108,15 @@ document
             }, 1000);
 
         } catch (error) {
-            errorDiv.textContent = error.message;
+            const backendMessage = error && error.message ? error.message : "Erro na requisicao";
+            const normalizedMessage = backendMessage.toLowerCase();
+
+            if (normalizedMessage.includes("failed to send reset email")) {
+                errorDiv.textContent = "Nao foi possivel enviar o e-mail de recuperacao no momento. Tente novamente em instantes.";
+            } else {
+                errorDiv.textContent = backendMessage;
+            }
+
             errorDiv.classList.add("visible");
             submitButton.disabled = false;
             submitButton.textContent = "Enviar código";
