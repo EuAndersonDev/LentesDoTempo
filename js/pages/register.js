@@ -86,6 +86,30 @@ function getAuthApiClient() {
     return createAuthApiFallbackClient();
 }
 
+function persistAuthSession(authData, { remember = false } = {}) {
+    if (!authData || !authData.token) {
+        return;
+    }
+
+    if (typeof window.setAuthSession === "function") {
+        window.setAuthSession(authData, { remember });
+        return;
+    }
+
+    const storage = remember ? localStorage : sessionStorage;
+    const fallbackStorage = remember ? sessionStorage : localStorage;
+
+    fallbackStorage.removeItem("authToken");
+    fallbackStorage.removeItem("user");
+
+    storage.setItem("authToken", authData.token);
+    storage.setItem("user", JSON.stringify({
+        id: authData.id,
+        name: authData.name,
+        email: authData.email,
+    }));
+}
+
 document
     .getElementById("register-form")
     .addEventListener("submit", async function (e) {
@@ -139,7 +163,7 @@ document
 
             // Armazenar token se necessário
             if (data.data.token) {
-                window.setAuthSession(data.data, { remember: true });
+                persistAuthSession(data.data, { remember: true });
             }
 
             // Redirecionar após sucesso
