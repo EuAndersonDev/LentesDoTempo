@@ -26,7 +26,7 @@ class Footer extends HTMLElement {
                         <li>
                             <a href="/pages/main/sobrenos.html" class="footer__link">Nossa empresa</a>
                         </li>
-                        <li><a href="/pages/secondary/historia.html" class="footer__link">História</a></li>
+                        <li><a href="/pages/main/sobrenos.html" class="footer__link">História</a></li>
                     </ul>
                 </section>
 
