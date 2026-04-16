@@ -12,16 +12,184 @@
         <script src="../../js/components/header.js" defer></script>
         <script src="../../js/components/footer.js" defer></script>
         <script src="../../js/motions/transition.js" defer></script>
+        <link rel="stylesheet" href="parcerias.css">
     </head>
     <body>
         <header-component></header-component>
         <main>
-            <h1>Parcerias</h1>
-            <p>
-                Descubra projetos e instituicoes que caminham com a Lentes do
-                Tempo.
+<div class="carousel-container intro">
+    <div class="carousel-track">
+        <div class="card" data-category="Antropologia">
+            <img src="../../assets/imgs/P10.jpg" alt="Antropologia">
+        </div>
+        <div class="card is-side" data-category="Arqueologia">
+            <img src="../../assets/imgs/P11.jpg" alt="Arqueologia">
+        </div>
+        <div class="card is-active" data-category="Reconstrução">
+            <img src="../../assets/imgs/P12.jpg" alt="Reconstrução">
+        </div>
+        <div class="card is-side" data-category="Tecnologia">
+            <img src="../../assets/imgs/P13.jpg" alt="Tecnologia">
+        </div>
+        <div class="card" data-category="Preservação histórica">
+            <img src="../../assets/imgs/P14.jpg" alt="Preservação histórica">
+        </div>
+    </div>
+
+    <h2 class="carousel-caption">Arquitetura</h2>
+</div>
+
+ 
+    <!-- INTROUÇAÕ: TITULO: Unindo saberes para ressuscitar o passado -->
+    <section class="intro">
+        <div class="card" data-category="antropologia">
+  <video autoplay muted loop playsinline class="video-lateral">
+    <source src="../../assets/imgs/Video2.mp4" type="video/mp4">
+    O teu navegador não suporta vídeos.
+  </video>
+</div>
+
+        <div class="container">
+            <h2 class="intro-title">Unindo saberes para ressuscitar o passado</h2>
+            <p class="intro-text">
+                Unimos o conhecimento acadêmico à tecnologia de ponta para resgatar o patrimônio. Trabalhamos lado a lado com historiadores e arqueólogos para que cada exposição e modelo digital seja uma extensão fiel da pesquisa documental e científica.
             </p>
+            <p class="intro-text">
+                Nosso compromisso é converter o estudo documental em ativos digitais de valor científico, respeitando a integridade das fontes e a precisão histórica em cada reconstrução.
+            </p>
+        </div>
+    </section>
+ 
+    <!-- 2 SEÇÃO TITULO: Reconstruindo a história para novas gerações -->
+    <section class="split-section">
+        <div class="split-images">
+            <img src="../../assets/imgs/image P1.png" alt="Foto 1" class="split-img split-img--top">
+            <img src="../../assets/imgs/image P2.png" alt="Foto 2" class="split-img split-img--bottom">
+        </div>
+        <div class="split-text">
+            <h2 class="split-title">Reconstruindo a história para novas gerações</h2>
+            <p class="split-body">
+                Unimos rigor histórico e criatividade em parcerias com museus para criar experiências educativas imersivas, tornando o patrimônio acessível e transformando exposições em vivências reais.
+            </p>
+        </div>
+    </section>
+ 
+    <!-- MINI GALERIA -->
+     
+    <section class="wide-image">
+        <div class="carousel-container">
+  <div class="carousel-track">
+    <img src="../../assets/imgs/image P3.png" class="card" alt="Restauro 1">
+    <img src="../../assets/imgs/Image P4.jpg" class="card active" alt="Cena Principal">
+    <img src="../../assets/imgs/Image P5.jpg" class="card" alt="Restauro 2">
+    <img src="../../assets/imgs/Image P6.jpg" class="card active" alt="4"> 
+    <img src="../../assets/imgs/Image P7.jpg" class="card" alt="5">
+    <img src="../../assets/imgs/Image P8.jpg" class="card" alt="6">
+    <img src="../../assets/imgs/Image P9.jpg" class="card" alt="7">
+    </div>
+</div>
+    </section>
+ 
+    <!-- SEÇÃO PARCEIROS -->
+    <section class="partners">
+        <div class="container">
+            <h2 class="partners-title">Algumas de nossos parceiros</h2>
+ 
+            <div class="partners-category">
+                <span class="category-label">Categorias</span>
+            </div>
+ 
+            <div class="partners-grid">
+                <div class="partner-card"><img src="../../assets/imgs/USP.jpg" alt="Logo parceiro"></div>
+                <div class="partner-card"><img src="../../assets/imgs/Cambridge.png" alt="Logo parceiro"></div>
+                <div class="partner-card"><img src="../../assets/imgs/search.png" alt="Logo parceiro"></div>
+                <div class="partner-card"><img src="../../assets/imgs/Massachusetts.png" alt="Logo parceiro"></div>
+ 
+                <div class="partner-card"><img src="../../assets/imgs/iphan.png" alt="Logo parceiro"></div>
+                <div class="partner-card"><img src="../../assets/imgs/Finep_logo.webp" alt="Logo parceiro"></div>
+                <div class="partner-card"><img src="../../assets/imgs/BNDES.png" alt="Logo parceiro"></div>
+                <div class="partner-card"><img src="../../assets/imgs/UNESCO.png" alt="Logo parceiro"></div>
+ 
+                <div class="partner-card"><img src="../../assets/imgs/Icomos.png" alt="Logo parceiro"></div>
+                <div class="partner-card"><img src="../../assets/imgs/UniversiteitLeiden.jpg" alt="Logo parceiro"></div>
+                <div class="partner-card"><img src="../../assets/imgs/Tokyo.png" alt="Logo parceiro"></div>
+                <div class="partner-card"><img src="../../assets/imgs/peking.png" alt="Logo parceiro"></div>
+            </div>
+        </div>
+    </section>
         </main>
+
+<script>
+const cards = document.querySelectorAll('.card');
+
+cards.forEach((card) => {
+  card.addEventListener('click', () => {
+    // 1. Resetar todas
+    cards.forEach(c => c.classList.remove('active'));
+    
+    // 2. Ativar a clicada
+    card.classList.add('active');
+    
+    // 3. Centralizar suavemente no container
+    card.parentElement.scrollTo({
+      left: card.offsetLeft - (card.parentElement.offsetWidth / 2) + (card.offsetWidth / 2),
+      behavior: 'smooth'
+    });
+  });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Selecionamos primeiro o container específico da Intro
+    const introSection = document.querySelector('.intro');
+    
+    // Se a seção intro não existir nesta página, o código para aqui e não dá erro
+    if (!introSection) return;
+
+    // 2. Buscamos os cards e legendas APENAS dentro da introSection
+    const introCards = introSection.querySelectorAll('.card');
+    const introCaption = introSection.querySelector('.carousel-caption');
+
+    const titles = {
+        'Antropologia': 'Antropologia',
+        'Arqueologia': 'Arqueologia',
+        'Reconstrução': 'Reconstrução',
+        'Tecnologia': 'Tecnologia',
+        'Preservação histórica': 'Preservação histórica'
+    };
+
+    introCards.forEach((card, index) => {
+        card.addEventListener('click', () => {
+            updateIntroGallery(index);
+        });
+    });
+
+    function updateIntroGallery(activeIndex) {
+        introCards.forEach((card, i) => {
+            card.classList.remove('is-active', 'is-side');
+            
+            if (i === activeIndex) {
+                card.classList.add('is-active');
+                
+                const cat = card.getAttribute('data-category');
+                
+                if (introCaption && titles[cat]) {
+                    introCaption.style.opacity = 0;
+                    setTimeout(() => {
+                        introCaption.textContent = titles[cat];
+                        introCaption.style.opacity = 1;
+                    }, 300);
+                }
+
+            } else if (i === activeIndex - 1 || i === activeIndex + 1) {
+                card.classList.add('is-side');
+            }
+        });
+    }
+});
+</script>
+
         <footer-component></footer-component>
     </body>
 </html>
