@@ -4,13 +4,13 @@ class Footer extends HTMLElement {
         <footer class="footer">
             <div class="footer__top">
                 <div class="logo-title">
-                    <img src="/assets/icons/Logo.svg" alt="" />
+                    <img src="../../assets/icons/Logo.svg" alt="" />
                     <h2 class="footer__title">Lentes do Tempo</h2>
                 </div>
                 <div class="footer__location">
                     <img
                         class="footer__location-icon"
-                        src="/assets/icons/Footer/Location.svg"
+                        src="../../assets/icons/Footer/Location.svg"
                         alt="Ícone de localização"
                     />
                     <span class="footer__location-text">Brasil</span>
@@ -61,16 +61,16 @@ class Footer extends HTMLElement {
 
             <div class="footer__social">
                 <a href="#" class="footer__social-link" aria-label="Instagram">
-                    <img src="/assets/icons/Footer/Instagram.svg" alt="" />
+                    <img src="../../assets/icons/Footer/Instagram.svg" alt="" />
                 </a>
                 <a href="#" class="footer__social-link" aria-label="YouTube">
-                    <img src="/assets/icons/Footer/YouTube.svg" alt="" />
+                    <img src="../../assets/icons/Footer/YouTube.svg" alt="" />
                 </a>
                 <a href="#" class="footer__social-link" aria-label="Facebook">
-                    <img src="/assets/icons/Footer/Linkedin.svg" alt="" />
+                    <img src="../../assets/icons/Footer/Linkedin.svg" alt="" />
                 </a>
                 <button class="footer__theme-toggle" aria-label="Alternar tema">
-                    <img src="/assets/icons/Footer/Acessibilidade.svg" alt="" />
+                    <img src="../../assets/icons/Footer/Acessibilidade.svg" alt="" />
                 </button>
             </div>
 
