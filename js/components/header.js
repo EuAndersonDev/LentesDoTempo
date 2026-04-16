@@ -3,6 +3,13 @@ class Header extends HTMLElement {
         const currentPage = this.getCurrentPage();
         const session = await this.resolveSession();
         const authActionsMarkup = this.getAuthActionsMarkup(session);
+        const reloadPageNavItemMarkup = session.isAuthenticated
+            ? `
+                        <div class="nav__item ${currentPage === 'reloadpage' ? 'nav__item--active' : ''}">
+                            <a class="nav__link" href="/pages/main/reloadpage.html">Reconstrução cenário</a>
+                        </div>
+              `
+            : '';
 
         this.innerHTML = `
             <header class="header">
@@ -34,9 +41,7 @@ class Header extends HTMLElement {
                         <div class="nav__item ${currentPage === 'eventos' ? 'nav__item--active' : ''}">
                             <a class="nav__link" href="/pages/main/eventos.html">Eventos</a>
                         </div>
-                        <div class="nav__item ${currentPage === 'reloadpage' ? 'nav__item--active' : ''}">
-                            <a class="nav__link" href="/pages/main/reloadpage.html">Reconstrução cenário</a>
-                        </div>
+                        ${reloadPageNavItemMarkup}
                     </nav>
                     <div class="header__actions">
                         ${authActionsMarkup}

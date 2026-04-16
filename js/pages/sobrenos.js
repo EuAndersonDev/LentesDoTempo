@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const slider = document.querySelector('.carousel-foto');
     if (!slider) return;
+    const teamCards = slider.querySelectorAll('.card-equipe');
 
     slider.style.scrollBehavior = 'auto';
     const speed = 0.09;
@@ -53,6 +54,25 @@ document.addEventListener("DOMContentLoaded", () => {
     slider.addEventListener('mouseleave', startAutoplay);
     slider.addEventListener('focusin', stopAutoplay);
     slider.addEventListener('focusout', startAutoplay);
+
+    teamCards.forEach((card) => {
+        card.addEventListener('click', (event) => {
+            if (event.target.closest('.card-social-link')) {
+                return;
+            }
+
+            card.classList.toggle('is-flipped');
+        });
+
+        card.addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter' && event.key !== ' ') {
+                return;
+            }
+
+            event.preventDefault();
+            card.classList.toggle('is-flipped');
+        });
+    });
 
     startAutoplay();
 });
