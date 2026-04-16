@@ -3,6 +3,11 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="../../assets/icons/Logo.svg"
+        />
         <title>Galeria - Lentes do Tempo</title>
         <link rel="stylesheet" href="../../css/global.css" />
         <link rel="stylesheet" href="../../css/components/header.css" />
@@ -18,6 +23,16 @@
     <body>
         <header-component></header-component>
         <main>
+            <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+            </div>
+            </div>
+            <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+            <script>
+                new window.VLibras.Widget('https://vlibras.gov.br/app');
+            </script>
             <section id="container_1">
                 <video autoplay muted loop playsinline>
                     <source

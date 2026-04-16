@@ -16,6 +16,100 @@ function setupPasswordToggle(button) {
 
 document.querySelectorAll(".password-toggle").forEach(setupPasswordToggle);
 
+const FALLBACK_AUTH_API_BASE_URL = "https://backend-4scx.onrender.com/api";
+
+function resolveAuthApiBaseUrl() {
+    if (typeof window.API_BASE_URL === "string" && window.API_BASE_URL.trim()) {
+        return window.API_BASE_URL.trim();
+    }
+
+    const metaTag = document.querySelector('meta[name="api-base-url"]');
+    if (metaTag && typeof metaTag.content === "string" && metaTag.content.trim()) {
+        return metaTag.content.trim();
+    }
+
+    return FALLBACK_AUTH_API_BASE_URL;
+}
+
+function createAuthApiFallbackClient() {
+    const baseUrl = resolveAuthApiBaseUrl();
+
+    const request = async (endpoint, data) => {
+        let response;
+
+        try {
+            response = await fetch(`${baseUrl}${endpoint}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+        } catch (error) {
+            throw new Error("Nao foi possivel conectar ao servidor de autenticacao.");
+        }
+
+        const responseType = response.headers.get("content-type") || "";
+        const payload = responseType.includes("application/json")
+            ? await response.json()
+            : null;
+
+        if (!response.ok) {
+            const errorMessage = payload && payload.error ? payload.error : "Erro na requisicao";
+            throw new Error(errorMessage);
+        }
+
+        return payload;
+    };
+
+    return {
+        login: (data) => request("/auth/login", data),
+        register: (data) => request("/auth/register", data),
+        forgotPassword: (data) => request("/auth/forgot-password", data),
+        verifyCode: (data) => request("/auth/verify-code", data),
+        resetPassword: (data) => request("/auth/reset-password", data),
+    };
+}
+
+function getAuthApiClient() {
+    if (typeof window.getAuthApi === "function") {
+        try {
+            const authApi = window.getAuthApi();
+            if (authApi && typeof authApi.register === "function") {
+                return authApi;
+            }
+        } catch (error) {
+            console.warn("Falha ao obter API de autenticacao global:", error);
+        }
+    }
+
+    return createAuthApiFallbackClient();
+}
+
+function persistAuthSession(authData, { remember = false } = {}) {
+    if (!authData || !authData.token) {
+        return;
+    }
+
+    if (typeof window.setAuthSession === "function") {
+        window.setAuthSession(authData, { remember });
+        return;
+    }
+
+    const storage = remember ? localStorage : sessionStorage;
+    const fallbackStorage = remember ? sessionStorage : localStorage;
+
+    fallbackStorage.removeItem("authToken");
+    fallbackStorage.removeItem("user");
+
+    storage.setItem("authToken", authData.token);
+    storage.setItem("user", JSON.stringify({
+        id: authData.id,
+        name: authData.name,
+        email: authData.email,
+    }));
+}
+
 document
     .getElementById("register-form")
     .addEventListener("submit", async function (e) {
@@ -60,10 +154,7 @@ document
         submitButton.textContent = "Criando conta...";
 
         try {
-            const authApi = typeof window.getAuthApi === "function" ? window.getAuthApi() : null;
-            if (!authApi) {
-                throw new Error("API de autenticação indisponível. Recarregue a página e tente novamente.");
-            }
+            const authApi = getAuthApiClient();
 
             const data = await authApi.register({ name, email, password });
 
@@ -72,7 +163,7 @@ document
 
             // Armazenar token se necessário
             if (data.data.token) {
-                window.setAuthSession(data.data, { remember: true });
+                persistAuthSession(data.data, { remember: true });
             }
 
             // Redirecionar após sucesso

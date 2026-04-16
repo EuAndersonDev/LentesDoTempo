@@ -197,20 +197,46 @@ p {
 
 .card-equipe {
     min-width: 250px;
+    height: 280px;
+    flex: 0 0 auto;
+    perspective: 1100px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.card-equipe-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    transform-style: preserve-3d;
+    transition: transform 0.7s ease;
+}
+
+.card-equipe:hover .card-equipe-inner,
+.card-equipe.is-flipped .card-equipe-inner,
+.card-equipe:focus-visible .card-equipe-inner {
+    transform: rotateY(180deg);
+}
+
+.card-equipe-front,
+.card-equipe-back {
+    position: absolute;
+    inset: 0;
     background: #fff;
     border-radius: 20px;
     padding: 15px;
     text-align: center;
-    flex: 0 0 auto;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    transition: 0.3s;
+    backface-visibility: hidden;
 }
 
-.card-equipe:hover {
-    transform: translateY(-8px);
+.card-equipe-front {
+    display: flex;
+    flex-direction: column;
 }
 
-.card-equipe img {
+.card-equipe-front img {
     width: 100%;
     height: 200px;
     object-fit: cover;
@@ -223,10 +249,57 @@ p {
     color: #451a03;
 }
 
-.card-equipe span {
-    display: block;
-    font-size: 14px;
-    color: #777;
+.card-equipe-back {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    background: linear-gradient(160deg, #f2d17b 0%, #e3b958 100%);
+}
+
+.card-equipe-back p {
+    margin: 0;
+    color: #5d2a08;
+    font-weight: 600;
+}
+
+.card-socials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-social-link {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: #451a03;
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.card-social-link:hover,
+.card-social-link:focus-visible {
+    transform: scale(1.08);
+    background: #6b2d0c;
+}
+
+.card-social-link svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+.card-equipe:focus-visible {
+    outline: 3px solid rgba(69, 26, 3, 0.35);
+    outline-offset: 3px;
 }
 
 .carousel-controls {
@@ -419,10 +492,8 @@ p {
         max-width: 300px;
     }
 
-    .carousel-foto img {
-        width: 280px;
-        height: 200px;
-        flex: 0 0 auto;
-        scroll-snap-align: center;
+    .card-equipe {
+        min-width: 280px;
+        height: 300px;
     }
 }

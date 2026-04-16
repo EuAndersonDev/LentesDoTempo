@@ -5,7 +5,7 @@
  * Todos os requests HTTP devem passar por este módulo.
  */
 
-const DEFAULT_LOCAL_API_BASE_URL = 'http://localhost:3000/api';
+const DEFAULT_LOCAL_API_BASE_URL = 'https://backend-4scx.onrender.com/api';
 const DEFAULT_RENDER_API_BASE_URL = 'https://backend-4scx.onrender.com/api';
 
 function resolveApiBaseUrl() {
@@ -186,6 +186,11 @@ async function apiRequest(endpoint, options = {}) {
         return data;
     } catch (error) {
         console.error(`API Request failed: ${url}`, error);
+
+        if (error instanceof TypeError && error.message === 'Failed to fetch') {
+            throw new Error('Falha de conexao com a API. Verifique se o backend esta online e se o CORS permite o dominio do frontend.');
+        }
+
         throw error;
     }
 }
