@@ -3,10 +3,11 @@
 .verify-code-page {
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     background: linear-gradient(135deg, #fdf6e3 0%, #f5e6d3 100%);
-    padding: 20px;
+    padding: clamp(16px, 3vw, 24px);
+    padding-top: clamp(88px, 13vh, 130px);
 }
 
 .verify-code-container {
@@ -67,7 +68,9 @@
     font-family: "Noto Serif", serif;
     text-align: center;
     letter-spacing: 8px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
     background: #fdfdfd;
 }
 
@@ -185,7 +188,8 @@
 
 @media (max-width: 480px) {
     .verify-code-container {
-        padding: 32px 24px;
+        padding: 28px 18px;
+        border-radius: 16px;
     }
 
     .verify-code-title {
@@ -196,5 +200,9 @@
         width: 140px;
         font-size: 20px;
         letter-spacing: 4px;
+    }
+
+    .verify-code-page {
+        padding-top: 78px;
     }
 }

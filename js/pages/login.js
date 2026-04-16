@@ -35,7 +35,12 @@ document
         submitButton.textContent = "Entrando...";
 
         try {
-            const data = await window.api.auth.login({ email, password });
+            const authApi = typeof window.getAuthApi === "function" ? window.getAuthApi() : null;
+            if (!authApi) {
+                throw new Error("API de autenticação indisponível. Recarregue a página e tente novamente.");
+            }
+
+            const data = await authApi.login({ email, password });
 
             // Armazenar token e dados do usuário
             if (data.data.token) {

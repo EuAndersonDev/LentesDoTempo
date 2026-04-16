@@ -7,7 +7,9 @@ class Header extends HTMLElement {
         this.innerHTML = `
             <header class="header">
                 <div class="header__container">
-                    <img class="header__logo" alt="Logo Lentes do Tempo" src="/assets/icons/Logo.svg"/>
+                    <a href="/index.html" aria-label="Ir para a página inicial">
+                        <img class="header__logo" alt="Logo Lentes do Tempo" src="/assets/icons/Logo.svg"/>
+                    </a>
                     <div class="header__brand">
                         <i class="header__title">Lentes do Tempo</i>
                     </div>
@@ -29,6 +31,9 @@ class Header extends HTMLElement {
                         <div class="nav__item ${currentPage === 'sobrenos' ? 'nav__item--active' : ''}">
                             <a class="nav__link" href="/pages/main/sobrenos.html">Sobre nós</a>
                         </div>
+                        <div class="nav__item ${currentPage === 'eventos' ? 'nav__item--active' : ''}">
+                            <a class="nav__link" href="/pages/main/eventos.html">Eventos</a>
+                        </div>
                         <div class="nav__item ${currentPage === 'reloadpage' ? 'nav__item--active' : ''}">
                             <a class="nav__link" href="/pages/main/reloadpage.html">Reconstrução cenário</a>
                         </div>
@@ -47,6 +52,7 @@ class Header extends HTMLElement {
     async resolveSession() {
         const token = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
         const user = this.getStoredUser();
+        const apiBaseUrl = this.resolveApiBaseUrl();
 
         if (!token) {
             return { isAuthenticated: false, user: null };
@@ -59,7 +65,7 @@ class Header extends HTMLElement {
                     return { isAuthenticated: false, user: null };
                 }
             } else {
-                const response = await fetch('http://localhost:3000/api/auth/me', {
+                const response = await fetch(`${apiBaseUrl}/auth/me`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 
@@ -74,6 +80,17 @@ class Header extends HTMLElement {
             // Em falha de rede, mantem estado local para nao quebrar navegacao.
             return { isAuthenticated: true, user };
         }
+    }
+
+    resolveApiBaseUrl() {
+        if (window.API_BASE_URL && typeof window.API_BASE_URL === 'string') {
+            return window.API_BASE_URL;
+        }
+
+        const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+        return isLocalHost
+            ? 'http://localhost:3000/api'
+            : 'https://SEU-BACKEND.onrender.com/api';
     }
 
     getStoredUser() {

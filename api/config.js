@@ -5,7 +5,54 @@
  * Todos os requests HTTP devem passar por este módulo.
  */
 
-const API_BASE_URL = 'http://localhost:3000/api';
+const DEFAULT_LOCAL_API_BASE_URL = 'http://localhost:3000/api';
+const DEFAULT_RENDER_API_BASE_URL = 'https://SEU-BACKEND.onrender.com/api';
+
+function resolveApiBaseUrl() {
+    if (window.__API_BASE_URL__ && typeof window.__API_BASE_URL__ === 'string') {
+        return window.__API_BASE_URL__.trim();
+    }
+
+    const metaTag = document.querySelector('meta[name="api-base-url"]');
+    const metaValue = metaTag && metaTag.content ? metaTag.content.trim() : '';
+    if (metaValue) {
+        return metaValue;
+    }
+
+    if (window.API_BASE_URL && typeof window.API_BASE_URL === 'string') {
+        return window.API_BASE_URL.trim();
+    }
+
+    const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+    return isLocalHost ? DEFAULT_LOCAL_API_BASE_URL : DEFAULT_RENDER_API_BASE_URL;
+}
+
+const API_BASE_URL = resolveApiBaseUrl();
+
+const globalApi = window.api && typeof window.api === 'object' ? window.api : {};
+const globalLegacyConfig = window.API_CONFIG && typeof window.API_CONFIG === 'object'
+    ? window.API_CONFIG
+    : {};
+
+window.api = {
+    ...globalApi,
+    auth: globalApi.auth && typeof globalApi.auth === 'object' ? globalApi.auth : {},
+    images: globalApi.images && typeof globalApi.images === 'object' ? globalApi.images : {},
+    contact: globalApi.contact && typeof globalApi.contact === 'object' ? globalApi.contact : {},
+};
+
+window.API_CONFIG = {
+    ...globalLegacyConfig,
+    auth: globalLegacyConfig.auth && typeof globalLegacyConfig.auth === 'object'
+        ? globalLegacyConfig.auth
+        : {},
+    images: globalLegacyConfig.images && typeof globalLegacyConfig.images === 'object'
+        ? globalLegacyConfig.images
+        : {},
+    contact: globalLegacyConfig.contact && typeof globalLegacyConfig.contact === 'object'
+        ? globalLegacyConfig.contact
+        : {},
+};
 
 const PUBLIC_AUTH_ENDPOINTS = [
     '/auth/login',
@@ -209,7 +256,84 @@ const api = {
             method: 'DELETE',
         }),
     },
+
+    // Contato
+    contact: {
+        serviceRequest: (data) => apiRequest('/contact/service-request', {
+            method: 'POST',
+            body: JSON.stringify(data),
+        }),
+    },
 };
+
+function getAuthApi() {
+    if (window.api && window.api.auth) {
+        return window.api.auth;
+    }
+
+    if (window.API_CONFIG && window.API_CONFIG.auth) {
+        return window.API_CONFIG.auth;
+    }
+
+    if (typeof window.apiRequest === 'function') {
+        return {
+            register: (data) => window.apiRequest('/auth/register', {
+                method: 'POST',
+                body: JSON.stringify(data),
+            }),
+            login: (data) => window.apiRequest('/auth/login', {
+                method: 'POST',
+                body: JSON.stringify(data),
+            }),
+            getProfile: () => window.apiRequest('/auth/me'),
+            forgotPassword: (data) => window.apiRequest('/auth/forgot-password', {
+                method: 'POST',
+                body: JSON.stringify(data),
+            }),
+            verifyCode: (data) => window.apiRequest('/auth/verify-code', {
+                method: 'POST',
+                body: JSON.stringify(data),
+            }),
+            resetPassword: (data) => window.apiRequest('/auth/reset-password', {
+                method: 'POST',
+                body: JSON.stringify(data),
+            }),
+        };
+    }
+
+    throw new Error('API de autenticação indisponível. Recarregue a página e tente novamente.');
+}
+
+function getImagesApi() {
+    if (window.api && window.api.images) {
+        return window.api.images;
+    }
+
+    if (window.API_CONFIG && window.API_CONFIG.images) {
+        return window.API_CONFIG.images;
+    }
+
+    if (typeof window.apiRequest === 'function') {
+        return {
+            getAll: () => window.apiRequest('/images'),
+            getById: (id) => window.apiRequest(`/images/${id}`),
+            create: (formData) => window.apiRequest('/images/upload', {
+                method: 'POST',
+                headers: {},
+                body: formData,
+            }),
+            update: (id, data) => window.apiRequest(`/images/${id}`, {
+                method: 'PUT',
+                body: JSON.stringify(data),
+            }),
+            delete: (id) => window.apiRequest(`/images/${id}`, {
+                method: 'DELETE',
+            }),
+        };
+    }
+
+    throw new Error('API de imagens indisponível. Recarregue a página e tente novamente.');
+}
 
 // Exporta para uso em outros módulos
 window.api = api;
@@ -222,3 +346,33 @@ window.clearAuthSession = clearAuthSession;
 window.validateJwtSession = validateJwtSession;
 window.logout = logout;
 window.API_BASE_URL = API_BASE_URL;
+window.getAuthApi = getAuthApi;
+window.getImagesApi = getImagesApi;
+window.apiReady = Promise.resolve(window.api);
+
+// Compatibilidade legada para scripts antigos que ainda usam API_CONFIG.auth/images.
+window.API_CONFIG = {
+    ...(window.API_CONFIG || {}),
+    baseUrl: API_BASE_URL,
+    auth: {
+        register: (data) => api.auth.register(data),
+        login: (data) => api.auth.login(data),
+        getProfile: () => api.auth.getProfile(),
+        forgotPassword: (data) => api.auth.forgotPassword(data),
+        verifyCode: (data) => api.auth.verifyCode(data),
+        resetPassword: (data) => api.auth.resetPassword(data),
+    },
+    images: {
+        getAll: () => api.images.getAll(),
+        getById: (id) => api.images.getById(id),
+        create: (formData) => api.images.create(formData),
+        update: (id, data) => api.images.update(id, data),
+        delete: (id) => api.images.delete(id),
+    },
+    contact: {
+        serviceRequest: (data) => api.contact.serviceRequest(data),
+    },
+};
+
+// Alias adicional para cobrir variacoes comuns em codigo legado.
+window.config = window.API_CONFIG;

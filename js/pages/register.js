@@ -60,7 +60,12 @@ document
         submitButton.textContent = "Criando conta...";
 
         try {
-            const data = await window.api.auth.register({ name, email, password });
+            const authApi = typeof window.getAuthApi === "function" ? window.getAuthApi() : null;
+            if (!authApi) {
+                throw new Error("API de autenticação indisponível. Recarregue a página e tente novamente.");
+            }
+
+            const data = await authApi.register({ name, email, password });
 
             // Sucesso
             successDiv.classList.add("visible");

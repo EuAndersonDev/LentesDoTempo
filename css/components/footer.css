@@ -6,6 +6,7 @@
     font-family: Inter, sans-serif;
     font-size: 14px;
     padding: 3rem 2rem;
+    overflow-x: clip;
 }
 .footer__top {
     display: flex;
@@ -261,9 +262,19 @@
     }
 
     .footer__bottom {
-        flex-direction: row;
+        flex-direction: column;
+        align-items: flex-start;
         text-align: left;
         gap: 0.9rem;
+    }
+
+    .footer__copyright {
+        font-size: clamp(1rem, 2.8vw, 1.2rem);
+    }
+
+    .footer__logo {
+        width: 60px;
+        height: auto;
     }
 
     .footer__separator {
@@ -294,8 +305,9 @@
     }
 
     .footer__location {
-        width: fit-content;
+        width: 100%;
         justify-content: flex-start;
+        border-radius: 16px;
     }
 
     .footer__location-icon {

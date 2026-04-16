@@ -28,7 +28,12 @@ document.getElementById('resend-link').addEventListener('click', async function 
     resendLink.style.pointerEvents = 'none';
 
     try {
-        const data = await window.api.auth.forgotPassword({ email: resetEmail });
+        const authApi = typeof window.getAuthApi === "function" ? window.getAuthApi() : null;
+        if (!authApi) {
+            throw new Error("API de autenticação indisponível. Recarregue a página e tente novamente.");
+        }
+
+        const data = await authApi.forgotPassword({ email: resetEmail });
 
         // Armazenar novo código se retornado
         if (data.code) {
@@ -75,7 +80,12 @@ document
         submitButton.textContent = "Verificando...";
 
         try {
-            await window.api.auth.verifyCode({ email: resetEmail, code });
+            const authApi = typeof window.getAuthApi === "function" ? window.getAuthApi() : null;
+            if (!authApi) {
+                throw new Error("API de autenticação indisponível. Recarregue a página e tente novamente.");
+            }
+
+            await authApi.verifyCode({ email: resetEmail, code });
 
             // Sucesso - armazenar que código foi verificado
             localStorage.setItem("codeVerified", "true");

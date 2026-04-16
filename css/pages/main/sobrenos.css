@@ -4,7 +4,7 @@ main {
     padding: 40px 20px;
     width: 100%;
     margin: 0 auto;
-    background-color: #FCF9F4;
+    background-color: #fcf9f4;
 }
 
 h1 {
@@ -21,164 +21,159 @@ p {
 }
 
 .hero {
-  position: relative;
-  width: 100%;
-  height: 690px;
-  overflow: hidden;
+    position: relative;
+    width: 100%;
+    min-height: 72vh;
+    overflow: hidden;
 }
 
 .heroimg {
-  position: relative;
-  width: 100%;
-  height: 100%;
-
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .heroimg img:first-child {
-  position: relative;
-  width: 100%;
-  height: 100%;
- 
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 #circulo {
-  position: absolute;
-  width: 580px;
-  height: 450px;
-  background: #d4a84f;
-  opacity: 80%;
-  border-radius: 50%;
-  bottom: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  z-index: 1;
-  overflow: hidden;
-  border-top-left-radius: 500px;
-  border-top-right-radius: 500px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
- 
+    position: absolute;
+    width: min(80vw, 580px);
+    height: min(62vw, 450px);
+    background: #d4a84f;
+    opacity: 80%;
+    border-radius: 50%;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    overflow: hidden;
+    border-top-left-radius: 500px;
+    border-top-right-radius: 500px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 #circulo img {
-  width: 70%;
-  height: 80%;
-  object-fit: contain; 
+    width: 70%;
+    height: 80%;
+    object-fit: contain;
 }
 
 .heroimg img:last-child {
-  position: relative;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 250px;
-  opacity: 0.9;
-  z-index: 3;
+    position: relative;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(160px, 24vw, 250px);
+    opacity: 0.9;
+    z-index: 3;
 }
 
 .textohero {
-  position: absolute;
-  top: 30%;
-  left: 10%;
-  transform: translateY(-50%);
-  z-index: 2;
-  color: #582D0B;
-  max-width: 500px;
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    transform: translateY(-50%);
+    z-index: 2;
+    color: #582d0b;
+    max-width: min(88vw, 500px);
 }
 
 #texto1 {
-  color: #582D0B;
-  margin-bottom: 10px;
-  font-size: 18px;
-  letter-spacing: 1px;
+    color: #582d0b;
+    margin-bottom: 10px;
+    font-size: 18px;
+    letter-spacing: 1px;
 }
 
 .textohero h1 {
-  font-size: 60px;
-  margin-bottom: 20px;
+    font-size: clamp(2.2rem, 7vw, 3.75rem);
+    margin-bottom: 20px;
 }
 
 #texto2 {
-  color: #50453B;
-  font-size: 18px;
-  line-height: 1.6;
+    color: #50453b;
+    font-size: clamp(0.95rem, 2.2vw, 1.125rem);
+    line-height: 1.6;
 }
 
 .hitoria {
-  text-align: center;
-  padding: 80px 20%;
-  background: rgba(255, 194, 42, 0.5);
-  margin-bottom: 20px;
-  
+    text-align: center;
+    padding: clamp(28px, 6vw, 80px) clamp(16px, 9vw, 20%);
+    background: rgba(255, 194, 42, 0.5);
+    margin-bottom: 20px;
 }
 
 #textoh {
-  font-size: 45px;
-  margin-bottom: 20px;
-  color: #694217;
-  font-weight: bold;
+    font-size: 45px;
+    margin-bottom: 20px;
+    color: #694217;
+    font-weight: bold;
 }
 
 #textoh2 {
-  color: #694217;
-  line-height: 1.7;
-  font-size: 20px;
+    color: #694217;
+    line-height: 1.7;
+    font-size: 20px;
 }
 
 .propaganda {
-  position: relative;
-  height: 680px; 
-  overflow: hidden;
-  margin-top: 20px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
+    position: relative;
+    min-height: 62vh;
+    overflow: hidden;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
 .propaganda video {
-  width: 100%;
-  height: 85%;
-  object-fit: cover;
- 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .cards {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  padding: 80px 10%;
-  background: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 80px 10%;
+    background: #f8f8f8;
 }
 
 .card {
-  background: #F2D17B;
-  padding: 30px;
-  border-radius: 20px;
-  text-align: center;
-  width: 260px;
-  transition: 0.3s ease;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    background: #f2d17b;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    width: 260px;
+    transition: 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .card:hover {
-  transform: translateY(-8px);
+    transform: translateY(-8px);
 }
 
 .card img {
-  width: 100px;
-  margin-bottom: 10px;
+    width: 100px;
+    margin-bottom: 10px;
 }
 
 .card h3 {
-  margin-bottom: 10px;
-  font-size: 20px;
+    margin-bottom: 10px;
+    font-size: 20px;
 }
 
 .textocard {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #010101;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #010101;
 }
 
 .carousel {
@@ -207,7 +202,7 @@ p {
     padding: 15px;
     text-align: center;
     flex: 0 0 auto;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     transition: 0.3s;
 }
 
@@ -241,7 +236,8 @@ p {
     margin-top: 20px;
 }
 
-.prev, .next {
+.prev,
+.next {
     background: #451a03;
     color: white;
     border: none;
@@ -252,7 +248,8 @@ p {
     transition: 0.3s;
 }
 
-.prev:hover, .next:hover {
+.prev:hover,
+.next:hover {
     background: #6b2d0c;
     transform: scale(1.1);
 }
@@ -260,93 +257,132 @@ p {
 /* ---------mobile--------- */
 
 @media (max-width: 768px) {
+    main {
+        padding: 40px 20px;
+    }
 
-  main {
-    padding: 40px 20px;
-  }
+    h1 {
+        font-size: 32px;
+    }
 
-  h1 {
-    font-size: 32px;
-  }
+    p {
+        font-size: 14px;
+    }
 
-  p {
-    font-size: 14px;
-  }
+    .hero {
+        min-height: 68vh;
+    }
 
-  .hero {
-    height: 690px;
-  }
+    .heroimg {
+        height: 100%;
+    }
 
-  .heroimg {
-    height: 100%;
-  }
+    .textohero {
+        top: 38%;
+        left: 6%;
+        transform: translateY(-38%);
+        max-width: 90%;
+    }
 
-   .textohero {
-    top: 30%;
-    left: 10%;
-    transform: translateY(-50%);
-    max-width: 500px;
-  }
+    .textohero h1 {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+    }
 
-  .textohero h1 {
-    font-size: 45px;
-  }
+    #texto1 {
+        font-size: 14px;
+    }
 
-  #texto1 {
-  font-size: 14px;
+    #texto2 {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    #circulo {
+        width: min(96vw, 560px);
+        height: min(68vw, 420px);
+        bottom: -60px;
+    }
+
+    .hitoria {
+        padding: 36px 20px;
+    }
+
+    #textoh {
+        font-size: 30px;
+    }
+
+    #textoh2 {
+        font-size: 14px;
+    }
+
+    .propaganda {
+        min-height: 54vh;
+    }
+
+    .propaganda video {
+        width: 100%;
+        height: 100%;
+    }
+
+    .cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 40px 15px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 300px;
+    }
 }
 
-#texto2 {
-  font-size: 14px;
-  line-height: 1.6;
+@media (max-width: 480px) {
+    main {
+        padding: 26px 12px;
+    }
+
+    .hero {
+        min-height: 62vh;
+    }
+
+    .textohero {
+        top: 42%;
+        left: 5%;
+        transform: translateY(-34%);
+    }
+
+    #texto1 {
+        font-size: 12px;
+    }
+
+    #texto2 {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    #circulo {
+        width: 108vw;
+        height: 72vw;
+        left: 50%;
+        bottom: -38px;
+    }
+
+    .cards {
+        padding: 28px 10px;
+    }
+
+    .card {
+        max-width: 100%;
+        border-radius: 14px;
+        padding: 20px;
+    }
 }
-
-  #circulo {
-    width: 580px;
-    height: 450px;
-    bottom: -100px;
-  }
-
-  .hitoria {
-    padding: 80px 20%;
-  }
-
-  #textoh {
-    font-size: 30px;
-  }
-
-  #textoh2 {
-    font-size: 14px;
-  }
-
-  .propaganda {
-    height: 680px;
-  }
-
-  .propaganda video {
-    width: 100%;
-    height: 85%;
-  }
-
- .cards {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 40px 15px;
-  }
-
-  .card {
-    width: 100%;
-    max-width: 300px;
-  }
-}
-
 
 /*--------- tablet-----------*/
 
 /* ===== TABLET ===== */
 @media (max-width: 1024px) {
-
     main {
         padding: 30px 15px;
     }
@@ -360,7 +396,6 @@ p {
         line-height: 1.5;
     }
 
-    
     .heroimg {
         display: flex;
         justify-content: center;
@@ -368,24 +403,23 @@ p {
     }
 
     .heroimg img {
-        width: 80%;  
+        width: 80%;
         height: auto;
         object-fit: cover;
     }
 
-    
-    .container, .cards {
+    .container,
+    .cards {
         flex-direction: column;
         align-items: center;
     }
-
 
     button {
         width: 100%;
         max-width: 300px;
     }
 
-     .carousel-foto img {
+    .carousel-foto img {
         width: 280px;
         height: 200px;
         flex: 0 0 auto;

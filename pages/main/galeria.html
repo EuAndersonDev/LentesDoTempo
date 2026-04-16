@@ -9,15 +9,50 @@
         <link rel="stylesheet" href="../../css/pages/main/galeria.css" />
         <link rel="stylesheet" href="../../css/components/footer.css" />
         <link rel="stylesheet" href="../../css/motions/transition.css" />
+        <script src="../../api/config.js" defer></script>
         <script src="../../js/components/header.js" defer></script>
         <script src="../../js/components/footer.js" defer></script>
         <script src="../../js/motions/transition.js" defer></script>
+        <script src="../../js/pages/galeria.js" defer></script>
     </head>
     <body>
         <header-component></header-component>
         <main>
-            <h1>Galeria</h1>
-            <p>Bem-vindo à galeria</p>
+            <section id="container_1">
+                <video autoplay muted loop playsinline>
+                    <source
+                        src="../../assets/imgs/ImagesGaleriaPage/colliseumvideo.mp4"
+                        type="video/mp4"
+                    />
+                </video>
+                <div id="sobre_1">
+                    <h1>O Coliseu</h1>
+                    <p>
+                        O Coliseu é um dos monumentos mais emblemáticos da
+                        história da humanidade e um símbolo da grandiosidade da
+                        Roma Antiga. Inaugurado no ano 80 d.C., ele foi
+                        construído para sediar espetáculos públicos, como lutas
+                        de gladiadores, encenações teatrais e eventos que
+                        reuniam milhares de pessoas.
+                    </p>
+                </div>
+                <div id="entrar_1">
+                    <a href="VRs/colisseumVR.html">Entrar</a>
+                </div>
+            </section>
+
+            <section class="gallery-backend">
+                <div class="gallery-backend__header">
+                    <h2>Galeria revitalizada com Gemini</h2>
+                    <p id="gallery-backend-feedback">
+                        Carregando imagens da sua conta...
+                    </p>
+                </div>
+                <div
+                    class="gallery-backend__grid"
+                    id="gallery-backend-grid"
+                ></div>
+            </section>
         </main>
         <footer-component></footer-component>
     </body>

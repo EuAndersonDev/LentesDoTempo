@@ -3,10 +3,11 @@
 .login-page {
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     background: linear-gradient(135deg, #fdf6e3 0%, #f5e6d3 100%);
-    padding: 20px;
+    padding: clamp(16px, 3vw, 24px);
+    padding-top: clamp(88px, 13vh, 130px);
 }
 
 .login-container {
@@ -17,7 +18,7 @@
     border-radius: 20px;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.1);
     padding: 40px;
-    margin-top: 90px;
+    margin-top: 0;
 }
 
 .login-header {
@@ -246,11 +247,16 @@
 
 @media (max-width: 480px) {
     .login-container {
-        padding: 32px 24px;
+        padding: 28px 18px;
+        border-radius: 16px;
     }
 
     .login-title {
         font-size: 1.5rem;
+    }
+
+    .login-page {
+        padding-top: 78px;
     }
 
     .form-options {

@@ -46,7 +46,12 @@ document
             // Obter código do localStorage (para desenvolvimento)
             const code = localStorage.getItem('resetCode') || '';
 
-            await window.api.auth.resetPassword({
+            const authApi = typeof window.getAuthApi === "function" ? window.getAuthApi() : null;
+            if (!authApi) {
+                throw new Error("API de autenticação indisponível. Recarregue a página e tente novamente.");
+            }
+
+            await authApi.resetPassword({
                 email: resetEmail,
                 code,
                 newPassword,

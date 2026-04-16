@@ -2,7 +2,11 @@ const state = {
     selectedFile: null,
     sourceObjectUrl: null,
     loading: false,
+    pollToken: 0,
 };
+
+const POLL_INTERVAL_MS = 2200;
+const POLL_MAX_ATTEMPTS = 18;
 
 const form = document.getElementById("reload-form");
 const fileInput = document.getElementById("image-file");
@@ -22,6 +26,38 @@ const resultDescription = document.getElementById("result-description");
 const resultLink = document.getElementById("result-link");
 const gallery = document.getElementById("reload-gallery");
 const galleryCount = document.getElementById("gallery-count");
+
+function ensureAuthenticatedSession() {
+    if (typeof window.getAuthToken !== "function") {
+        throw new Error("Módulo de autenticação não carregado. Recarregue a página.");
+    }
+
+    const token = window.getAuthToken();
+    if (!token) {
+        throw new Error("Faça login para enviar e visualizar suas imagens revitalizadas.");
+    }
+}
+
+function getImagesApi() {
+    if (window.api && window.api.images) {
+        return window.api.images;
+    }
+
+    if (typeof window.apiRequest === "function") {
+        return {
+            getAll: () => window.apiRequest("/images"),
+            getById: (id) => window.apiRequest(`/images/${id}`),
+            create: (formData) =>
+                window.apiRequest("/images/upload", {
+                    method: "POST",
+                    headers: {},
+                    body: formData,
+                }),
+        };
+    }
+
+    throw new Error("Integração de API indisponível. Recarregue a página e tente novamente.");
+}
 
 function setFeedback(message, type = "") {
     feedback.textContent = message;
@@ -103,6 +139,9 @@ function pickImageUrl(payload) {
     }
 
     return (
+        payload.revitalizedImageUrl ||
+        payload.generatedImageUrl ||
+        payload.restoredImageUrl ||
         payload.processedImageUrl ||
         payload.resultImageUrl ||
         payload.imageUrl ||
@@ -114,11 +153,23 @@ function pickImageUrl(payload) {
 
 function renderResult(payload, title) {
     const imageUrl = pickImageUrl(payload);
+    const status = payload && payload.status;
+    const analysisText = payload && payload.geminiAnalysis;
+    const statusLabel =
+        status === "processing"
+            ? "Análise em andamento..."
+            : status === "completed"
+                ? "Análise concluída"
+                : status === "failed"
+                    ? "Falha na análise"
+                    : "";
 
     resultTitle.textContent = title || (payload && payload.title) || "Resultado processado";
     resultDescription.textContent =
+        analysisText ||
         (payload && payload.description) ||
         (payload && payload.message) ||
+        statusLabel ||
         "A resposta do backend será exibida aqui com a imagem revitalizada ou com os metadados do processamento.";
 
     if (imageUrl) {
@@ -127,6 +178,8 @@ function renderResult(payload, title) {
         resultEmptyState.hidden = true;
         resultActiveState.hidden = false;
         resultLink.href = imageUrl;
+        resultLink.download = "imagem-restaurada.webp";
+        resultLink.textContent = "Baixar imagem restaurada";
         resultLink.hidden = false;
     } else {
         resultEmptyState.hidden = false;
@@ -134,6 +187,48 @@ function renderResult(payload, title) {
         resultLink.hidden = true;
         resultLink.removeAttribute("href");
     }
+}
+
+function sleep(ms) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+}
+
+async function pollImageStatus(imageId, title, pollToken) {
+    const imagesApi = getImagesApi();
+
+    for (let attempt = 1; attempt <= POLL_MAX_ATTEMPTS; attempt += 1) {
+        if (pollToken !== state.pollToken) {
+            return;
+        }
+
+        try {
+            const detailsResponse = await imagesApi.getById(imageId);
+            const detailsPayload = extractPayload(detailsResponse);
+
+            renderResult(detailsPayload, title);
+
+            if (detailsPayload && detailsPayload.status === "completed") {
+                setFeedback("Imagem restaurada pronta. A análise foi concluída.", "success");
+                return;
+            }
+
+            if (detailsPayload && detailsPayload.status === "failed") {
+                setFeedback("A restauração foi entregue, mas a análise textual falhou.", "error");
+                return;
+            }
+
+            setFeedback(`Restauração entregue. Finalizando análise (${attempt}/${POLL_MAX_ATTEMPTS})...`);
+        } catch (error) {
+            setFeedback(`Não foi possível consultar o status da análise: ${error.message}`, "error");
+            return;
+        }
+
+        await sleep(POLL_INTERVAL_MS);
+    }
+
+    setFeedback("A imagem restaurada está disponível, mas a análise ainda não terminou.");
 }
 
 function renderGallery(items) {
@@ -155,8 +250,21 @@ function renderGallery(items) {
     gallery.innerHTML = items
         .map((item) => {
             const imageUrl = pickImageUrl(item);
-            const label = item.title || item.name || "Registro sem título";
-            const description = item.description || item.caption || item.prompt || "Imagem cadastrada no backend";
+            const label = item.title || item.originalName || item.name || "Registro sem título";
+            const statusLabel =
+                item.status === "processing"
+                    ? "Análise em andamento"
+                    : item.status === "completed"
+                        ? "Análise concluída"
+                        : item.status === "failed"
+                            ? "Falha na análise"
+                            : "Status indisponível";
+            const description =
+                item.geminiAnalysis ||
+                item.description ||
+                item.caption ||
+                item.prompt ||
+                statusLabel;
 
             return `
                 <article class="reload-gallery-card">
@@ -180,7 +288,9 @@ async function loadGallery() {
     `;
 
     try {
-        const response = await window.api.images.getAll();
+        ensureAuthenticatedSession();
+        const imagesApi = getImagesApi();
+        const response = await imagesApi.getAll();
         renderGallery(normalizeCollectionResponse(response));
     } catch (error) {
         gallery.innerHTML = `
@@ -271,12 +381,23 @@ form.addEventListener("submit", async (event) => {
     clearResultState();
 
     try {
-        const response = await window.api.images.create(formData);
+        ensureAuthenticatedSession();
+        const imagesApi = getImagesApi();
+        const response = await imagesApi.create(formData);
         const payload = extractPayload(response);
         const title = sceneTitle || (payload && payload.title) || selectedFile.name;
+        const imageId = payload && payload.id;
+        const pollToken = state.pollToken + 1;
+
+        state.pollToken = pollToken;
 
         renderResult(payload, title);
-        setFeedback("Imagem enviada com sucesso. Confira a saída do processamento.", "success");
+        setFeedback("Imagem restaurada gerada e pronta para visualização/download.", "success");
+
+        if (imageId) {
+            pollImageStatus(imageId, title, pollToken);
+        }
+
         await loadGallery();
     } catch (error) {
         setFeedback(error.message, "error");

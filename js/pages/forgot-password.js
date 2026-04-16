@@ -18,7 +18,12 @@ document
         submitButton.textContent = "Enviando...";
 
         try {
-            const data = await window.api.auth.forgotPassword({ email });
+            const authApi = typeof window.getAuthApi === "function" ? window.getAuthApi() : null;
+            if (!authApi) {
+                throw new Error("API de autenticação indisponível. Recarregue a página e tente novamente.");
+            }
+
+            const data = await authApi.forgotPassword({ email });
 
             // Sucesso - armazenar email e código para próximas etapas
             localStorage.setItem("resetEmail", email);

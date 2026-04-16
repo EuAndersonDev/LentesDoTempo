@@ -91,16 +91,17 @@ html {
 }
 
 .hotspot__icon {
-    width: 64px;
-    height: 64px;
+    width: clamp(48px, 5vw, 64px);
+    height: clamp(48px, 5vw, 64px);
     flex-shrink: 0;
-    padding: 8px;
-    background: #8B6F47;
+    padding: clamp(6px, 0.8vw, 8px);
+    background: #8b6f47;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     object-fit: contain;
+    transition: transform 0.25s ease;
 }
 
 .tooltip {
@@ -127,7 +128,10 @@ html {
 .hotspot:hover .tooltip {
     opacity: 1;
     transform: translateY(-50%) translateX(0);
+}
 
+.hotspot:active .hotspot__icon {
+    transform: scale(0.96);
 }
 
 /* --- LOGO WATERMARK --- */
@@ -149,4 +153,98 @@ html {
 
 .logo-watermark:hover {
     opacity: 1;
+}
+
+@media (max-width: 1024px) {
+    .scroll-bound {
+        min-height: 200vh;
+    }
+
+    .hotspot {
+        gap: 10px;
+    }
+
+    .tooltip {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    .logo-watermark img {
+        width: 72px;
+    }
+}
+
+@media (max-width: 768px) {
+    .scroll-bound {
+        min-height: 180vh;
+    }
+
+    .sticky-container.zoomed {
+        transform: scale(22);
+    }
+
+    .hotspot {
+        gap: 8px;
+    }
+
+    .hotspot__icon {
+        width: 48px;
+        height: 48px;
+        padding: 6px;
+    }
+
+    .tooltip {
+        display: none;
+    }
+
+    .logo-watermark {
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .logo-watermark img {
+        width: 64px;
+    }
+}
+
+@media (max-width: 480px) {
+    .scroll-bound {
+        min-height: 165vh;
+    }
+
+    .sticky-container.zoomed {
+        transform: scale(18);
+    }
+
+    .hotspot__icon {
+        width: 42px;
+        height: 42px;
+        padding: 5px;
+    }
+
+    .hotspot[data-x="18"] {
+        left: 14% !important;
+    }
+
+    .hotspot[data-x="82"] {
+        left: 86% !important;
+    }
+
+    .hotspot[data-y="75"] {
+        top: 72% !important;
+    }
+
+    .hotspot[data-y="76"] {
+        top: 73% !important;
+    }
+
+    .logo-watermark img {
+        width: 56px;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .tooltip {
+        display: none;
+    }
 }

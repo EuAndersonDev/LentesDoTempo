@@ -1,7 +1,6 @@
 * {
     padding: 0;
     margin: 0;
-    position: relative;
     box-sizing: border-box;
 }
 
@@ -11,64 +10,261 @@ main {
 
 #container_1 {
     width: 100%;
-    height: 120vh;
+    min-height: 100vh;
     display: flex;
     overflow: hidden;
-    flex-direction: row;
-    align-items: end;
+    align-items: flex-end;
+    position: relative;
+    isolation: isolate;
+    padding: clamp(16px, 4vw, 36px);
+    gap: clamp(16px, 3vw, 28px);
 }
-#container_1 video {
+
+#container_1::before {
+    content: "";
     position: absolute;
-    width: 100%;
-    height: 100%;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.55) 20%,
+        rgba(0, 0, 0, 0.2) 70%
+    );
     z-index: 0;
 }
 
+#container_1 video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
 #sobre_1 {
-    border: 2px solid red;
-    width: 50%;
-    height: 50%;
+    width: min(62%, 820px);
+    min-height: 45%;
     z-index: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    word-spacing: 2px;
+    align-items: flex-start;
+    justify-content: flex-end;
+    text-align: left;
+    gap: 0.75rem;
 }
-#sobre_1 h1 {
-    color: rgb(0, 0, 0);
-    display: flex;
-    font-family: Noto Serif;
-    font-weight: 500;
-    font-size: 50px;
-}
-#sobre_1 p{
-font-size: 30px;
 
+#sobre_1 h1 {
+    color: #fff;
+    font-family: "Noto Serif", serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 5vw, 3.25rem);
+}
+
+#sobre_1 p {
+    color: #f5efe4;
+    font-size: clamp(1rem, 2.3vw, 1.35rem);
+    line-height: 1.6;
+    max-width: 68ch;
 }
 
 #entrar_1 {
-    border: 2px solid rgb(0, 0, 0);
-    width: 50%;
-    height: 50%;
+    width: min(38%, 380px);
+    min-height: 45%;
     z-index: 1;
     display: flex;
-    align-items: end;
-    justify-content: end;
-    padding-bottom: 20px;
-    padding-right: 20px;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
+
 #entrar_1 a {
     background-color: #eabf32;
-    width: 15%;
-    height: 15%;
     text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1rem, 2.4vw, 1.45rem);
+    border-radius: 10px;
+    text-decoration: none;
+    color: #24180c;
+    font-family: "Libre Bodoni", serif;
+    font-weight: 600;
+    padding: 0.7rem 1.4rem;
+    min-width: 140px;
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+
+#entrar_1 a:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+.gallery-backend {
+    padding: 3rem 1.5rem 4rem;
+    background: linear-gradient(180deg, #f6f1e7 0%, #ece3d2 100%);
+}
+
+.gallery-backend__header {
+    max-width: 1080px;
+    margin: 0 auto 1.25rem;
+    text-align: left;
+}
+
+.gallery-backend__header h2 {
+    font-family: "Libre Bodoni", serif;
+    font-size: 2rem;
+    color: #302212;
+    margin-bottom: 0.35rem;
+}
+
+.gallery-backend__header p {
+    color: #5b4a32;
+    font-size: 1rem;
+}
+
+.gallery-backend__grid {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-backend__card {
+    background: #fff;
+    border: 1px solid #d8ccb7;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 14px 32px rgba(77, 50, 21, 0.12);
+}
+
+.gallery-backend__card--empty {
+    padding: 1.25rem;
+    text-align: left;
+}
+
+.gallery-backend__card--empty h3 {
+    color: #302212;
+    font-family: "Libre Bodoni", serif;
+    margin-bottom: 0.5rem;
+}
+
+.gallery-backend__card--empty p {
+    color: #5b4a32;
+}
+
+.gallery-backend__image {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-backend__no-image {
+    min-height: 210px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
-    border-radius: 5px;
-    text-decoration: none;
-    color: black;
-    font-family: Libre Bodoni;
+    color: #7a6650;
+    background: #f4ecdf;
     font-weight: 600;
+}
+
+.gallery-backend__meta {
+    padding: 1rem;
+    text-align: left;
+}
+
+.gallery-backend__meta h3 {
+    color: #302212;
+    font-family: "Libre Bodoni", serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.gallery-backend__status {
+    display: inline-block;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #8f6a30;
+    background: #f9f0de;
+    border: 1px solid #e5d4b8;
+    border-radius: 999px;
+    padding: 0.25rem 0.6rem;
+    margin-bottom: 0.6rem;
+}
+
+.gallery-backend__meta p {
+    color: #564833;
+    line-height: 1.45;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    #container_1 {
+        min-height: 90vh;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: stretch;
+    }
+
+    #container_1::before {
+        background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.3) 10%,
+            rgba(0, 0, 0, 0.72) 100%
+        );
+    }
+
+    #sobre_1,
+    #entrar_1 {
+        width: 100%;
+        min-height: auto;
+    }
+
+    #sobre_1 {
+        gap: 0.6rem;
+    }
+
+    #entrar_1 {
+        justify-content: flex-start;
+    }
+
+    #entrar_1 a {
+        min-width: 128px;
+    }
+
+    .gallery-backend {
+        padding-top: 2.2rem;
+    }
+
+    .gallery-backend__header h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #container_1 {
+        min-height: 82vh;
+        padding: 14px;
+    }
+
+    #sobre_1 p {
+        font-size: 0.95rem;
+    }
+
+    #entrar_1 a {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .gallery-backend {
+        padding: 2.1rem 0.9rem 3rem;
+    }
+
+    .gallery-backend__grid {
+        grid-template-columns: 1fr;
+    }
 }

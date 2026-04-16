@@ -3,10 +3,11 @@
 .register-page {
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     background: linear-gradient(135deg, #fdf6e3 0%, #f5e6d3 100%);
-    padding: 20px;
+    padding: clamp(16px, 3vw, 24px);
+    padding-top: clamp(88px, 13vh, 130px);
 }
 
 .register-container {
@@ -265,11 +266,16 @@
 
 @media (max-width: 480px) {
     .register-container {
-        padding: 32px 24px;
+        padding: 28px 18px;
+        border-radius: 16px;
     }
 
     .register-title {
         font-size: 1.5rem;
+    }
+
+    .register-page {
+        padding-top: 78px;
     }
 
     .form-terms {

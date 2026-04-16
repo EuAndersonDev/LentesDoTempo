@@ -12,94 +12,221 @@
         <script src="../../js/components/header.js" defer></script>
         <script src="../../js/components/footer.js" defer></script>
         <script src="../../js/motions/transition.js" defer></script>
-
-        <link rel="stylesheet" href="../../css/pages/main/servicos.css" type="text/css" />
+        <script src="../../api/config.js" defer></script>
         <script src="../../js/pages/pagina_servicos.js" defer></script>
-
     </head>
     <body>
         <header-component></header-component>
-        <div class="image-container">
-            <img class="image-after" src="../../assets/imgs/estrutura1.png" alt="depois"/>
-            <div class="image-before">
-                <img src="../../assets/imgs/estrutura2.png" alt="antes"/>
-            </div>
-            <div class="slider-handle"></div>
-            <div class="slider-line"></div>
-            <div class="slider-button" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 256 256">
-                    <path d="M136,40V216a8,8,0,0,1-16,0V40a8,8,0,0,1,16,0ZM96,120H35.31l18.35-18.34A8,8,0,0,0,42.34,90.34l-32,32a8,8,0,0,0,0,11.32l32,32a8,8,0,0,0,11.32-11.32L35.31,136H96a8,8,0,0,0,0-16Zm149.66,2.34-32-32a8,8,0,0,0-11.32,11.32L220.69,120H160a8,8,0,0,0,0,16h60.69l-18.35,18.34a8,8,0,0,0,11.32,11.32l32-32A8,8,0,0,0,245.66,122.34Z"></path>
-                </svg>
-            </div>
-        </div>
-
-        <section id="secao2">
-
-        <section id="secao_imagem">
-            <img src="../../assets/imgs/oculosvr_roma.png">
-        </section>    
-        
-
-        <article id="reconstrucao_virtual">
-            <h1>Reconstrução Virtual (VR)</h1>
-            <p id="texto">Recriamos monumentos, museus e<br/> espaços históricos em realidade virtual,<br/> permitindo uma expêriencia imersiva e<br/> interativa.</p>
-            <div class="icone"> <img src="../../assets/imgs/imersao.png"> <p>IMERSÃO REALISTA</p> </div>
-            <div class="icone"> <img src="../../assets/imgs/fidelidade.png"> <p>FIDELIDADE HISTÓRICA</p> </div>
-            <div class="icone"> <img src="../../assets/imgs/interatividade.png"> <p>INTERATIVIDADE</p> </div>
-        </article>
-
-        </section>
-
-        <section id="secao3">
-            <h1>Exploração Interativa</h1>
-            <p>Desenvolvemos ambientes 3D navegáveis, onde o usuário pode<br/> explorar locais históricos de forma dinâmica, como em um mapa digital</p>
-            <video autoplay muted loop playsinline>
-                <source src="../../assets/imgs/video_local.mp4" type="video/mp4">
-                </video>
-        </section>
-
-        <section id="secao4">
-            <article>
-                <h1>Maquetes Físicas para Museus</h1>
-                <h2>Projetamos modelos 3D que podem ser utilizados na<br/> criação de maquetes físicas, auxiliando exposições e<br/> experiências educativas.</h2>
-                <p>Este projeto de maquete em escala real<br/> demonstra nossa capacidade de recriar<br/> arquiteturas complexas e ambientes históricos<br/> com precisão absoluta. Cada fachada, cada telha<br/> e cada textura são fruto de uma pesquisa rigorosa<br/> para garantir que o passado seja preservado com<br/> a dignidade que merece.</p>
-                <p>Representação física que facilita a compreensão<br/> do espaço, aproximando o público da história.</p>
-            </article>
-
-            <section id="imagem_video">
-                <video autoplay muted loop playsinline>
-                <source src="../../assets/imgs/gif.mp4" type="video/mp4">
-                </video>
-                <img src="../../assets/imgs/maquete.png">
+        <main id="conteudo-servicos">
+            <section
+                class="image-container"
+                aria-label="Comparativo visual antes e depois das reconstrucaoes"
+            >
+                <img
+                    class="image-after"
+                    src="../../assets/imgs/estrutura1.png"
+                    alt="Reconstrucao final do patrimonio"
+                />
+                <div class="image-before">
+                    <img
+                        src="../../assets/imgs/estrutura2.png"
+                        alt="Estado anterior da estrutura historica"
+                    />
+                </div>
+                <div class="slider-handle" aria-hidden="true"></div>
+                <div class="slider-line" aria-hidden="true"></div>
+                <div class="slider-button" aria-hidden="true">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="30"
+                        fill="currentColor"
+                        viewBox="0 0 256 256"
+                    >
+                        <path
+                            d="M136,40V216a8,8,0,0,1-16,0V40a8,8,0,0,1,16,0ZM96,120H35.31l18.35-18.34A8,8,0,0,0,42.34,90.34l-32,32a8,8,0,0,0,0,11.32l32,32a8,8,0,0,0,11.32-11.32L35.31,136H96a8,8,0,0,0,0-16Zm149.66,2.34-32-32a8,8,0,0,0-11.32,11.32L220.69,120H160a8,8,0,0,0,0,16h60.69l-18.35,18.34a8,8,0,0,0,11.32,11.32l32-32A8,8,0,0,0,245.66,122.34Z"
+                        ></path>
+                    </svg>
+                </div>
             </section>
-        </section>
 
-        <section id="secao5">
-            <img src="../../assets/imgs/esboco_museu.png">
+            <section id="secao2" aria-labelledby="titulo-reconstrucao">
+                <section
+                    id="secao_imagem"
+                    aria-label="Imagem ilustrativa de experiencia em realidade virtual"
+                >
+                    <img
+                        src="../../assets/imgs/oculosvr_roma.png"
+                        alt="Pessoa utilizando oculos de realidade virtual"
+                    />
+                </section>
 
-            <div id="contato">
-                <h1>Solicite um Estudo de Reconstituição</h1>
-                <label>NOME</label>
-                <input type="text" id="nome" />
+                <article id="reconstrucao_virtual">
+                    <h1 id="titulo-reconstrucao">Reconstrucao Virtual (VR)</h1>
+                    <p id="texto">
+                        Recriamos monumentos, museus e<br />espacos historicos
+                        em realidade virtual,<br />permitindo uma experiencia
+                        imersiva e<br />interativa.
+                    </p>
+                    <div class="icone">
+                        <img
+                            src="../../assets/imgs/imersao.png"
+                            alt="Icone de imersao"
+                        />
+                        <p>IMERSAO REALISTA</p>
+                    </div>
+                    <div class="icone">
+                        <img
+                            src="../../assets/imgs/fidelidade.png"
+                            alt="Icone de fidelidade historica"
+                        />
+                        <p>FIDELIDADE HISTORICA</p>
+                    </div>
+                    <div class="icone">
+                        <img
+                            src="../../assets/imgs/interatividade.png"
+                            alt="Icone de interatividade"
+                        />
+                        <p>INTERATIVIDADE</p>
+                    </div>
+                </article>
+            </section>
 
-                <label>INSTITUIÇÃO</label>
-                <input type="text" id="instituicao" />
-
-                <label>E-MAIL</label>
-                <input type="email" id="email" />
-
-                <label>MENSAGEM</label>
-                <textarea id="mensagem"></textarea>
-
-                <button type="submit" id="btnEnviar">ENVIAR</button>
-
-                <p id="mensagem-sucesso" style="display: none;">
-                    Recebemos sua solicitação, a analisaremos e entraremos em contato.
+            <section id="secao3" aria-labelledby="titulo-exploracao">
+                <h2 id="titulo-exploracao">Exploracao Interativa</h2>
+                <p>
+                    Desenvolvemos ambientes 3D navegaveis, onde o usuario
+                    pode<br />explorar locais historicos de forma dinamica, como
+                    em um mapa digital.
                 </p>
-            </div>
-        </section>
+                <video
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    aria-label="Demonstracao de exploracao interativa em ambiente 3D"
+                >
+                    <source
+                        src="../../assets/imgs/video_local.mp4"
+                        type="video/mp4"
+                    />
+                </video>
+            </section>
 
-    </main>
+            <section id="secao4" aria-labelledby="titulo-maquetes">
+                <article>
+                    <h2 id="titulo-maquetes">Maquetes Fisicas para Museus</h2>
+                    <h3>
+                        Projetamos modelos 3D que podem ser utilizados na<br />criacao
+                        de maquetes fisicas, auxiliando exposicoes e<br />experiencias
+                        educativas.
+                    </h3>
+                    <p>
+                        Este projeto de maquete em escala real<br />demonstra
+                        nossa capacidade de recriar<br />arquiteturas complexas
+                        e ambientes historicos<br />com precisao absoluta. Cada
+                        fachada, cada telha<br />e cada textura sao fruto de uma
+                        pesquisa rigorosa<br />para garantir que o passado seja
+                        preservado com<br />a dignidade que merece.
+                    </p>
+                    <p>
+                        Representacao fisica que facilita a compreensao<br />do
+                        espaco, aproximando o publico da historia.
+                    </p>
+                </article>
+
+                <section
+                    id="imagem_video"
+                    aria-label="Midias do projeto de maquete"
+                >
+                    <video
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        aria-label="Video de maquete historica"
+                    >
+                        <source
+                            src="../../assets/imgs/gif.mp4"
+                            type="video/mp4"
+                        />
+                    </video>
+                    <img
+                        src="../../assets/imgs/maquete.png"
+                        alt="Maquete fisica de estrutura historica"
+                    />
+                </section>
+            </section>
+
+            <section id="secao5" aria-labelledby="titulo-estudo">
+                <img
+                    src="../../assets/imgs/esboco_museu.png"
+                    alt="Esboco arquitetonico do museu"
+                />
+
+                <section
+                    id="contato"
+                    aria-label="Formulario de solicitacao de estudo"
+                >
+                    <h2 id="titulo-estudo">
+                        Solicite um Estudo de Reconstituicao
+                    </h2>
+                    <form id="service-request-form" novalidate>
+                        <label for="nome">Nome</label>
+                        <input
+                            type="text"
+                            id="nome"
+                            name="name"
+                            autocomplete="name"
+                            required
+                        />
+
+                        <label for="instituicao">Instituicao</label>
+                        <input
+                            type="text"
+                            id="instituicao"
+                            name="institution"
+                            required
+                        />
+
+                        <label for="email">E-mail</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            autocomplete="email"
+                            required
+                        />
+
+                        <label for="mensagem">Mensagem</label>
+                        <textarea
+                            id="mensagem"
+                            name="message"
+                            required
+                        ></textarea>
+
+                        <button type="submit" id="btnEnviar">ENVIAR</button>
+                    </form>
+                </section>
+            </section>
+
+            <div
+                id="custom-alert"
+                class="custom-alert"
+                role="alert"
+                aria-live="assertive"
+                hidden
+            >
+                <span id="custom-alert-message"></span>
+                <button
+                    type="button"
+                    id="custom-alert-close"
+                    aria-label="Fechar alerta"
+                >
+                    Fechar
+                </button>
+            </div>
+        </main>
         <footer-component></footer-component>
     </body>
 </html>
