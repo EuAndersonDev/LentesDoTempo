@@ -128,7 +128,7 @@ header-component {
 
 .nav__link {
     text-decoration: none;
-    color: var(--second-text-color, #737373);
+    color: var(--second-text-color, #84592c);
     font-size: 1.18rem;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -136,12 +136,12 @@ header-component {
 }
 
 .nav__link:hover {
-    color: var(--primary-color, #84592c);
+    color: var(--primary-color, #451a03);
     transform: translateY(-2px) translateX(2px);
 }
 
 .nav__item--active .nav__link {
-    color: var(--primary-color, #84592c);
+    color: var(--primary-color, #451a03);
     font-weight: 800;
 }
 
