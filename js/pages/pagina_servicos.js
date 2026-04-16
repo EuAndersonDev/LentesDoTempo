@@ -143,3 +143,15 @@ if (form) {
         }
     });
 }
+
+function bounce(card) {
+      card.classList.add('pulou');
+      card.style.transform = card.classList.contains('destaque')
+        ? 'translateY(-22px) scale(1.03)'
+        : 'translateY(-10px) scale(1.03)';
+      setTimeout(() => {
+        card.style.transform = card.classList.contains('destaque')
+          ? 'translateY(-12px)'
+          : '';
+      }, 250);
+    }

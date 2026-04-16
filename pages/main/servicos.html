@@ -156,10 +156,10 @@
                             type="video/mp4"
                         />
                     </video>
-                    <img
+                    <!--<img
                         src="../../assets/imgs/maquete.png"
                         alt="Maquete fisica de estrutura historica"
-                    />
+                    />-->
                 </section>
             </section>
 
@@ -231,6 +231,43 @@
                     Fechar
                 </button>
             </div>
+
+            <h1 id="planos">Planos de Assinatura</h1>
+
+            <section id="secao6">
+                <article onclick="bounce(this)">
+                    <h2>Essencial</h2>
+                    <p class="subtitulo">Plano 1</p>
+                    <ul>
+                        <li>Sistema rodando com locais limitados, selecionados pela própria instituição de acordo com sua grade curricular ou temática</li>
+                    </ul>
+                    <button onclick="event.stopPropagation(); window.location.href='../../pages/auth/login.html'">
+                        Assinar</button>
+                    </article>
+                
+                    <article onclick="bounce(this)">
+                    <h2>Avançado</h2>
+                    <p class="subtitulo">Plano 2</p>
+                    <ul>
+                        <li>Acesso a todos os locais lançados, com atualizações contínuas</li>
+                        <li>5 reconstruções sob demanda exclusivas da instituição</li>
+                    </ul>
+                    <button onclick="event.stopPropagation(); window.location.href='../../pages/auth/login.html'">
+                        Assinar</button>
+                    </article>
+                
+                    <article class="destaque" onclick="bounce(this)">
+                    <h2>Premium</h2>
+                    <p class="subtitulo">Plano 3 — Mais completo</p>
+                    <ul>
+                        <li>Acesso completo a todos os locais</li>
+                        <li>Atualizações e reconstruções sob demanda ilimitadas</li>
+                        <li>Fornecimento de óculos de Realidade Virtual para uso no local</li>
+                    </ul>
+                    <button onclick="event.stopPropagation(); window.location.href='../../pages/auth/login.html'">
+                        Assinar</button>
+                </article>
+            </section>
         </main>
         <footer-component></footer-component>
     </body>
