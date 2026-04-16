@@ -15,7 +15,7 @@ class Header extends HTMLElement {
             <header class="header">
                 <div class="header__container">
                     <a href="/index.html" aria-label="Ir para a página inicial">
-                        <img class="header__logo" alt="Logo Lentes do Tempo" src="/assets/icons/Logo.svg"/>
+                        <img class="header__logo" alt="Logo Lentes do Tempo" src="../../assets/icons/Logo.svg"/>
                     </a>
                     <div class="header__brand">
                         <i class="header__title">Lentes do Tempo</i>
