@@ -34,7 +34,7 @@ main{
     justify-content: center;
     align-items: center;
     gap: 24px;
-    margin-top: 41px;
+    margin-top: 100px;
 }
 
 #inicio > div:last-child img {
@@ -330,7 +330,7 @@ main{
 
     #inicio {
         gap: 24px;
-        margin-top: 28px;
+        margin-top: 88px;
     }
     
     #section4 {
@@ -359,7 +359,7 @@ main{
         align-items: center;
         text-align: center;
         gap: 16px;
-        margin-top: 24px;
+        margin-top: 94px;
     }
     #textSection1{
         flex: unset; /* remove comportamento de flex */
