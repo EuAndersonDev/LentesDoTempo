@@ -4,12 +4,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuOverlay = document.getElementById('menu-overlay');
     const container = document.getElementById('video-container');
     const hotspots = document.querySelectorAll('.hotspot');
+    const scrollHint = document.getElementById('scroll-hint');
+    const clickHint = document.getElementById('click-hint');
 
     // Função que inicia o ouvinte de scroll
     function initScrollEngine() {
         let currentProgress = 0;
         let targetProgress = 0;
         let rafId = null;
+        let hasScrolled = false;
+
+        // Mostrar scroll-hint no início
+        scrollHint.classList.remove('hidden');
 
         function getMaxScroll() {
             return Math.max(scrollBound.offsetHeight - window.innerHeight, 1);
@@ -27,7 +33,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 video.currentTime = video.duration * currentProgress;
             }
 
-            menuOverlay.classList.toggle('visible', currentProgress > 0.95);
+            const isMenuVisible = currentProgress > 0.95;
+            menuOverlay.classList.toggle('visible', isMenuVisible);
+
+            // Mostrar dica de clique quando entrar no museu
+            if (isMenuVisible && !clickHint.classList.contains('visible')) {
+                scrollHint.classList.add('hidden');
+                clickHint.classList.add('visible');
+            } else if (!isMenuVisible && clickHint.classList.contains('visible')) {
+                clickHint.classList.remove('visible');
+                if (!hasScrolled) {
+                    scrollHint.classList.remove('hidden');
+                }
+            }
 
             if (Math.abs(targetProgress - currentProgress) > 0.0005) {
                 rafId = window.requestAnimationFrame(renderFrame);
@@ -39,6 +57,12 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener('scroll', () => {
             const scrollPercentage = Math.max(0, Math.min(window.scrollY / getMaxScroll(), 1));
             targetProgress = scrollPercentage;
+
+            // Esconder dica de scroll quando usuário rolar
+            if (window.scrollY > 0 && !hasScrolled) {
+                hasScrolled = true;
+                scrollHint.classList.add('hidden');
+            }
 
             if (rafId === null) {
                 rafId = window.requestAnimationFrame(renderFrame);
@@ -80,6 +104,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // Oculta os hotspots instantaneamente para um visual mais limpo
             menuOverlay.style.opacity = '0';
             menuOverlay.style.pointerEvents = 'none';
+
+            // Oculta a dica de clique
+            clickHint.classList.remove('visible');
 
             // Salva no sessionStorage que houve um zoom para a próxima página
             sessionStorage.setItem('zoomedTransition', 'true');

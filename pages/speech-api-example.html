@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo - Speech API Integrada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #333;
+            margin-top: 0;
+        }
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .info-box h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        .command-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .command-card {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 6px;
+        }
+        .command-card strong {
+            color: #667eea;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+        .status {
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            color: #2e7d32;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 15px 0;
+            display: none;
+        }
+        .status.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎤 Controle de Voz - Lentes do Tempo</h1>
+        
+        <div class="info-box">
+            <h3>Como Usar?</h3>
+            <p>
+                Clique no botão 🎤 no canto inferior direito da tela ou pressione a tecla <strong>V</strong>
+                do seu teclado para ativar o reconhecimento de voz. Fale um dos comandos disponíveis
+                e o sistema navegará automaticamente.
+            </p>
+        </div>
+
+        <h2>Exemplos de Comandos</h2>
+
+        <h3>Navegação para Páginas</h3>
+        <div class="command-grid">
+            <div class="command-card">
+                <strong>Galeria</strong><br>
+                "galeria", "fotos", "explorar galeria"
+            </div>
+            <div class="command-card">
+                <strong>Sobre Nós</strong><br>
+                "sobre", "quem somos", "história"
+            </div>
+            <div class="command-card">
+                <strong>Serviços</strong><br>
+                "serviços", "ofertas", "o que oferecemos"
+            </div>
+            <div class="command-card">
+                <strong>Eventos</strong><br>
+                "eventos", "agendamento", "datas"
+            </div>
+            <div class="command-card">
+                <strong>Coliseu VR</strong><br>
+                "coliseu", "realidade virtual coliseu"
+            </div>
+            <div class="command-card">
+                <strong>Farol VR</strong><br>
+                "farol", "realidade virtual farol"
+            </div>
+        </div>
+
+        <h3>Comandos Gerais</h3>
+        <div class="command-grid">
+            <div class="command-card">
+                <strong>Home</strong><br>
+                "home", "início", "página inicial"
+            </div>
+            <div class="command-card">
+                <strong>Voltar</strong><br>
+                "voltar", "anterior", "para trás"
+            </div>
+            <div class="command-card">
+                <strong>Menu</strong><br>
+                "menu", "abrir menu"
+            </div>
+            <div class="command-card">
+                <strong>Ajuda</strong><br>
+                "ajuda", "tutorial", "instruções"
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>ℹ️ Informações Técnicas</h3>
+            <p>
+                <strong>Tecnologia:</strong> Web Speech API<br>
+                <strong>Idioma:</strong> Português (Brasil) - PT-BR<br>
+                <strong>Navegadores Suportados:</strong> Chrome, Edge, Firefox, Safari, Opera<br>
+                <strong>Privacidade:</strong> Processamento local, nenhum dado enviado para servidores
+            </p>
+        </div>
+
+        <button onclick="testarVoz()">🎤 Testar Reconhecimento de Voz</button>
+
+        <div class="status" id="status"></div>
+    </div>
+
+    <!-- ==========================================
+         SCRIPTS DA SPEECH API - TEMPLATE PARA USAR
+         ========================================== -->
+    
+    <!-- Importar configuração -->
+    <script src="../../js/services/speechApiConfig.js" defer></script>
+    
+    <!-- Importar serviço de reconhecimento -->
+    <script src="../../js/services/speechApi.js" defer></script>
+    
+    <!-- Importar widget visual -->
+    <script src="../../js/services/voiceControlWidget.js" defer></script>
+
+    <!-- Script de inicialização do widget -->
+    <script defer>
+        /**
+         * Inicializar o widget de controle de voz quando o documento carregar
+         * 
+         * Opções disponíveis:
+         * - position: 'bottom-right', 'bottom-left', 'top-right', 'top-left'
+         * - theme: 'dark' ou 'light'
+         * - enabled: true ou false (ativar por padrão)
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            initVoiceControlWidget({
+                position: 'bottom-right',
+                theme: 'dark',
+                enabled: true
+            });
+
+            // Ouvir eventos do serviço de voz (opcional)
+            if (window.speechService) {
+                window.speechService.on('final-result', function(data) {
+                    console.log('Comando reconhecido:', data.text);
+                });
+
+                window.speechService.on('error', function(data) {
+                    console.error('Erro de voz:', data.error);
+                });
+            }
+        });
+
+        // Função de teste
+        function testarVoz() {
+            const statusDiv = document.getElementById('status');
+            
+            if (!window.speechService) {
+                statusDiv.textContent = '❌ Serviço de voz não inicializado';
+                statusDiv.classList.add('show');
+                return;
+            }
+
+            if (!window.speechService.available) {
+                statusDiv.textContent = '❌ Web Speech API não está disponível no seu navegador';
+                statusDiv.classList.add('show');
+                return;
+            }
+
+            statusDiv.textContent = '✓ Web Speech API disponível! Clique no microfone para começar.';
+            statusDiv.classList.add('show');
+        }
+    </script>
+</body>
+</html>

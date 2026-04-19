@@ -440,5 +440,19 @@
             </section>
         </main>
         <footer-component></footer-component>
+        
+        <!-- Speech API Scripts -->
+        <script src="../../js/services/speechApiConfig.js" defer></script>
+        <script src="../../js/services/speechApi.js" defer></script>
+        <script src="../../js/services/voiceControlWidget.js" defer></script>
+        <script defer>
+            document.addEventListener('DOMContentLoaded', function() {
+                initVoiceControlWidget({
+                    position: 'bottom-right',
+                    theme: 'dark',
+                    enabled: true
+                });
+            });
+        </script>
     </body>
 </html>

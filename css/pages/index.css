@@ -91,17 +91,26 @@ html {
 }
 
 .hotspot__icon {
-    width: clamp(48px, 5vw, 64px);
-    height: clamp(48px, 5vw, 64px);
+    width: clamp(72px, 7.5vw, 96px);
+    height: clamp(72px, 7.5vw, 96px);
     flex-shrink: 0;
-    padding: clamp(6px, 0.8vw, 8px);
+    padding: clamp(9px, 1.2vw, 12px);
     background: #8b6f47;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     object-fit: contain;
-    transition: transform 0.25s ease;
+    transition: all 0.3s ease;
+    transition:
+        transform 0.25s ease,
+        background 0.3s ease;
+}
+
+.hotspot__icon:hover {
+    background: var(--accent-color);
+    transform: scale(1.1);
+    transition: all 0.3s ease;
 }
 
 .tooltip {
@@ -153,6 +162,87 @@ html {
 
 .logo-watermark:hover {
     opacity: 1;
+}
+
+/* --- MENSAGENS DE DICA (HINTS) --- */
+.scroll-hint,
+.click-hint {
+    position: fixed;
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.scroll-hint p,
+.click-hint p {
+    color: #000000;
+    font-size: 64px;
+    letter-spacing: 1px;
+    font-weight: 300;
+    margin: 0;
+}
+
+.scroll-hint {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: slideInFromLeft 3s ease-in-out infinite;
+}
+
+.scroll-hint.hidden {
+    animation: none;
+    opacity: 0;
+}
+
+.click-hint {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: none;
+    opacity: 0;
+}
+
+.click-hint.visible {
+    animation: slideInFromTop 3s ease-in-out infinite;
+    opacity: 1;
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%) translateX(-100%);
+    }
+    25% {
+        opacity: 1;
+        transform: translateY(-50%) translateX(20px);
+    }
+    75% {
+        opacity: 1;
+        transform: translateY(-50%) translateX(20px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50%) translateX(-100%);
+    }
+}
+
+@keyframes slideInFromTop {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-100%);
+    }
+    25% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(20px);
+    }
+    75% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(20px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-100%);
+    }
 }
 
 @media (max-width: 1024px) {
