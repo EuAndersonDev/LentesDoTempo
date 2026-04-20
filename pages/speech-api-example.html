@@ -87,34 +87,34 @@
     </head>
     <body>
         <div class="container">
-            <h1>ðŸŽ¤ Controle de Voz - Lentes do Tempo</h1>
+            <h1>🎤 Controle de Voz - Lentes do Tempo</h1>
 
             <div class="info-box">
                 <h3>Como Usar?</h3>
                 <p>
-                    Clique no botÃ£o ðŸŽ¤ no canto inferior direito da tela ou
+                    Clique no botão 🎤 no canto inferior direito da tela ou
                     pressione a tecla <strong>V</strong>
                     do seu teclado para ativar o reconhecimento de voz. Fale um
-                    dos comandos disponÃ­veis e o sistema navegarÃ¡
+                    dos comandos disponíveis e o sistema navegará
                     automaticamente.
                 </p>
             </div>
 
             <h2>Exemplos de Comandos</h2>
 
-            <h3>NavegaÃ§Ã£o para PÃ¡ginas</h3>
+            <h3>Navegação para páginas</h3>
             <div class="command-grid">
                 <div class="command-card">
                     <strong>Galeria</strong><br />
                     "galeria", "fotos", "explorar galeria"
                 </div>
                 <div class="command-card">
-                    <strong>Sobre NÃ³s</strong><br />
-                    "sobre", "quem somos", "histÃ³ria"
+                    <strong>Sobre nós</strong><br />
+                    "sobre", "quem somos", "história"
                 </div>
                 <div class="command-card">
-                    <strong>ServiÃ§os</strong><br />
-                    "serviÃ§os", "ofertas", "o que oferecemos"
+                    <strong>Serviços</strong><br />
+                    "serviços", "ofertas", "o que oferecemos"
                 </div>
                 <div class="command-card">
                     <strong>Eventos</strong><br />
@@ -134,11 +134,11 @@
             <div class="command-grid">
                 <div class="command-card">
                     <strong>Home</strong><br />
-                    "home", "inÃ­cio", "pÃ¡gina inicial"
+                    "home", "início", "página inicial"
                 </div>
                 <div class="command-card">
                     <strong>Voltar</strong><br />
-                    "voltar", "anterior", "para trÃ¡s"
+                    "voltar", "anterior", "para trás"
                 </div>
                 <div class="command-card">
                     <strong>Menu</strong><br />
@@ -146,15 +146,15 @@
                 </div>
                 <div class="command-card">
                     <strong>Ajuda</strong><br />
-                    "ajuda", "tutorial", "instruÃ§Ãµes"
+                    "ajuda", "tutorial", "instruções"
                 </div>
             </div>
 
             <div class="info-box">
-                <h3>â„¹ï¸ InformaÃ§Ãµes TÃ©cnicas</h3>
+                <h3>ℹ️ Informações técnicas</h3>
                 <p>
                     <strong>Tecnologia:</strong> Web Speech API<br />
-                    <strong>Idioma:</strong> PortuguÃªs (Brasil) - PT-BR<br />
+                    <strong>Idioma:</strong> Português (Brasil) - PT-BR<br />
                     <strong>Navegadores Suportados:</strong> Chrome, Edge,
                     Firefox, Safari, Opera<br />
                     <strong>Privacidade:</strong> Processamento local, nenhum
@@ -173,24 +173,24 @@
          SCRIPTS DA SPEECH API - TEMPLATE PARA USAR
          ========================================== -->
 
-        <!-- Importar configuraÃ§Ã£o -->
+        <!-- Importar configuração -->
         <script src="../../js/services/speechApiConfig.js" defer></script>
 
-        <!-- Importar serviÃ§o de reconhecimento -->
+        <!-- Importar serviço de reconhecimento -->
         <script src="../../js/services/speechApi.js" defer></script>
 
         <!-- Importar widget visual -->
         <script src="../../js/services/voiceControlWidget.js" defer></script>
 
-        <!-- Script de inicializaÃ§Ã£o do widget -->
+        <!-- Script de inicialização do widget -->
         <script defer>
             /**
              * Inicializar o widget de controle de voz quando o documento carregar
              *
-             * OpÃ§Ãµes disponÃ­veis:
+             * Opções disponíveis:
              * - position: 'bottom-right', 'bottom-left', 'top-right', 'top-left'
              * - theme: 'dark' ou 'light'
-             * - enabled: true ou false (ativar por padrÃ£o)
+             * - enabled: true ou false (ativar por padrão)
              */
             document.addEventListener("DOMContentLoaded", function () {
                 initVoiceControlWidget({
@@ -199,7 +199,7 @@
                     enabled: true,
                 });
 
-                // Ouvir eventos do serviÃ§o de voz (opcional)
+                // Ouvir eventos do serviço de voz (opcional)
                 if (window.speechService) {
                     window.speechService.on("final-result", function (data) {
                         console.log("Comando reconhecido:", data.text);
@@ -211,26 +211,26 @@
                 }
             });
 
-            // FunÃ§Ã£o de teste
+            // Função de teste
             function testarVoz() {
                 const statusDiv = document.getElementById("status");
 
                 if (!window.speechService) {
                     statusDiv.textContent =
-                        "âŒ ServiÃ§o de voz nÃ£o inicializado";
+                        "❌ Serviço de voz não inicializado";
                     statusDiv.classList.add("show");
                     return;
                 }
 
                 if (!window.speechService.available) {
                     statusDiv.textContent =
-                        "âŒ Web Speech API nÃ£o estÃ¡ disponÃ­vel no seu navegador";
+                        "❌ Web Speech API não está disponível no seu navegador";
                     statusDiv.classList.add("show");
                     return;
                 }
 
                 statusDiv.textContent =
-                    "âœ“ Web Speech API disponÃ­vel! Clique no microfone para comeÃ§ar.";
+                    "✓ Web Speech API disponível! Clique no microfone para começar.";
                 statusDiv.classList.add("show");
             }
         </script>

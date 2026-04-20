@@ -6,7 +6,7 @@ class Header extends HTMLElement {
         const reloadPageNavItemMarkup = session.isAuthenticated
             ? `
                         <div class="nav__item ${currentPage === 'reloadpage' ? 'nav__item--active' : ''}">
-                            <a class="nav__link" href="/pages/main/reloadpage.html">Reconstrução cenário</a>
+                            <a class="nav__link" href="/pages/main/reloadpage.html">Reconstrução de cenário</a>
                         </div>
               `
             : '';
