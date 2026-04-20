@@ -5,92 +5,92 @@
  */
 
 class VoiceControlWidget {
-  constructor(options = {}) {
-    this.position = options.position || 'bottom-right';
-    this.theme = options.theme || 'dark';
-    this.enabled = options.enabled !== false;
-    this.container = null;
-    this.speechService = window.speechService || null;
-  }
-
-  /**
-   * Inicializar widget
-   */
-  initialize() {
-    if (!this.speechService) {
-      console.warn('Speech Service não inicializado');
-      return;
+    constructor(options = {}) {
+        this.position = options.position || 'bottom-right';
+        this.theme = options.theme || 'dark';
+        this.enabled = options.enabled !== false;
+        this.container = null;
+        this.speechService = window.speechService || null;
     }
 
-    this.createWidget();
-    this.attachEventListeners();
-  }
+    /**
+     * Inicializar widget
+     */
+    initialize() {
+        if (!this.speechService) {
+            console.warn('Speech Service não inicializado');
+            return;
+        }
 
-  /**
-   * Criar elementos do widget
-   */
-  createWidget() {
-    // Container principal
-    this.container = document.createElement('div');
-    this.container.id = 'voice-control-widget';
-    this.container.className = `voice-control-widget ${this.position} ${this.theme}`;
-
-    // Botão do microfone
-    const micButton = document.createElement('button');
-    micButton.id = 'voice-control-mic';
-    micButton.className = 'voice-control-mic';
-    micButton.title = 'Ativar controle por voz (Clique ou pressione V)';
-    micButton.innerHTML = '🎤';
-    micButton.setAttribute('aria-label', 'Ativar controle por voz');
-
-    // Indicador de status
-    const statusIndicator = document.createElement('div');
-    statusIndicator.id = 'voice-status';
-    statusIndicator.className = 'voice-status hidden';
-
-    // Texto de status
-    const statusText = document.createElement('span');
-    statusText.id = 'voice-status-text';
-    statusText.className = 'voice-status-text';
-
-    statusIndicator.appendChild(statusText);
-
-    // Transcript visualizador
-    const transcript = document.createElement('div');
-    transcript.id = 'voice-transcript';
-    transcript.className = 'voice-transcript hidden';
-
-    // Menu de ajuda
-    const helpButton = document.createElement('button');
-    helpButton.id = 'voice-help-btn';
-    helpButton.className = 'voice-help-btn';
-    helpButton.title = 'Mostrar ajuda de comandos de voz';
-    helpButton.innerHTML = '❓';
-
-    // Montar widget
-    this.container.appendChild(micButton);
-    this.container.appendChild(statusIndicator);
-    this.container.appendChild(transcript);
-    this.container.appendChild(helpButton);
-
-    // Adicionar ao DOM
-    document.body.appendChild(this.container);
-
-    // Injetar estilos
-    this.injectStyles();
-  }
-
-  /**
-   * Injetar estilos CSS
-   */
-  injectStyles() {
-    const styleId = 'voice-control-styles';
-    
-    if (document.getElementById(styleId)) {
-      return; // Já injetado
+        this.createWidget();
+        this.attachEventListeners();
     }
 
-    const styles = `
+    /**
+     * Criar elementos do widget
+     */
+    createWidget() {
+        // Container principal
+        this.container = document.createElement('div');
+        this.container.id = 'voice-control-widget';
+        this.container.className = `voice-control-widget ${this.position} ${this.theme}`;
+
+        // Botão do microfone
+        const micButton = document.createElement('button');
+        micButton.id = 'voice-control-mic';
+        micButton.className = 'voice-control-mic';
+        micButton.title = 'Ativar controle por voz (Clique ou pressione V)';
+        micButton.innerHTML = '🎤';
+        micButton.setAttribute('aria-label', 'Ativar controle por voz');
+
+        // Indicador de status
+        const statusIndicator = document.createElement('div');
+        statusIndicator.id = 'voice-status';
+        statusIndicator.className = 'voice-status hidden';
+
+        // Texto de status
+        const statusText = document.createElement('span');
+        statusText.id = 'voice-status-text';
+        statusText.className = 'voice-status-text';
+
+        statusIndicator.appendChild(statusText);
+
+        // Transcript visualizador
+        const transcript = document.createElement('div');
+        transcript.id = 'voice-transcript';
+        transcript.className = 'voice-transcript hidden';
+
+        // Menu de ajuda
+        const helpButton = document.createElement('button');
+        helpButton.id = 'voice-help-btn';
+        helpButton.className = 'voice-help-btn';
+        helpButton.title = 'Mostrar ajuda de comandos de voz';
+        helpButton.innerHTML = '❓';
+
+        // Montar widget
+        this.container.appendChild(micButton);
+        this.container.appendChild(statusIndicator);
+        this.container.appendChild(transcript);
+        this.container.appendChild(helpButton);
+
+        // Adicionar ao DOM
+        document.body.appendChild(this.container);
+
+        // Injetar estilos
+        this.injectStyles();
+    }
+
+    /**
+     * Injetar estilos CSS
+     */
+    injectStyles() {
+        const styleId = 'voice-control-styles';
+
+        if (document.getElementById(styleId)) {
+            return; // Já injetado
+        }
+
+        const styles = `
       /* Voice Control Widget */
       #voice-control-widget {
         position: fixed;
@@ -309,189 +309,189 @@ class VoiceControlWidget {
       }
     `;
 
-    const styleSheet = document.createElement('style');
-    styleSheet.id = styleId;
-    styleSheet.textContent = styles;
-    document.head.appendChild(styleSheet);
-  }
-
-  /**
-   * Conectar listeners de eventos
-   */
-  attachEventListeners() {
-    const micButton = document.getElementById('voice-control-mic');
-    const helpButton = document.getElementById('voice-help-btn');
-
-    // Click no botão do microfone
-    if (micButton) {
-      micButton.addEventListener('click', () => this.toggleListening());
+        const styleSheet = document.createElement('style');
+        styleSheet.id = styleId;
+        styleSheet.textContent = styles;
+        document.head.appendChild(styleSheet);
     }
 
-    // Click no botão de ajuda
-    if (helpButton) {
-      helpButton.addEventListener('click', () => this.speechService?.showHelpModal());
+    /**
+     * Conectar listeners de eventos
+     */
+    attachEventListeners() {
+        const micButton = document.getElementById('voice-control-mic');
+        const helpButton = document.getElementById('voice-help-btn');
+
+        // Click no botão do microfone
+        if (micButton) {
+            micButton.addEventListener('click', () => this.toggleListening());
+        }
+
+        // Click no botão de ajuda
+        if (helpButton) {
+            helpButton.addEventListener('click', () => this.speechService?.showHelpModal());
+        }
+
+        // Atalho de teclado (V)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'v' || e.key === 'V') {
+                this.toggleListening();
+            }
+        });
+
+        // Listeners do Speech Service
+        if (this.speechService) {
+            this.speechService.on('listening-start', () => this.onListeningStart());
+            this.speechService.on('listening-end', () => this.onListeningEnd());
+            this.speechService.on('interim-result', (data) => this.onInterimResult(data));
+            this.speechService.on('final-result', (data) => this.onFinalResult(data));
+            this.speechService.on('command-executed', (data) => this.onCommandExecuted(data));
+            this.speechService.on('error', (data) => this.onError(data));
+        }
     }
 
-    // Atalho de teclado (V)
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'v' || e.key === 'V') {
-        this.toggleListening();
-      }
-    });
+    /**
+     * Alternar ouvindo
+     */
+    toggleListening() {
+        if (!this.speechService?.available) {
+            alert('Speech API não disponível neste navegador');
+            return;
+        }
 
-    // Listeners do Speech Service
-    if (this.speechService) {
-      this.speechService.on('listening-start', () => this.onListeningStart());
-      this.speechService.on('listening-end', () => this.onListeningEnd());
-      this.speechService.on('interim-result', (data) => this.onInterimResult(data));
-      this.speechService.on('final-result', (data) => this.onFinalResult(data));
-      this.speechService.on('command-executed', (data) => this.onCommandExecuted(data));
-      this.speechService.on('error', (data) => this.onError(data));
-    }
-  }
-
-  /**
-   * Alternar ouvindo
-   */
-  toggleListening() {
-    if (!this.speechService?.available) {
-      alert('Speech API não disponível neste navegador');
-      return;
+        if (this.speechService.isListening) {
+            this.speechService.stop();
+        } else {
+            this.speechService.start();
+        }
     }
 
-    if (this.speechService.isListening) {
-      this.speechService.stop();
-    } else {
-      this.speechService.start();
-    }
-  }
+    /**
+     * Callback: começou a ouvir
+     */
+    onListeningStart() {
+        const micButton = document.getElementById('voice-control-mic');
+        const statusDiv = document.getElementById('voice-status');
 
-  /**
-   * Callback: começou a ouvir
-   */
-  onListeningStart() {
-    const micButton = document.getElementById('voice-control-mic');
-    const statusDiv = document.getElementById('voice-status');
+        if (micButton) {
+            micButton.classList.add('listening');
+        }
 
-    if (micButton) {
-      micButton.classList.add('listening');
-    }
-
-    if (statusDiv) {
-      statusDiv.textContent = '🎤 Ouvindo...';
-      statusDiv.classList.remove('hidden', 'error');
-    }
-  }
-
-  /**
-   * Callback: parou de ouvir
-   */
-  onListeningEnd() {
-    const micButton = document.getElementById('voice-control-mic');
-    const statusDiv = document.getElementById('voice-status');
-    const transcriptDiv = document.getElementById('voice-transcript');
-
-    if (micButton) {
-      micButton.classList.remove('listening');
+        if (statusDiv) {
+            statusDiv.textContent = '🎤 Ouvindo...';
+            statusDiv.classList.remove('hidden', 'error');
+        }
     }
 
-    // Manter status visível por um segundo
-    setTimeout(() => {
-      if (statusDiv) {
-        statusDiv.classList.add('hidden');
-      }
-      if (transcriptDiv) {
-        transcriptDiv.classList.add('hidden');
-      }
-    }, 1500);
-  }
+    /**
+     * Callback: parou de ouvir
+     */
+    onListeningEnd() {
+        const micButton = document.getElementById('voice-control-mic');
+        const statusDiv = document.getElementById('voice-status');
+        const transcriptDiv = document.getElementById('voice-transcript');
 
-  /**
-   * Callback: resultado interim
-   */
-  onInterimResult(data) {
-    const transcriptDiv = document.getElementById('voice-transcript');
-    
-    if (transcriptDiv) {
-      transcriptDiv.textContent = `${data.text}`;
-      transcriptDiv.classList.remove('hidden');
-      transcriptDiv.classList.add('interim');
-    }
-  }
+        if (micButton) {
+            micButton.classList.remove('listening');
+        }
 
-  /**
-   * Callback: resultado final
-   */
-  onFinalResult(data) {
-    const transcriptDiv = document.getElementById('voice-transcript');
-    
-    if (transcriptDiv) {
-      transcriptDiv.textContent = `✓ "${data.text}"`;
-      transcriptDiv.classList.remove('interim');
-    }
-  }
-
-  /**
-   * Callback: comando executado
-   */
-  onCommandExecuted(data) {
-    const statusDiv = document.getElementById('voice-status');
-    
-    if (statusDiv) {
-      statusDiv.textContent = `✓ Comando executado`;
-      statusDiv.classList.remove('hidden', 'error');
-    }
-  }
-
-  /**
-   * Callback: erro
-   */
-  onError(data) {
-    const statusDiv = document.getElementById('voice-status');
-    
-    if (statusDiv) {
-      const errorMessage = this.getErrorMessage(data.error);
-      statusDiv.textContent = `❌ ${errorMessage}`;
-      statusDiv.classList.remove('hidden');
-      statusDiv.classList.add('error');
+        // Manter status visível por um segundo
+        setTimeout(() => {
+            if (statusDiv) {
+                statusDiv.classList.add('hidden');
+            }
+            if (transcriptDiv) {
+                transcriptDiv.classList.add('hidden');
+            }
+        }, 1500);
     }
 
-    console.error('Erro de voz:', data.error);
-  }
+    /**
+     * Callback: resultado interim
+     */
+    onInterimResult(data) {
+        const transcriptDiv = document.getElementById('voice-transcript');
 
-  /**
-   * Obter mensagem de erro amigável
-   */
-  getErrorMessage(error) {
-    const messages = {
-      'no-speech': 'Nenhuma fala detectada',
-      'audio-capture': 'Sem acesso ao microfone',
-      'network': 'Erro de conexão',
-      'permission-denied': 'Permissão negada',
-      'not-allowed': 'Recurso não permitido',
-      'bad-grammar': 'Comando não reconhecido'
-    };
+        if (transcriptDiv) {
+            transcriptDiv.textContent = `${data.text}`;
+            transcriptDiv.classList.remove('hidden');
+            transcriptDiv.classList.add('interim');
+        }
+    }
 
-    return messages[error] || `Erro: ${error}`;
-  }
+    /**
+     * Callback: resultado final
+     */
+    onFinalResult(data) {
+        const transcriptDiv = document.getElementById('voice-transcript');
+
+        if (transcriptDiv) {
+            transcriptDiv.textContent = `✓ "${data.text}"`;
+            transcriptDiv.classList.remove('interim');
+        }
+    }
+
+    /**
+     * Callback: comando executado
+     */
+    onCommandExecuted(data) {
+        const statusDiv = document.getElementById('voice-status');
+
+        if (statusDiv) {
+            statusDiv.textContent = `✓ Comando executado`;
+            statusDiv.classList.remove('hidden', 'error');
+        }
+    }
+
+    /**
+     * Callback: erro
+     */
+    onError(data) {
+        const statusDiv = document.getElementById('voice-status');
+
+        if (statusDiv) {
+            const errorMessage = this.getErrorMessage(data.error);
+            statusDiv.textContent = `❌ ${errorMessage}`;
+            statusDiv.classList.remove('hidden');
+            statusDiv.classList.add('error');
+        }
+
+        console.error('Erro de voz:', data.error);
+    }
+
+    /**
+     * Obter mensagem de erro amigável
+     */
+    getErrorMessage(error) {
+        const messages = {
+            'no-speech': 'Nenhuma fala detectada',
+            'audio-capture': 'Sem acesso ao microfone',
+            'network': 'Erro de conexão',
+            'permission-denied': 'Permissão negada',
+            'not-allowed': 'Recurso não permitido',
+            'bad-grammar': 'Comando não reconhecido'
+        };
+
+        return messages[error] || `Erro: ${error}`;
+    }
 }
 
 // Inicializar widget quando o Speech Service estiver pronto
 function initVoiceControlWidget(options = {}) {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      const widget = new VoiceControlWidget(options);
-      widget.initialize();
-      window.voiceControlWidget = widget;
-    });
-  } else {
-    const widget = new VoiceControlWidget(options);
-    widget.initialize();
-    window.voiceControlWidget = widget;
-  }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            const widget = new VoiceControlWidget(options);
+            widget.initialize();
+            window.voiceControlWidget = widget;
+        });
+    } else {
+        const widget = new VoiceControlWidget(options);
+        widget.initialize();
+        window.voiceControlWidget = widget;
+    }
 }
 
 // Exportar
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { VoiceControlWidget, initVoiceControlWidget };
+    module.exports = { VoiceControlWidget, initVoiceControlWidget };
 }

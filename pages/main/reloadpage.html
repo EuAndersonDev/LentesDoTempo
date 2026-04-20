@@ -28,29 +28,26 @@
         <header-component></header-component>
         <main>
             <div vw class="enabled">
-            <div vw-access-button class="active"></div>
-            <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-            </div>
+                <div vw-access-button class="active"></div>
+                <div vw-plugin-wrapper>
+                    <div class="vw-plugin-top-wrapper"></div>
+                </div>
             </div>
             <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
             <script>
-                new window.VLibras.Widget('https://vlibras.gov.br/app');
+                new window.VLibras.Widget("https://vlibras.gov.br/app");
             </script>
-            <section class="reload-page">
-                <div
-                    class="reload-page__ambient reload-page__ambient--one"
-                ></div>
-                <div
-                    class="reload-page__ambient reload-page__ambient--two"
-                ></div>
 
-                <div class="reload-page__shell">
-                    <section class="reload-hero">
+            <section class="reload-page">
+                <section class="reload-hero" aria-labelledby="reload-hero-title">
+                    <div class="reload-page__ambient reload-page__ambient--one"></div>
+                    <div class="reload-page__ambient reload-page__ambient--two"></div>
+
+                    <div class="reload-hero__texto">
                         <p class="reload-hero__eyebrow">
                             Reconstrução de cenário com IA
                         </p>
-                        <h1 class="reload-hero__title">
+                        <h1 class="reload-hero__title" id="reload-hero-title">
                             Transforme ruínas em uma nova visão de futuro.
                         </h1>
                         <p class="reload-hero__description">
@@ -62,10 +59,7 @@
                         <div class="reload-hero__stats">
                             <div class="reload-stat">
                                 <strong>Upload</strong>
-                                <span
-                                    >imagem em alta ou registro de
-                                    referência</span
-                                >
+                                <span>imagem em alta ou registro de referência</span>
                             </div>
                             <div class="reload-stat">
                                 <strong>IA</strong>
@@ -76,8 +70,17 @@
                                 <span>integração via /api/images/upload</span>
                             </div>
                         </div>
-                    </section>
+                    </div>
 
+                    <figure class="reload-hero__media">
+                        <img
+                            src="../../assets/imgs/HeroReload.png"
+                            alt="Paisagem de ruínas com atmosfera de transformação para a seção de reconstrução de cenário"
+                        />
+                    </figure>
+                </section>
+
+                <div class="reload-page__shell">
                     <section class="reload-grid">
                         <article class="reload-card reload-card--upload">
                             <div class="reload-card__header">
@@ -85,9 +88,7 @@
                                     <p class="reload-card__label">1. Envio</p>
                                     <h2>Selecione a imagem-base</h2>
                                 </div>
-                                <span class="reload-badge" id="upload-state"
-                                    >Aguardando arquivo</span
-                                >
+                                <span class="reload-badge" id="upload-state">Aguardando arquivo</span>
                             </div>
 
                             <form class="reload-form" id="reload-form">
@@ -117,15 +118,13 @@
                                             />
                                         </svg>
                                     </span>
-                                    <strong
-                                        >Arraste e solte ou clique para
-                                        escolher</strong
-                                    >
-                                    <span
-                                        >JPEG, PNG ou WebP. A imagem será
-                                        enviada para o fluxo de
-                                        processamento.</span
-                                    >
+                                    <strong>
+                                        Arraste e solte ou clique para escolher
+                                    </strong>
+                                    <span>
+                                        JPEG, PNG ou WebP. A imagem será enviada
+                                        para o fluxo de processamento.
+                                    </span>
                                 </label>
 
                                 <div class="reload-preview">
@@ -152,9 +151,7 @@
                                 </div>
 
                                 <div class="reload-field">
-                                    <label for="scene-title"
-                                        >Nome do cenário</label
-                                    >
+                                    <label for="scene-title">Nome do cenário</label>
                                     <input
                                         type="text"
                                         id="scene-title"
@@ -164,9 +161,9 @@
                                 </div>
 
                                 <div class="reload-field">
-                                    <label for="revitalization-brief"
-                                        >Direção da revitalização</label
-                                    >
+                                    <label for="revitalization-brief">
+                                        Direção da revitalização
+                                    </label>
                                     <textarea
                                         id="revitalization-brief"
                                         name="revitalization-brief"
@@ -176,25 +173,17 @@
                                 </div>
 
                                 <div class="reload-field reload-field--inline">
-                                    <label for="style-presets"
-                                        >Estilo visual</label
-                                    >
+                                    <label for="style-presets">Estilo visual</label>
                                     <select
                                         id="style-presets"
                                         name="style-presets"
                                     >
-                                        <option value="realista">
-                                            Realista
-                                        </option>
+                                        <option value="realista">Realista</option>
                                         <option value="cinematografico">
                                             Cinematográfico
                                         </option>
-                                        <option value="patrimonial">
-                                            Patrimonial
-                                        </option>
-                                        <option value="futurista">
-                                            Futurista
-                                        </option>
+                                        <option value="patrimonial">Patrimonial</option>
+                                        <option value="futurista">Futurista</option>
                                     </select>
                                 </div>
 
@@ -225,14 +214,12 @@
                         <article class="reload-card reload-card--result">
                             <div class="reload-card__header">
                                 <div>
-                                    <p class="reload-card__label">
-                                        2. Resultado
-                                    </p>
+                                    <p class="reload-card__label">2. Resultado</p>
                                     <h2>Prévia da reconstrução</h2>
                                 </div>
-                                <span class="reload-badge reload-badge--ghost"
-                                    >Saída do backend</span
-                                >
+                                <span class="reload-badge reload-badge--ghost">
+                                    Saída do backend
+                                </span>
                             </div>
 
                             <div class="reload-result" id="result-empty-state">
@@ -256,9 +243,7 @@
                                     alt="Resultado gerado pela IA"
                                 />
                                 <div class="reload-result__meta">
-                                    <h3 id="result-title">
-                                        Resultado processado
-                                    </h3>
+                                    <h3 id="result-title">Resultado processado</h3>
                                     <p id="result-description"></p>
                                     <a
                                         id="result-link"
@@ -284,8 +269,9 @@
                             <span
                                 class="reload-badge reload-badge--soft"
                                 id="gallery-count"
-                                >0 itens</span
                             >
+                                0 itens
+                            </span>
                         </div>
 
                         <div class="reload-gallery__grid" id="reload-gallery">
@@ -302,17 +288,17 @@
             </section>
         </main>
         <footer-component></footer-component>
-        
+
         <!-- Speech API Scripts -->
         <script src="../../js/services/speechApiConfig.js" defer></script>
         <script src="../../js/services/speechApi.js" defer></script>
         <script src="../../js/services/voiceControlWidget.js" defer></script>
         <script defer>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener("DOMContentLoaded", function () {
                 initVoiceControlWidget({
-                    position: 'bottom-left',
-                    theme: 'dark',
-                    enabled: true
+                    position: "bottom-left",
+                    theme: "dark",
+                    enabled: true,
                 });
             });
         </script>
