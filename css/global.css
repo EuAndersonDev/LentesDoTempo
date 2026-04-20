@@ -15,6 +15,12 @@
     --third-color: #9d9167;
     --accent-color: #6f1d1b;
     --accent2-color: #442d1d;
+
+    /* Escala tipografica global (grande e legivel) */
+    --font-size-h1: clamp(2.25rem, 5vw, 4rem);
+    --font-size-p: clamp(1.125rem, 2vw, 1.5rem);
+    --line-height-h1: 1.12;
+    --line-height-p: 1.6;
 }
 
 /* Isso faz com que a navegação por âncoras (clicar em um link e a página descer) deslize suavemente */
@@ -79,11 +85,45 @@ h3 {
     font-family: var(--font-title);
 }
 
+h1 {
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-h1);
+    letter-spacing: 0.01em;
+}
+
 p {
     font-family: var(--font-text);
+    font-size: var(--font-size-p);
+    line-height: var(--line-height-p);
+}
+
+/* Ajuste global do UserWay para evitar sobrepor elementos fixos no rodape */
+iframe[src*="userway"],
+#userwayAccessibilityIcon,
+#userway-widget,
+[id^="userwayAccessibilityIcon"] {
+    left: auto !important;
+    right: 18px !important;
+    bottom: max(88px, env(safe-area-inset-bottom)) !important;
+    z-index: 2147483000 !important;
+}
+
+@media (max-width: 768px) {
+    iframe[src*="userway"],
+    #userwayAccessibilityIcon,
+    #userway-widget,
+    [id^="userwayAccessibilityIcon"] {
+        right: 12px !important;
+        bottom: max(74px, env(safe-area-inset-bottom)) !important;
+    }
 }
 
 @media (max-width: 767px) {
+    :root {
+        --font-size-h1: clamp(2rem, 9vw, 3rem);
+        --font-size-p: clamp(1.05rem, 4.4vw, 1.35rem);
+    }
+
     .parallax [data-speed] {
         transform: none !important;
         will-change: auto !important;

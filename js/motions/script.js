@@ -12,10 +12,21 @@ document.addEventListener("DOMContentLoaded", () => {
         let currentProgress = 0;
         let targetProgress = 0;
         let rafId = null;
-        let hasScrolled = false;
+
+        function updateScrollHintVisibility() {
+            if (!scrollHint) {
+                return;
+            }
+
+            if (window.scrollY <= 8) {
+                scrollHint.classList.remove('hidden');
+            } else {
+                scrollHint.classList.add('hidden');
+            }
+        }
 
         // Mostrar scroll-hint no início
-        scrollHint.classList.remove('hidden');
+        updateScrollHintVisibility();
 
         function getMaxScroll() {
             return Math.max(scrollBound.offsetHeight - window.innerHeight, 1);
@@ -37,13 +48,15 @@ document.addEventListener("DOMContentLoaded", () => {
             menuOverlay.classList.toggle('visible', isMenuVisible);
 
             // Mostrar dica de clique quando entrar no museu
-            if (isMenuVisible && !clickHint.classList.contains('visible')) {
-                scrollHint.classList.add('hidden');
-                clickHint.classList.add('visible');
-            } else if (!isMenuVisible && clickHint.classList.contains('visible')) {
-                clickHint.classList.remove('visible');
-                if (!hasScrolled) {
-                    scrollHint.classList.remove('hidden');
+            if (clickHint) {
+                if (isMenuVisible && !clickHint.classList.contains('visible')) {
+                    if (scrollHint) {
+                        scrollHint.classList.add('hidden');
+                    }
+                    clickHint.classList.add('visible');
+                } else if (!isMenuVisible && clickHint.classList.contains('visible')) {
+                    clickHint.classList.remove('visible');
+                    updateScrollHintVisibility();
                 }
             }
 
@@ -57,12 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener('scroll', () => {
             const scrollPercentage = Math.max(0, Math.min(window.scrollY / getMaxScroll(), 1));
             targetProgress = scrollPercentage;
-
-            // Esconder dica de scroll quando usuário rolar
-            if (window.scrollY > 0 && !hasScrolled) {
-                hasScrolled = true;
-                scrollHint.classList.add('hidden');
-            }
+            updateScrollHintVisibility();
 
             if (rafId === null) {
                 rafId = window.requestAnimationFrame(renderFrame);
@@ -71,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         window.addEventListener('resize', () => {
             targetProgress = Math.max(0, Math.min(window.scrollY / getMaxScroll(), 1));
+            updateScrollHintVisibility();
             if (rafId === null) {
                 rafId = window.requestAnimationFrame(renderFrame);
             }
@@ -106,7 +115,9 @@ document.addEventListener("DOMContentLoaded", () => {
             menuOverlay.style.pointerEvents = 'none';
 
             // Oculta a dica de clique
-            clickHint.classList.remove('visible');
+            if (clickHint) {
+                clickHint.classList.remove('visible');
+            }
 
             // Salva no sessionStorage que houve um zoom para a próxima página
             sessionStorage.setItem('zoomedTransition', 'true');

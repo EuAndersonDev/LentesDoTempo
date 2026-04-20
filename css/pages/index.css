@@ -170,59 +170,129 @@ html {
     position: fixed;
     z-index: 50;
     pointer-events: none;
-    opacity: 0;
-}
-
-.scroll-hint p,
-.click-hint p {
-    color: #000000;
-    font-size: 64px;
-    letter-spacing: 1px;
-    font-weight: 300;
-    margin: 0;
 }
 
 .scroll-hint {
-    left: 0;
+    left: 18px;
     top: 50%;
     transform: translateY(-50%);
-    animation: slideInFromLeft 3s ease-in-out infinite;
+    opacity: 1;
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+.scroll-hint__card {
+    max-width: min(460px, 84vw);
+    padding: 18px 22px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 227, 177, 0.55);
+    background: linear-gradient(
+        140deg,
+        rgba(14, 14, 14, 0.84),
+        rgba(75, 49, 24, 0.75)
+    );
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 20px 44px rgba(0, 0, 0, 0.5),
+        0 0 26px rgba(197, 141, 74, 0.34),
+        inset 0 0 0 1px rgba(255, 240, 218, 0.16);
+}
+
+.click-hint__card {
+    max-width: min(500px, 88vw);
+    padding: 16px 22px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 227, 177, 0.55);
+    background: linear-gradient(
+        140deg,
+        rgba(14, 14, 14, 0.84),
+        rgba(75, 49, 24, 0.75)
+    );
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 20px 44px rgba(0, 0, 0, 0.5),
+        0 0 26px rgba(197, 141, 74, 0.34),
+        inset 0 0 0 1px rgba(255, 240, 218, 0.16);
+    text-align: center;
+}
+
+.scroll-hint__label {
+    display: inline-block;
+    margin-bottom: 6px;
+    font-size: 0.76rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: rgba(255, 232, 191, 0.97);
+}
+
+.click-hint__label {
+    display: inline-block;
+    margin-bottom: 6px;
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: rgba(255, 232, 191, 0.95);
+}
+
+.scroll-hint p {
+    margin: 0;
+    color: #fff7eb;
+    font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+    line-height: 1.45;
+    letter-spacing: 0.02em;
+    font-weight: 600;
+    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45);
+    text-wrap: balance;
+}
+
+.click-hint p {
+    color: #fff7eb;
+    font-size: clamp(1rem, 2vw, 1.22rem);
+    letter-spacing: 0.03em;
+    font-weight: 600;
+    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45);
+    margin: 0;
 }
 
 .scroll-hint.hidden {
-    animation: none;
     opacity: 0;
+    transform: translateY(-50%) translateX(-18px);
 }
 
 .click-hint {
     top: 0;
     left: 50%;
-    transform: translateX(-50%);
-    animation: none;
+    transform: translateX(-50%) translateY(-30px);
     opacity: 0;
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
 }
 
 .click-hint.visible {
-    animation: slideInFromTop 3s ease-in-out infinite;
     opacity: 1;
+    transform: translateX(-50%) translateY(20px);
 }
 
 @keyframes slideInFromLeft {
     0% {
         opacity: 0;
-        transform: translateY(-50%) translateX(-100%);
+        transform: translateY(-50%) translateX(-130%);
     }
     25% {
         opacity: 1;
-        transform: translateY(-50%) translateX(20px);
+        transform: translateY(-50%) translateX(0);
     }
     75% {
         opacity: 1;
-        transform: translateY(-50%) translateX(20px);
+        transform: translateY(-50%) translateX(0);
     }
     100% {
         opacity: 0;
-        transform: translateY(-50%) translateX(-100%);
+        transform: translateY(-50%) translateX(-130%);
     }
 }
 
@@ -295,6 +365,24 @@ html {
     .logo-watermark img {
         width: 64px;
     }
+
+    .scroll-hint {
+        left: 12px;
+    }
+
+    .scroll-hint__card {
+        padding: 14px 16px;
+        border-radius: 12px;
+    }
+
+    .click-hint {
+        width: calc(100vw - 20px);
+    }
+
+    .click-hint__card {
+        padding: 13px 14px;
+        border-radius: 12px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -330,6 +418,31 @@ html {
 
     .logo-watermark img {
         width: 56px;
+    }
+
+    .scroll-hint {
+        left: 10px;
+    }
+
+    .scroll-hint__card {
+        max-width: min(320px, 88vw);
+        padding: 12px 14px;
+    }
+
+    .scroll-hint__label {
+        margin-bottom: 4px;
+        font-size: 0.67rem;
+        letter-spacing: 0.15em;
+    }
+
+    .click-hint.visible {
+        transform: translateX(-50%) translateY(12px);
+    }
+
+    .click-hint__label {
+        margin-bottom: 4px;
+        font-size: 0.66rem;
+        letter-spacing: 0.15em;
     }
 }
 

@@ -1,4 +1,4 @@
-<html lang="pt-BR">
+﻿<html lang="pt-BR">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,13 +7,14 @@
             type="image/svg+xml"
             href="../../../assets/icons/Logo.svg"
         />
-        <title>Meu Vídeo VR 360°</title>
+        <title>Meu VÃ­deo VR 360Â°</title>
         <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+        <link rel="stylesheet" href="../../../css/global.css" />
         <link rel="stylesheet" href="../../../css/pages/main/farolVR.css" />
     </head>
     <body>
         <div id="overlay">
-            <button onclick="togglePlay()">▶ Play</button>
+            <button onclick="togglePlay()">â–¶ Play</button>
             <button onclick="toggleVR()">VR</button>
         </div>
 
@@ -28,7 +29,7 @@
                 ></video>
             </a-assets>
 
-            <!-- ✅ Agora descomentado e usando #video360 corretamente -->
+            <!-- âœ… Agora descomentado e usando #video360 corretamente -->
             <a-videosphere src="#video360" rotation="0 -90 0"> </a-videosphere>
 
             <a-camera>
@@ -44,11 +45,11 @@
                 if (playing) {
                     vid.pause();
                     document.querySelector("#overlay button").textContent =
-                        "▶ Play";
+                        "â–¶ Play";
                 } else {
                     vid.play();
                     document.querySelector("#overlay button").textContent =
-                        "⏸ Pause";
+                        "â¸ Pause";
                 }
                 playing = !playing;
             }
@@ -72,5 +73,9 @@
                 });
             });
         </script>
-    </body>
+        
+            <script src="https://cdn.userway.org/widget.js" data-account="nKnoa78Hw3"></script>
+</body>
 </html>
+
+
