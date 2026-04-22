@@ -64,7 +64,7 @@ class Footer extends HTMLElement {
                     <img src="../../assets/icons/Footer/Instagram.svg" alt="" />
                 </a>
                 <a href="#" class="footer__social-link" aria-label="YouTube">
-                    <img src="../../assets/icons/Footer/YouTube.svg" alt="" />
+                    <img src="../../assets/icons/Footer/Youtube.svg" alt="" />
                 </a>
                 <a href="#" class="footer__social-link" aria-label="Facebook">
                     <img src="../../assets/icons/Footer/Linkedin.svg" alt="" />
