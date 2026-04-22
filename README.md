@@ -75,9 +75,9 @@ Este projeto foi construído com as seguintes ferramentas:
 Desenvolvido por:
 
 **Anderson** (EuAndersonDev).
-- **LinkedIn:** [Seu Link do LinkedIn](https://linkedin.com/in/seu-usuario)
-- **Email:** seuemail@exemplo.com
-- **Portfólio:** [seuportfolio.com](https://seuportfolio.com)
+- **LinkedIn:** [Seu Link do LinkedIn]((https://www.linkedin.com/in/euandersonreis/))
+- **Email:** andersonaugustorei1227@gmail.com
+- **Portfólio:** [seuportfolio.com](http://andersonreis.vercel.app/)
 
 **Pessoa2**
 
