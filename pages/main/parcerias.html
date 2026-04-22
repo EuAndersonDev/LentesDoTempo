@@ -17,7 +17,6 @@
         <script src="../../js/components/header.js" defer></script>
         <script src="../../js/components/footer.js" defer></script>
         <script src="../../js/motions/transition.js" defer></script>
-        <link rel="stylesheet" href="parcerias.css" />
     </head>
     <body>
         <header-component></header-component>
@@ -32,6 +31,7 @@
             <script>
                 new window.VLibras.Widget("https://vlibras.gov.br/app");
             </script>
+            <!-- Carrosel inicial -->
             <div class="carousel-container intro">
                 <div class="carousel-track">
                     <div class="card" data-category="Antropologia">
@@ -80,7 +80,7 @@
                         class="video-lateral"
                     >
                         <source
-                            src="../../assets/imgs/Video P1.mp4"
+                            src="../../assets/imgs/Video P2.mp4"
                             type="video/mp4"
                         />
                         Seu navegador não suporta vídeos.
@@ -89,7 +89,7 @@
 
                 <div class="container">
                     <h2 class="intro-title">
-                        Unindo saberes para ressuscitar o passado
+                        Unindo saberes para <br>ressuscitar o passado
                     </h2>
                     <p class="intro-text">
                         Unimos o conhecimento acadêmico à tecnologia de ponta
@@ -99,8 +99,8 @@
                         documental e científica.
                     </p>
                     <p class="intro-text">
-                        Nosso compromisso é converter o estudo documental em
-                        ativos digitais de valor científico, respeitando a
+                        Nosso compromisso é converter o estudo documental <br>em
+                        ativos digitais de valor científico, respeitando a <br>
                         integridade das fontes e a precisão histórica em cada
                         reconstrução.
                     </p>
@@ -126,9 +126,9 @@
                         Reconstruindo a história para novas gerações
                     </h2>
                     <p class="split-body">
-                        Unimos rigor histórico e criatividade em parcerias com
-                        museus para criar experiências educativas imersivas,
-                        tornando o patrimônio acessível e transformando
+                        Unimos rigor histórico e criatividade em parcerias <br>com
+                        museus para criar experiências educativas <br>imersivas,
+                        tornando o patrimônio acessível e <br>transformando
                         exposições em vivências reais.
                     </p>
                 </div>
@@ -179,129 +179,51 @@
             </section>
 
             <!-- SEÇÃO PARCEIROS -->
-            <section class="partners">
+            <section class="parceiros">
                 <div class="container">
-                    <h2 class="partners-title">Alguns de nossos parceiros</h2>
+                    <h2 class="parceiros-title">Nossos parceiros</h2>
 
-                    <div class="partners-category">
-                        <span class="category-label">Categorias</span>
-                    </div>
 
-                    <div class="partners-grid">
-                        <div class="partner-card">
-                            <img
-                                src="../../assets/imgs/USP.jpg"
-                                alt="Logo parceiro"
-                            />
-                        </div>
-                        <div class="partner-card">
-                            <img
-                                src="../../assets/imgs/Cambridge.png"
-                                alt="Logo parceiro"
-                            />
-                        </div>
-                        <div class="partner-card">
-                            <img
-                                src="../../assets/imgs/search.png"
-                                alt="Logo parceiro"
-                            />
-                        </div>
-                        <div class="partner-card">
-                            <img
-                                src="../../assets/imgs/Massachusetts.png"
-                                alt="Logo parceiro"
-                            />
-                        </div>
-
-                        <div class="partner-card">
-                            <img
-                                src="../../assets/imgs/iphan.png"
-                                alt="Logo parceiro"
-                            />
-                        </div>
-                        <div class="partner-card">
-                            <img
-                                src="../../assets/imgs/Finap.png"
-                                alt="Logo parceiro"
-                            />
-                        </div>
-                        <div class="partner-card">
-                            <img
-                                src="../../assets/imgs/bndes.jpg"
-                                alt="Logo parceiro"
-                            />
-                        </div>
-                        <div class="partner-card">
-                            <img
-                                src="../../assets/imgs/UNESCO.jpg"
-                                alt="Logo parceiro"
-                            />
-                        </div>
-
-                        <div class="partner-card">
-                            <img
-                                src="../../assets/imgs/icomos.png"
-                                alt="Logo parceiro"
-                            />
-                        </div>
-                        <div class="partner-card">
-                            <img
-                                src="../../assets/imgs/leiden.png"
-                                alt="Logo parceiro"
-                            />
-                        </div>
-                        <div class="partner-card">
-                            <img
-                                src="../../assets/imgs/Tokyo.png"
-                                alt="Logo parceiro"
-                            />
-                        </div>
-                        <div class="partner-card">
-                            <img
-                                src="../../assets/imgs/peking.png"
-                                alt="Logo parceiro"
-                            />
-                        </div>
+                    <div class="parceiros-grid">
+                <div class="parceiros-card"><img src="../../assets/imgs/Senac logo.png"       alt="Logo parceiro"></div>
+                <div class="parceiros-card"><img src="../../assets/imgs/Proa logo.png" alt="Logo parceiro"></div>
+                 
                     </div>
                 </div>
             </section>
         </main>
 
         <script>
-            const cards = document.querySelectorAll(".card");
+               const cards = document.querySelectorAll('.parceiros-card');
+const grid = document.querySelector('.parceiros-grid');
 
-            cards.forEach((card) => {
-                card.addEventListener("click", () => {
-                    // 1. Resetar todas
-                    cards.forEach((c) => c.classList.remove("active"));
+cards.forEach((card) => {
+  card.addEventListener('mouseenter', () => {
+    
+    cards.forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    
+    grid.scrollTo({
+      left: card.offsetLeft - (grid.offsetWidth / 2) + (card.offsetWidth / 2),
+      behavior: 'smooth'
+    });
+  });
+});
 
-                    // 2. Ativar a clicada
-                    card.classList.add("active");
-
-                    // 3. Centralizar suavemente no container
-                    card.parentElement.scrollTo({
-                        left:
-                            card.offsetLeft -
-                            card.parentElement.offsetWidth / 2 +
-                            card.offsetWidth / 2,
-                        behavior: "smooth",
-                    });
-                });
-            });
+grid.addEventListener('mouseleave', () => {
+  cards.forEach(c => c.classList.remove('active'));
+});
         </script>
 
         <script>
             document.addEventListener("DOMContentLoaded", () => {
-                // 1. Selecionamos primeiro o container específico da intro
                 const introSection = document.querySelector(".intro");
 
-                // Se a seção intro não existir nesta página, o código para aqui e não dá erro
                 if (!introSection) return;
 
                 // 2. Buscamos os cards e legendas APENAS dentro da introSection
                 const introCards = introSection.querySelectorAll(".card");
-                const introCaption =
-                    introSection.querySelector(".carousel-caption");
+                const introCaption = introSection.querySelector(".carousel-caption");
 
                 const titles = {
                     Antropologia: "Antropologia",
@@ -342,7 +264,101 @@
                     });
                 }
             });
+            
         </script>
+
+        <script>
+function atualizarGaleriaComSusto(listaDeCards, indiceAtivo, containerPai) {
+    listaDeCards.forEach((card, i) => {
+        card.classList.remove("active", "is-active", "is-side", "jump-effect");
+
+        if (i === indiceAtivo) {
+            card.classList.add("active", "is-active", "jump-effect");
+
+            const offsetDistancia = card.offsetLeft - (containerPai.offsetWidth / 2) + (card.offsetWidth / 2);
+            containerPai.scrollTo({
+                left: offsetDistancia,
+                behavior: 'smooth'
+            });
+
+        } else if (i === indiceAtivo - 1 || i === indiceAtivo + 1) {
+            card.classList.add("is-side");
+        }
+    });
+}
+
+const secaoWide = document.querySelector(".wide-image");
+const containerScroll = secaoWide.querySelector(".carousel-container");
+const cartoesWide = secaoWide.querySelectorAll(".card");
+
+cartoesWide.forEach((card, index) => {
+    card.addEventListener("click", () => {
+        atualizarGaleriaComSusto(cartoesWide, index, containerScroll);
+    });
+});
+        </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const boxVideo = document.querySelector(".intro .card");
+
+    if (boxVideo) {
+        boxVideo.addEventListener("click", function() {
+            this.classList.toggle("clicado");
+            
+            console.log("Status do aumento:", this.classList.contains("clicado"));
+        });
+    }
+});
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        
+        const cardVideo = document.querySelector(".intro .card");
+
+        if (cardVideo) {
+            
+            cardVideo.addEventListener("click", function () {
+                
+                this.classList.toggle("video-expandido");
+                
+            
+                console.log("Clique detectado! Expandido:", this.classList.contains("video-expandido"));
+            });
+        }
+    });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const cardVideo = document.querySelector(".intro .card");
+
+    if (cardVideo) {
+        cardVideo.addEventListener("click", function() {
+            this.classList.toggle("expandido");
+            console.log("Quadrado clicado e classe alternada!");
+        });
+    }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const cardAntropologia = document.querySelector('.card[data-category="antropologia"]');
+
+    if (cardAntropologia) {
+        cardAntropologia.addEventListener('click', function() {
+            this.classList.remove('jump-effect');
+            
+            void this.offsetWidth; 
+            
+            this.classList.add('jump-effect');
+            this.classList.toggle('is-active');
+        });
+    }
+});
+</script>
 
         <footer-component></footer-component>
 

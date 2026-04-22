@@ -1,6 +1,6 @@
 main {
     text-align: center;
-    padding: 32px;
+    padding: 30px;
 }
  
 body {
@@ -16,9 +16,6 @@ body {
     margin: 0 auto;
     padding: 0 40px;
 }
-
-
-
 
 .carousel-container {
     width: 100%;
@@ -101,7 +98,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 60px;
+    padding: 29px 60px;
     z-index: 10;
 }
  
@@ -160,68 +157,123 @@ body {
     
     clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
     
-    /* Mantém a qualidade máxima */
     image-rendering: -webkit-optimize-contrast; 
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
  
-/* ================================
-   INTROUÇAÕ: TITULO: Unindo saberes para ressuscitar o passado
-================================ */
-.intro {
-    padding: 80px 0 60px;
-}
- 
-.intro-title {
-    font-family: 'Noto Serif', serif;
-    font-size: 36px;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 24px;
-    color: #582D0B; 
-    max-width: 600px;
-}
- 
-.intro-text {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.7;
-    color: #000000;
-    max-width: 680px;
-    margin-bottom: 16px;
-}
+/* ============================================================
+   INTRODUÇÃO: Título: Unindo saberes para ressuscitar o passado
+   ============================================================ */
 
 .intro {
-    display: flex;         
-    align-items: center;   
-    justify-content: space-between; 
-    gap: 40px;             
-    max-width: 1200px;     
-    margin: 0 auto;        
-    padding: 60px 20px;
-}
-
-.intro .card {
-    flex: 0 1 400px;      
-    order: 2;             
     display: flex;
-    justify-content: flex-end; 
+    align-items: center;      
+    justify-content: center;  
+    gap: 60px;                
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    overflow: visible;        
 }
+
 
 .intro .container {
-    flex: 1;               
-    order: 1;              
+    flex: 1;
+    max-width: 600px;
+    order: 1;
 }
 
-.video-lateral {
-    width: 100%;          
-    max-height: 500px;    
-    object-fit: cover;    
-    border-radius: 25px;  
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+.intro-title {
+    font-family: 'Noto Serif', serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: #582D0B;
+    text-align: left;
 }
+
+.intro-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #000000;
+    margin-bottom: 20px;
+    text-align: left;
+    text-wrap: balance; 
+}
+
+/* ============================================================
+   CARD E EFEITO DE SOBRESSALTO (PULO)
+   ============================================================ */
+
+
+.intro .card {
+    flex: 1;
+    max-width: 500px;
+    order: 2;
+    cursor: pointer;
+    perspective: 1000px; 
+}
+
+
+.video-lateral {
+    width: 100%;
+    height: auto;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: block;
+}
+
+
+.card.is-active .video-lateral {
+    transform: scale(1.08); 
+    box-shadow: 0 25px 50px rgba(88, 45, 11, 0.35); 
+    z-index: 10;
+}
+
+
+.jump-effect .video-lateral {
+    animation: jumpSusto 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+
+@keyframes jumpSusto {
+    0% { 
+        transform: scale(1) translateY(0); 
+    }
+    40% { 
+        transform: scale(1.15) translateY(-35px); /* O auge do pulo */
+    }
+    100% { 
+        transform: scale(1.08) translateY(0); /* Pousa no tamanho de destaque */
+    }
+}
+
+/* ============================================================
+   RESPONSIVIDADE (MOBILE)
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .intro {
+        flex-direction: column; 
+        gap: 40px;
+    }
+    
+    .intro-title, .intro-text {
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .intro .card {
+        order: -1; 
+        width: 100%;
+    }
+}
+
 /* ================================
    2 SEÇÃO TITULO: Reconstruindo a história para novas gerações
 ================================ */
@@ -261,12 +313,16 @@ body {
 }
  
 .split-text {
-    flex: 1;
+flex: 1;
+text-align: right;
+
 }
+
+
  
 .split-title {
     font-family: 'Noto Serif', serif;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 700;
     line-height: 1.3;
     margin-bottom: 20px;
@@ -275,9 +331,11 @@ body {
  
 .split-body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 15px;
+    font-size: 18px;
     line-height: 1.75;
     color: #000000;
+    font-weight: 400;
+    text-wrap: balance; 
 }
 
 @keyframes jump-top {
@@ -302,9 +360,9 @@ body {
     z-index: 10;
 }
 
-/* Estilo base para suavizar */
+
 .split-img {
-    transition: z-index 0s; /* Garante que o z-index mude na hora */
+    transition: z-index 0s; 
 }
  
 /* ================================
@@ -363,13 +421,13 @@ body {
 }
  
 /* ================================
-   PARTNERS
+   Parcerias
 ================================ */
-.partners {
+.parceiros {
     padding: 60px 0 80px;
 }
  
-.partners-title {
+.parceiros-title {
     font-family: 'Noto Serif', serif;
     font-size: 32px;
     font-weight: 700;
@@ -378,13 +436,8 @@ body {
     color: #582D0B; 
 }
  
-.partners-category {
-    text-align: left;
-    margin-bottom: 24px;
-    padding: 0 40px;
-}
  
-.category-label {
+.categoria {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 13px;
     font-weight: 600;
@@ -393,25 +446,27 @@ body {
     color: #888;
 }
  
-.partners-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+.parceiros-grid {
+   display: flex;
+    justify-content: center; 
+    align-items: center;     
+    flex-wrap: wrap;         
     gap: 20px;
-    padding: 0 40px;
+    padding: 0 80px;
 }
  
-.partner-card {
+.parceiros-card {
     background-color: #fff; 
-    border-radius: 6px;
+    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px 16px;
+    padding: 20px 75px;
     min-height: 90px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
  
-.partner-card img {
+.parceiros-card img {
     max-width: 100%;
     max-height: 50px;
     object-fit: contain;
@@ -420,6 +475,18 @@ body {
     transition: filter 0.3s, opacity 0.3s;
 }
  
+.parceiros-card.active {
+    border: 2px solid #582D0B; 
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.parceiros-card.active img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
 .partner-card:hover img {
     filter: grayscale(0%);
     opacity: 1;
