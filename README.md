@@ -3,7 +3,7 @@
 
 > Capturando o presente, preservando o passado e projetando o futuro.
 
-O **Lentes do Tempo** é um frontend web estático com experiência imersiva, pensado para explorar conteúdos visuais e institucionais como se o usuário estivesse navegando por um museu interativo. A página inicial usa uma rolagem guiada com pontos de navegação para acessar áreas como galeria, serviços, eventos, parcerias, sobre nós e experiências em realidade virtual.
+O **Lentes do Tempo** é um frontend web com experiência imersiva, pensado para explorar conteúdos visuais e institucionais como se o usuário estivesse navegando por um museu interativo. A página inicial usa uma rolagem guiada com pontos de navegação para acessar áreas como galeria, serviços, eventos, parcerias, sobre nós e experiências em realidade virtual.
 
 O projeto também inclui autenticação de usuários, recuperação de senha, integração com backend REST, controle por voz em português do Brasil e recursos de acessibilidade.
 
